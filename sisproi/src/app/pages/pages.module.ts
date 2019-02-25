@@ -6,15 +6,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { PAGES_ROUTE } from './pages.routes';
+import { ProyectoComponent } from './proyecto/proyecto.component';
 
 
 @NgModule({
     declarations: [
         PagesComponent,
-        DashboardComponent
+        DashboardComponent,
+        ProyectoComponent
     ],
     exports: [
-        DashboardComponent
+        DashboardComponent,
+        ProyectoComponent
     ],
     imports: [
         SharedModule,

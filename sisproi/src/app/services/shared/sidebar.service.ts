@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
 
   menu: any[] = [
-    { titulo: 'Inicio', icono: 'mdi mdi-home-outline',  url: '/dashboard' },
+    { titulo: 'Inicio', icono: 'mdi mdi-home-outline', url: '/dashboard' },
     {
       titulo: 'Gestión',
       icono: 'mdi mdi-gauge',
       submenu: [
-        { titulo: 'Inicio', url: '/dashboard' }
+        { titulo: 'Inicio', url: '/dashboard' },
+        { titulo: 'Ficha de proyecto', url: '/proyecto' }
       ]
     }
   ];
