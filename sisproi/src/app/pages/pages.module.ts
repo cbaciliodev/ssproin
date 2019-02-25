@@ -7,17 +7,20 @@ import { CommonModule } from '@angular/common';
 
 import { PAGES_ROUTE } from './pages.routes';
 import { ProyectoComponent } from './proyecto/proyecto.component';
+import { InformacionComponent } from '../components/informacion/informacion.component';
 
 
 @NgModule({
     declarations: [
         PagesComponent,
         DashboardComponent,
-        ProyectoComponent
+        ProyectoComponent,
+        InformacionComponent
     ],
     exports: [
         DashboardComponent,
-        ProyectoComponent
+        ProyectoComponent,
+        InformacionComponent
     ],
     imports: [
         SharedModule,
