@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { } from 'googlemaps';
 
 @Component({
   selector: 'informacion-base',
@@ -8,14 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InformacionComponent implements OnInit {
 
   @Input() public proyecto: any;
+  @ViewChild('gmap') gmapElement: ElementRef;
+
+  private map: google.maps.Map;
+  private marker: google.maps.Marker;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  imprimir() {
-    console.log(this.proyecto);
   }
 
 }
