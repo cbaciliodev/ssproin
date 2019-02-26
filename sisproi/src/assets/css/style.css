@@ -8053,3 +8053,7 @@ File: scss
         overflow: hidden;
     }
 }
+
+.navbar-collapse {
+    background: #FFFFFF;
+}
