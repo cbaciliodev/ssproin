@@ -9,6 +9,8 @@ import { PAGES_ROUTE } from './pages.routes';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 import { InformacionComponent } from '../components/informacion/informacion.component';
 import { VerificacionComponent } from '../components/verificacion/verificacion.component';
+import { DetallePyComponent } from '../components/detalle-py/detalle-py.component';
+import { BulletComponent } from '../components/bullet/bullet.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { VerificacionComponent } from '../components/verificacion/verificacion.c
         DashboardComponent,
         ProyectoComponent,
         InformacionComponent,
-        VerificacionComponent
+        VerificacionComponent,
+        DetallePyComponent,
+        BulletComponent
     ],
     exports: [
         DashboardComponent,

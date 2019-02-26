@@ -1,27 +1,27 @@
 <div class="form-group row">
   <label class="col-sm-2">Jurisdicción</label>
   <div class="col-sm-10">
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="jurisdiccionOptions" id="inlineCheckbox1"
         [(ngModel)]="proyecto.jurisdiccion" value="option1">
       <label class="form-check-label" for="inlineCheckbox1">Nacional</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="jurisdiccionOptions" id="inlineCheckbox2"
         [(ngModel)]="proyecto.jurisdiccion" value="option2">
       <label class="form-check-label" for="inlineCheckbox2">Departamental</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="jurisdiccionOptions" id="inlineCheckbox3"
         [(ngModel)]="proyecto.jurisdiccion" value="option3">
       <label class="form-check-label" for="inlineCheckbox3">Provincial</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="jurisdiccionOptions" id="inlineCheckbox4"
         [(ngModel)]="proyecto.jurisdiccion" value="option4">
       <label class="form-check-label" for="inlineCheckbox4">Distrital</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="jurisdiccionOptions" id="inlineCheckbox5"
         [(ngModel)]="proyecto.jurisdiccion" value="option5">
       <label class="form-check-label" for="inlineCheckbox5">Otra</label>
@@ -55,15 +55,15 @@
 <div class="form-group row">
   <label class="col-sm-2">Prioridad del sector</label>
   <div class="col-sm-10">
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridadOptions" id="prioridadRadio1" value="option1">
       <label class="form-check-label" for="prioridadRadio1">Alta</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridadOptions" id="prioridadRadio2" value="option2">
       <label class="form-check-label" for="prioridadRadio2">Media</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridadOptions" id="prioridadRadio3" value="option3">
       <label class="form-check-label" for="prioridadRadio3">Baja</label>
     </div>
@@ -72,22 +72,22 @@
 <div class="form-group row">
   <label class="col-sm-2">Modalidad ejecutiva</label>
   <div class="col-sm-10">
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="modalidadOptions" id="modalidadRadio1"
         [(ngModel)]="proyecto.modalidad" value="option1">
       <label class="form-check-label" for="modalidadRadio1">Obra Pública</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="modalidadOptions" id="modalidadRadio2"
         [(ngModel)]="proyecto.modalidad" value="option2">
       <label class="form-check-label" for="modalidadRadio2">APP</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="modalidadOptions" id="modalidadRadio3"
         [(ngModel)]="proyecto.modalidad" value="option3">
       <label class="form-check-label" for="modalidadRadio3">OxI</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="modalidadOptions" id="modalidadRadio4"
         [(ngModel)]="proyecto.modalidad" value="option4">
       <label class="form-check-label" for="modalidadRadio4">Otra</label>
@@ -102,34 +102,34 @@
 </div>
 <div class="form-group row">
   <label class="col-sm-2">Nivel de avance</label>
-  <div class="col-sm-6">
-    <div class="form-check form-check-inline">
+  <div class="col-sm-10">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="nivelOptions" id="nivelRadio1" [(ngModel)]="proyecto.nivel"
         value="option1">
       <label class="form-check-label" for="nivelRadio1">Idea</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="nivelOptions" id="nivelRadio2" [(ngModel)]="proyecto.nivel"
         value="option2">
       <label class="form-check-label" for="nivelRadio2">Preinversión</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="radio" name="nivelOptions" id="nivelRadio3" [(ngModel)]="proyecto.nivel"
         value="option3">
       <label class="form-check-label" for="nivelRadio3">Diseño</label>
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="nivelOptions" id="nivelRadio4" [(ngModel)]="proyecto.nivel"
-        value="option4">
-      <label class="form-check-label" for="nivelRadio4">En ejecución</label>
+    <div class="form-check form-inline row">
+      <div class="col-sm-3">
+        <input class="form-check-input" type="radio" name="nivelOptions" id="nivelRadio4" [(ngModel)]="proyecto.nivel" value="option4">
+        <label class="form-check-label" for="nivelRadio4">En ejecución</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" placeholder="% Avance físico" [disabled]="proyecto.nivel != 'option4'">
+      </div>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" placeholder="% Avance financiero" [disabled]="proyecto.nivel != 'option4'">
+      </div>
     </div>
-  </div>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" placeholder="% Avance físico" [disabled]="proyecto.nivel != 'option4'">
-  </div>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" placeholder="% Avance financiero"
-      [disabled]="proyecto.nivel != 'option4'">
   </div>
 </div>
 <div class="form-group row">
@@ -145,15 +145,15 @@
 <div class="form-group row">
   <label class="col-sm-2">Departamento</label>
   <div class="col-sm-10">
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="checkbox" id="departamento1" value="option1">
       <label class="form-check-label" for="departamento1">Departamento 1</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="checkbox" id="departamento2" value="option2">
       <label class="form-check-label" for="departamento2">Departamento 2</label>
     </div>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <input class="form-check-input" type="checkbox" id="departamento3" value="option3">
       <label class="form-check-label" for="departamento3">Departamento 3</label>
     </div>
@@ -172,10 +172,6 @@
   <div class="col-sm-10">
     <input type="number" class="form-control" id="inputEmail3" placeholder="Área de influencia">
   </div>
-</div>
-
-<div class="text-right">
-    <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

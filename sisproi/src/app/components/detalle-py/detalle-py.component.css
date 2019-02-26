@@ -1,0 +1,16 @@
+.cd-horizontal-timeline .events {
+    top: 48px;
+}
+
+.cd-horizontal-timeline {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.cd-horizontal-timeline .events {
+    top: 78px;
+}
+
+.cd-horizontal-timeline .timeline {
+    height: 160px;
+}

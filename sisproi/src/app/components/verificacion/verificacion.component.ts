@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-verificacion',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./verificacion.component.css']
 })
 export class VerificacionComponent implements OnInit {
+
+  @Input() public proyecto: any;
 
   constructor() { }
 

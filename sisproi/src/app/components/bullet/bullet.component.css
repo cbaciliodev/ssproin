@@ -1,0 +1,12 @@
+.bullet-o {
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: solid 1px;
+}
+
+.bullet-o-min {
+    width: 14px;
+    height: 14px;
+}
