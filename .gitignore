@@ -4,3 +4,5 @@ sisproi/package-lock\.json
 template/\.DS_Store
 
 \.DS_Store
+
+sisproi-backend/node_modules/
