@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { PAGES_ROUTE } from './pages.routes';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 import { InformacionComponent } from '../components/informacion/informacion.component';
+import { VerificacionComponent } from '../components/verificacion/verificacion.component';
 
 
 @NgModule({
@@ -15,12 +16,14 @@ import { InformacionComponent } from '../components/informacion/informacion.comp
         PagesComponent,
         DashboardComponent,
         ProyectoComponent,
-        InformacionComponent
+        InformacionComponent,
+        VerificacionComponent
     ],
     exports: [
         DashboardComponent,
         ProyectoComponent,
-        InformacionComponent
+        InformacionComponent,
+        VerificacionComponent
     ],
     imports: [
         SharedModule,
