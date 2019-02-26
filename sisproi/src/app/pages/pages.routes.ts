@@ -8,7 +8,7 @@ const pagesRoutes: Routes = [
         path: '',
         component: PagesComponent,
         children: [
-            { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', routes: [{ title: 'Dashboard' }, { title: 'Dashboard' }] } },
+            { path: 'dashboard', component: DashboardComponent, data: { title: 'Proyectos', routes: [{ title: 'Proyectos' }, { title: 'tablero de control' }] } },
             { path: 'proyecto', component: ProyectoComponent, data: { title: 'Ficha de proyecto', roputes: [{ title: 'Ficha de proyecto' }] } }
         ]
     }
