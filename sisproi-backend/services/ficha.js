@@ -2,7 +2,17 @@ var Ficha = require('../models/ficha');
 
 module.exports = {
     insert: insert,
-    update: update
+    update: update,
+    select: select
+}
+
+function select(id) {
+    return new Promise((resolve, reject) => {
+        Ficha.findById(id, (err, data) => {
+            if (err) reject(err);
+            resolve(data);
+        });
+    });
 }
 
 function insert(ficha) {
