@@ -11,6 +11,7 @@ import { InformacionComponent } from '../components/informacion/informacion.comp
 import { VerificacionComponent } from '../components/verificacion/verificacion.component';
 import { DetallePyComponent } from '../components/detalle-py/detalle-py.component';
 import { BulletComponent } from '../components/bullet/bullet.component';
+import { MapaUploadComponent } from '../components/mapa-upload/mapa-upload.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BulletComponent } from '../components/bullet/bullet.component';
         InformacionComponent,
         VerificacionComponent,
         DetallePyComponent,
-        BulletComponent
+        BulletComponent,
+        MapaUploadComponent
     ],
     exports: [
         DashboardComponent,
