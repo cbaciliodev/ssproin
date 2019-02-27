@@ -9,6 +9,7 @@ module.exports.ESTADOS = {
 
 // Estado por default
 module.exports.ESTADO_ACTIVO = 1;
+module.exports.ESTADO_ELIMINADO = 3;
 
 // Mongo atlas credentials
 module.exports.MONGODB = {

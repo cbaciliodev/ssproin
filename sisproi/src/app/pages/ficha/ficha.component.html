@@ -1,36 +1,23 @@
 <div class="card">
-  <div class="card-body collapse show">
+  <div [formGroup]="fichaForm" class="card-body collapse show">
     <h2>Información base</h2>
     <div class="form-group row">
-      <label class="col-sm-2" for="selectTipo">Nivel 1</label>
+      <label class="col-sm-2">Nivel 1</label>
       <div class="col-sm-10">
-        <select class="form-control" id="selectTipo" [(ngModel)]="proyecto.nivel1">
+        <select formControlName="sector_nivel_1" class="form-control">
           <option value="">-- seleccione --</option>
-          <option value="1">PROGRAMA - TRANSPORTE</option>
-          <option value="2">PROGRAMA - AGUA Y SANEAMIENTO URBANO</option>
+          <option *ngFor="let n1 of nivel_1" [value]="n1.nombre">{{n1.alias}}</option>
         </select>
       </div>
     </div>
-
-    <ng-container *ngIf="proyecto.nivel1 == '1'">
+    
+    <ng-container *ngIf="valor('sector_nivel_1') == 'PTRANSPORTE'">
       <div class="form-group row">
         <label class="col-sm-2">Nivel 2</label>
         <div class="col-sm-10">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="nivel21" value="option1">
-            <label class="form-check-label" for="nivel21">Carretero</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="nivel22" value="option2">
-            <label class="form-check-label" for="nivel22">Ferroviario</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="nivel23" value="option3">
-            <label class="form-check-label" for="nivel23">Acuático</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="nivel24" value="option4">
-            <label class="form-check-label" for="nivel24">Aéreo</label>
+          <div *ngFor="let nt2 of nivel_trans_2; let i=index" class="form-check">
+              <input formControlName="sector_nivel_2" class="form-check-input" type="checkbox" [id]="'nt2_' + i" [value]="nt2.nombre">
+              <label class="form-check-label" [for]="'nt2_' + i">{{nt2.alias}}</label>
           </div>
         </div>
       </div>
@@ -49,7 +36,7 @@
       </div>
     </ng-container>
 
-    <ng-container *ngIf="proyecto.nivel1 == '2'">
+    <ng-container *ngIf="valor('sector_nivel_1') == 'PAGUA_SANEA'">
       <div class="form-group row">
         <label class="col-sm-2">Nivel 2</label>
         <div class="col-sm-10">
@@ -86,11 +73,11 @@
       </div>
     </ng-container>
 
-    <informacion-base [proyecto]="proyecto"></informacion-base>
-    <app-verificacion [proyecto]="proyecto"></app-verificacion>
+    <!-- <ficha-informacion [fichaForm]="fichaForm"></ficha-informacion>
+    <ficha-verificacion [fichaForm]="fichaForm"></ficha-verificacion> -->
 
     <div class="text-right">
-      <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+      <button class="btn btn-primary" (click)="guardar()"><i class="fa fa-save"></i> Guardar</button>
     </div>
   </div>
 </div>

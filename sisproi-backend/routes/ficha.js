@@ -17,3 +17,5 @@ app.post('/update/:id', (req, res) => {
         err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
     )
 });
+
+module.exports = app;

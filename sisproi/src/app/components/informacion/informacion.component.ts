@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { } from 'googlemaps';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'informacion-base',
@@ -8,7 +9,7 @@ import { } from 'googlemaps';
 })
 export class InformacionComponent implements OnInit {
 
-  @Input() public proyecto: any;
+  @Input() public fichaForm: FormGroup;
   @ViewChild('gmap') gmapElement: ElementRef;
 
   private map: google.maps.Map;

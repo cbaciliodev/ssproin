@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Rutas
 import { APP_ROUTES } from './app.routes';
 import { SharedModule } from './components/shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedModule } from './components/shared/shared.module';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     APP_ROUTES
   ],
   providers: [],
