@@ -1,46 +1,89 @@
-var bermudaTriangle ;
+var bermudaTriangle = null;
+var tipoForma = null;
+
+var marker = null;
+var map = null;
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: {lat: 24.886, lng: -70.268},
-        mapTypeId: 'terrain',
-        disableDefaultUI: true
-      });
+  
+  tipoForma = 0;
 
-      // Define the LatLng coordinates for the polygon's path.
-      var triangleCoords = [ ];
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: { lat: -12.079116, lng: -77.042365 },
+    mapTypeId: 'terrain',
+    disableDefaultUI: true
+  });
 
-      // Construct the polygon.
-      bermudaTriangle = new google.maps.Polygon({
-        paths: triangleCoords,
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        editable: true,
-        fillOpacity: 0.35
-      });
+  // Construct the polygon.
+  generatePolygon();
 
-      bermudaTriangle.setMap(map);
+  map.addListener('click', addLatLng);
+}
 
-      map.addListener('click', addLatLng);
-  }
+function addLatLng(event) {
 
-  function addLatLng(event) {
-    var path = bermudaTriangle.getPath();
+  if (tipoForma == 0) {
 
-    if( typeof path == 'undefined' ){
-        path = [];
-        path.push(event.latLng);
-        bermudaTriangle.setPath( path );
+    if (marker !== null) {
+      marker.setMap(null);
     }
 
-    path.push(event.latLng);
-
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
       position: event.latLng,
-      title: '#' + path.getLength(),
       map: map
     });
+
+    return;
   }
+
+  bermudaTriangle.setMap(map);
+  var path = bermudaTriangle.getPath();
+  if (typeof path == 'undefined') {
+    path = [];
+    path.push(event.latLng);
+    bermudaTriangle.setPath(path);
+  }
+  path.push(event.latLng);
+
+}
+
+function setFormType(forma) {
+
+  if (tipoForma !== forma) {
+    tipoForma = forma;
+    cleanMapa();
+  }
+
+}
+
+function cleanMapa() {
+
+  if( marker != null ){
+    marker.setMap(null);
+  }
+
+  if (bermudaTriangle !== null) {
+    bermudaTriangle.setMap(null);
+  }
+  generatePolygon();
+}
+
+function generatePolygon() {
+
+  // Define the LatLng coordinates for the polygon's path.
+  var triangleCoords = [];
+
+  bermudaTriangle = new google.maps.Polygon({
+    paths: triangleCoords,
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    editable: true,
+    fillOpacity: 0.35
+  });
+
+}
+
+
