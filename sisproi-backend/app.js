@@ -20,16 +20,19 @@ app.use(bodyParser.json());
 
 // Importando rutas
 var appRoutes = require('./routes/app');
+var loginRoutes = require('./routes/login');
 var parametroRoutes = require('./routes/parametro');
 var loginRoutes = require('./routes/usuario');
 var fichaRoutes = require('./routes/ficha');
 var serveIndex = require('serve-index');
+var usuarioRoutes = require('./routes/usuario');
 
 app.use(express.static('/data/ssproi/'));
 app.use('/uploads', serveIndex('/data/ssproi/uploads'));
 
 // Route
 app.use('/parametro', parametroRoutes);
+app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
 app.use('/ficha', fichaRoutes);
 app.use('/', appRoutes);

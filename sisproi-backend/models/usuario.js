@@ -13,7 +13,7 @@ var usuarioSchema = new Schema({
     correo: { type: String, required: [true, 'Email es requerido'], unique: true },
     password: { type: String, required: [true, 'Contraseña es requerida'] },
     avatar: { type: String },
-    role: { type: String, required: [true, 'Contraseña es requerida'], default: 'USER_ROLE', enum: ROLES }
+    role: { type: String, required: [true, 'Rol es requerida'], default: 'USER_ROLE', enum: ROLES }
 }, { collection: 'usuario' });
 
 // Se utiliza {PATH} para leer la propiedad del campo
