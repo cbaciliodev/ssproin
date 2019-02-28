@@ -10,7 +10,9 @@ export const environment = {
     JURISDICCION: 'JURISDICCION',
     PRIORIDAD_SECTOR: 'PRIORIDAD_SECTOR',
     MODALIDAD_EJECU: 'MODALIDAD_EJECU',
-    NIVEL_AVANCE: 'NIVEL_AVANCE'
+    NIVEL_AVANCE: 'NIVEL_AVANCE',
+    DEPARTAMENTO: 'DEPARTAMENTO',
+    MES: 'MES'
   },
   MSG: {
     SUCCESS_INSERT: 'El registro fue guardado correctamente',
