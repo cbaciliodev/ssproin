@@ -10,7 +10,7 @@ export class FichaService {
   constructor(private http: HttpClient) { }
 
   get(id) {
-    let URL = env.URI_API.concat('ficha/', id);
+    let URL = env.URI_API.concat('ficha/select/', id);
     return this.http.get<any>(URL);
   }
 

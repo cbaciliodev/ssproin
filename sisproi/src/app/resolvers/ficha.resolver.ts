@@ -12,7 +12,9 @@ export class FichaResolver implements Resolve<any> {
   constructor(private _ficha: FichaService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    var id = route.paramMap.get('id');
+    let id = route.queryParamMap.get('id');
+    if(!id) return of('');
+
     return this._ficha.get(id).pipe(
       catchError(err => of(err))
     );

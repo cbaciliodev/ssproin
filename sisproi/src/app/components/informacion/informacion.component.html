@@ -20,6 +20,18 @@
     </div>
   </div>
   <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Nombre del programa</label>
+    <div class="col-sm-10">
+      <input formControlName="nombre_programa" type="text" class="form-control" placeholder="Nombre del programa">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Descripción del programa</label>
+    <div class="col-sm-10">
+      <textarea formControlName="descripcion_programa" class="form-control" rows="3" placeholder="Descripción del programa"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nombre del proyecto</label>
     <div class="col-sm-10" [class.has-danger]="invalid('nombre_proyecto')">
       <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
@@ -31,9 +43,9 @@
     </div>
   </div>
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Descripción</label>
+    <label class="col-sm-2 col-form-label">Descripción del proyecto</label>
     <div class="col-sm-10">
-      <textarea formControlName="descripcion" class="form-control" rows="3" placeholder="Descripción"></textarea>
+      <textarea formControlName="descripcion_proyecto" class="form-control" rows="3" placeholder="Descripción del proyecto"></textarea>
     </div>
   </div>
   <div class="form-group row">
@@ -124,13 +136,6 @@
     <div class="col-sm-10">
         <app-mapa-upload></app-mapa-upload>
     </div>
-
-    <!-- <label for="inputEmail3" class="col-sm-2 col-form-label">Localización del proyecto</label>
-    <div class="col-sm-10">
-      <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-        <i class="fa fa-map-marker"></i> Definir
-      </button>
-    </div> -->
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Área de influencia</label>

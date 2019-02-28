@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
 import { FichaService } from 'src/app/services/ficha.service';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'ficha-proyecto',
   templateUrl: './ficha.component.html',
   styleUrls: ['./ficha.component.css']
 })
-export class FichaComponent implements OnInit {
+export class FichaComponent implements OnInit, OnDestroy {
 
   public saving = false;
   public fichaForm: FormGroup;
@@ -20,14 +23,34 @@ export class FichaComponent implements OnInit {
   private nivel_agua_2: Array<Parametro> = [];
   private nivel_agua_3: Array<Parametro> = [];
 
+  private unsubscribe = new Subject<void>();
+
   constructor(private builder: FormBuilder,
+    private route: ActivatedRoute,
     private _ficha: FichaService) { }
 
   ngOnInit() {
-    this.configFormulario();
     this.configParametros();
+    this.configFormulario();
+    this.getFicha();
+  }
 
-    this.nivel_agua_2.length
+  private getFicha() {
+    this.route.data.pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(res => {
+      if (res.ficha) {
+        if (res.ficha.data)
+          this.configFicha(res.ficha.data);
+      }
+    });
+  }
+
+  private configFicha(ficha) {
+    this.fichaForm.addControl('_id', new FormControl(''));
+    this.fichaForm.patchValue({ sector_nivel_1: ficha.sector_nivel_1 });
+    this.onChangeNivel1();
+    this.fichaForm.patchValue(ficha);
   }
 
   public guardar() {
@@ -42,12 +65,8 @@ export class FichaComponent implements OnInit {
             '_id', new FormControl(res.data.ficha._id)
           );
 
-        console.log(this.fichaForm.value);
-        this.saving = false;
-      }, err => {
-        this.saving = false;
-        console.log('Error save')
-      });
+      }, _ => console.log('Error save'),
+        () => this.saving = false);
   }
 
   onChangeNivel1() {
@@ -81,8 +100,10 @@ export class FichaComponent implements OnInit {
       sector_nivel_3: this.builder.array([]),
       jurisdiccion: ['', Validators.required],
       jurisdiccion_otro: [''],
+      nombre_programa: [''],
+      descripcion_programa: [''],
       nombre_proyecto: ['', Validators.required],
-      descripcion: [''],
+      descripcion_proyecto: [''],
       monto_estimado: [0],
       prioridad_sector: [''],
       comentarios_prioridad_sector: [''],
@@ -106,6 +127,11 @@ export class FichaComponent implements OnInit {
     this.nivel_trans_3 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TRANS_3));
     this.nivel_agua_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_AGUA_2));
     this.nivel_agua_3 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_AGUA_3));
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

@@ -8,12 +8,14 @@ var Schema = mongoose.Schema;
 
 var FichaSchema = new Schema({
     sector_nivel_1: { type: String, required: [true, 'Sector nivel 1 es requerido'] },
-    sector_nivel_2: [ { type: String } ],
-    sector_nivel_3: [ { type: String } ],
+    sector_nivel_2: [{ type: Boolean }],
+    sector_nivel_3: [{ type: Boolean }],
     jurisdiccion: { type: String, required: [true, 'Jurisdiccion es requerido'] },
     jurisdiccion_otro: { type: String },
+    nombre_programa: { type: String },
+    descripcion_programa: { type: String },
     nombre_proyecto: { type: String, required: [true, 'Nombre del proyecto es requerido'], unique: true },
-    descripcion: { type: String },
+    descripcion_proyecto: { type: String },
     monto_estimado: { type: Number },
     prioridad_sector: { type: String },
     comentarios_prioridad_sector: { type: String },

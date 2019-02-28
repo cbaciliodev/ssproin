@@ -12,6 +12,7 @@ import { VerificacionComponent } from '../components/verificacion/verificacion.c
 import { DetallePyComponent } from '../components/detalle-py/detalle-py.component';
 import { BulletComponent } from '../components/bullet/bullet.component';
 import { MapaUploadComponent } from '../components/mapa-upload/mapa-upload.component';
+import { GestionFComponent } from './ficha/gestion.component';
 
 
 @NgModule({
@@ -23,13 +24,15 @@ import { MapaUploadComponent } from '../components/mapa-upload/mapa-upload.compo
         VerificacionComponent,
         DetallePyComponent,
         BulletComponent,
-        MapaUploadComponent
+        MapaUploadComponent,
+        GestionFComponent
     ],
     exports: [
         DashboardComponent,
         FichaComponent,
         InformacionComponent,
-        VerificacionComponent
+        VerificacionComponent,
+        GestionFComponent
     ],
     imports: [
         SharedModule,
