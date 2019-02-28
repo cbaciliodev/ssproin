@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body collapse show">
-    <form [formGroup]="fichaForm" (submit)="guardar()">
+    <form [formGroup]="fichaForm">
       <h2>Información base</h2>
       <div class="form-group row">
         <label class="col-sm-2">Nivel 1</label>
@@ -60,12 +60,15 @@
       </ng-container>
 
       <ficha-informacion [fichaForm]="fichaForm"></ficha-informacion>
-
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary" [disabled]="saving">
-          <i class="fa fa-save" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i> Guardar
-        </button>
-      </div>
+      
     </form>
   </div>
 </div>
+
+<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-5">
+    <i class="fa fa-check no-animation"></i>
+</button>
+
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()" [disabled]="saving">
+    <i class="fa no-animation" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i>
+</button>

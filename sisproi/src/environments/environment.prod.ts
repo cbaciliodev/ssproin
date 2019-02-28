@@ -11,5 +11,10 @@ export const environment = {
     PRIORIDAD_SECTOR: 'PRIORIDAD_SECTOR',
     MODALIDAD_EJECU: 'MODALIDAD_EJECU',
     NIVEL_AVANCE: 'NIVEL_AVANCE'
+  },
+  MSG: {
+    SUCCESS_INSERT: 'El registro fue guardado correctamente',
+    SUCCESS_UPDATE: 'El registro fue actualizado correctamente',
+    ERROR_INSERT: 'Tuvimos problemas al guardar el registro'
   }
 };

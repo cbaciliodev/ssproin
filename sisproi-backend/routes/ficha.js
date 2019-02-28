@@ -4,6 +4,13 @@ var app = express();
 var _ficha = require('../services/ficha');
 var _http = require('../commons/http');
 
+app.get('/', (req, res) => {
+    _ficha.list().then(
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+});
+
 app.get('/select/:id', (req, res) => {
     _ficha.select(req.params.id).then(
         data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),

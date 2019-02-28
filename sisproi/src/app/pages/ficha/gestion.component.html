@@ -1,4 +1,58 @@
 <div class="card">
-    <div class="card-body collapse show">
+  <div class="card-body collapse show">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Nombre del programa</th>
+            <th>Nombre del proyecto</th>
+            <th>Monto estimado</th>
+            <th>Prioridad</th>
+            <th>Modalidad</th>
+            <th>Año de inicio</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fi of fichas">
+            <td>{{fi.nombre_programa}}</td>
+            <td>{{fi.nombre_proyecto}}</td>
+            <td>$ {{fi.monto_estimado}}</td>
+            <td>
+              <ng-container *ngIf="fi.prioridad">
+                {{fi.prioridad.alias}}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="fi.modalidad">
+                {{fi.modalidad.alias}}
+              </ng-container>
+            </td>
+            <td>{{fi.anio_inicio_posible}}</td>
+            <td>
+              <button class="btn btn-outline-secondary btn-sm" routerLink="registro" [queryParams]="{id: fi._id}">
+                <i class="fa fa-edit"></i> Editar
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="loading">
+            <td class="text-center" colspan="7">
+              <i class="fa fa-spinner fa-pulse fa-2x"></i>
+            </td>
+          </tr>
+
+          <tr *ngIf="fichas.length <= 0 && !loading">
+            <td colspan="7">
+              No se encontraron registros de ficha
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
+
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" routerLink="registro">
+  <i class="fa fa-plus no-animation"></i>
+</button>
