@@ -7,6 +7,7 @@ var SEED = require('../config/config').SEED;
 var app = express();
 var Usuario = require('../models/usuario');
 
+//verificar Registro
 app.post('/', (req, res) => {
 
     var body = req.body;
@@ -29,22 +30,15 @@ app.post('/', (req, res) => {
             });
         }
 
-        if (body.password != usuarioDB.password) {
+    
+        //PARA CONTRASEÑA ENCRIPTADA
+         if (!bcrypt.compareSync(body.password, usuarioDB.password)) {
             return res.status(400).json({
                 ok: false,
                 mensaje: 'Credenciales incorrectas - password',
                 errors: err
             });
-        }
-    
-        //PARA CONTRASEÑA ENCRIPTADA
-        // if (!bcrypt.compareSync(body.password, usuarioDB.password)) {
-        //     return res.status(400).json({
-        //         ok: false,
-        //         mensaje: 'Credenciales incorrectas - password',
-        //         errors: err
-        //     });
-        // }
+         }
 
         // Crear un token!!!
         usuarioDB.password = ':)';

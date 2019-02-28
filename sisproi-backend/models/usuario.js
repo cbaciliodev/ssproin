@@ -3,9 +3,9 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 var Schema = mongoose.Schema;
 
-var ROLES = {
-    values: ['ADMIN_ROLE', 'USER_ROLE'],
-    message: '{VALUE} no es un rol permitido'
+var PERFIL = {
+    values: ['ADMIN_PERFIL', 'USER_PERFIL'],
+    message: '{VALUE} no es un perfil permitido'
 }
 
 var usuarioSchema = new Schema({
@@ -13,7 +13,7 @@ var usuarioSchema = new Schema({
     correo: { type: String, required: [true, 'Email es requerido'], unique: true },
     password: { type: String, required: [true, 'Contraseña es requerida'] },
     avatar: { type: String },
-    role: { type: String, required: [true, 'Rol es requerida'], default: 'USER_ROLE', enum: ROLES }
+    perfil: { type: String, required: [true, 'Perfil es requerido'], enum: PERFIL }
 }, { collection: 'usuario' });
 
 // Se utiliza {PATH} para leer la propiedad del campo

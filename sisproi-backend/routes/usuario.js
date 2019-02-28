@@ -1,13 +1,12 @@
 var express = require('express');
 var app = express();
+var bcrypt = require('bcryptjs');
 
-var jwt = require('jsonwebtoken');
 var mdAutenticacion = require('../middlewares/autenticacion');
 
 var _usuario = require('../services/usuario');
 var _http = require('../commons/http');
 var Usuario =require('../models/usuario');
-
 
 
 //  OBTENER TODOS LOS USUARIOS
@@ -22,13 +21,12 @@ app.get('/', (req, res) => {
 
 // Actualizar usuario
 // ==========================================
-app.put('/:id', (req, res) => {
+app.put('/:id',mdAutenticacion.verificaToken,  (req, res) => {
 
     var id = req.params.id;
     var body = req.body;
 
     Usuario.findById(id, (err, usuario) => {
-
 
         if (err) {
             return res.status(500).json({
@@ -49,7 +47,7 @@ app.put('/:id', (req, res) => {
 
         usuario.nombre = body.nombre;
         usuario.email = body.email;
-        usuario.role = body.role;
+        usuario.perfil = body.perfil;
 
         usuario.save((err, usuarioGuardado) => {
 
@@ -76,20 +74,18 @@ app.put('/:id', (req, res) => {
 
 
 
-
-
 // Crear un nuevo usuario
 // ==========================================
-app.post('/',mdAutenticacion.verificaToken, (req, res) => {
+app.post('/',(req, res) => {
 
     var body = req.body;
 
     var usuario = new Usuario({
         nombre: body.nombre,
         correo: body.correo,
-        password: body.password,
+        password: bcrypt.hashSync(body.password),
         avatar: body.avatar,
-        role: body.role
+        perfil: body.perfil
     });
 
     usuario.save((err, usuarioGuardado) => {
@@ -113,7 +109,7 @@ app.post('/',mdAutenticacion.verificaToken, (req, res) => {
 
 //   Borrar un usuario por el id
 // ============================================
-app.delete('/:id', (req, res) => {
+app.delete('/:id',  (req, res) => {
 
     var id = req.params.id;
 
