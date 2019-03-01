@@ -21,6 +21,8 @@ export class InformacionComponent implements OnInit {
   private prioridad_sector: Array<Parametro> = [];
   private modalidad_ejecutiva: Array<Parametro> = [];
   private nivel_avance: Array<Parametro> = [];
+  private departamento: Array<Parametro> = [];
+  private meses: Array<Parametro> = [];
 
   constructor() { }
 
@@ -41,6 +43,8 @@ export class InformacionComponent implements OnInit {
     this.prioridad_sector = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD_SECTOR));
     this.modalidad_ejecutiva = JSON.parse(localStorage.getItem(env.PARAMETRO.MODALIDAD_EJECU));
     this.nivel_avance = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_AVANCE));
+    this.departamento = JSON.parse(localStorage.getItem(env.PARAMETRO.DEPARTAMENTO));
+    this.meses = JSON.parse(localStorage.getItem(env.PARAMETRO.MES));
   }
 
 }

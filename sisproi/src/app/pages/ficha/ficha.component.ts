@@ -6,6 +6,7 @@ import { FichaService } from 'src/app/services/ficha.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'ficha-proyecto',
@@ -58,14 +59,13 @@ export class FichaComponent implements OnInit, OnDestroy {
 
     this.saving = true;
     this._ficha.save(this.fichaForm.value)
-      .subscribe(res => {
-        console.log('Success save');
-        if (res.data.insert)
-          this.fichaForm.addControl(
-            '_id', new FormControl(res.data.ficha._id)
-          );
-
-      }, _ => console.log('Error save'),
+      .subscribe(
+        res => {
+          if (res.data.insert) {
+            this.fichaForm.addControl('_id', new FormControl(res.data.ficha._id));
+            swal('Atención', env.MSG.SUCCESS_INSERT, 'success');
+          } else swal('Atención', env.MSG.SUCCESS_UPDATE, 'success');
+        }, _ => swal('Atención', env.MSG.ERROR_INSERT, 'error'),
         () => this.saving = false);
   }
 
