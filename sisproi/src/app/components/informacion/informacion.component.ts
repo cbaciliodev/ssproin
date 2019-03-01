@@ -59,7 +59,7 @@ export class InformacionComponent implements OnInit {
 
   private configParametros() {
     this.jurisdiccion = JSON.parse(localStorage.getItem(env.PARAMETRO.JURISDICCION));
-    this.prioridad_sector = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD_SECTOR));
+    this.prioridad_sector = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD));
     this.modalidad_ejecutiva = JSON.parse(localStorage.getItem(env.PARAMETRO.MODALIDAD_EJECU));
     this.nivel_avance = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_AVANCE));
     this.departamento = JSON.parse(localStorage.getItem(env.PARAMETRO.DEPARTAMENTO));

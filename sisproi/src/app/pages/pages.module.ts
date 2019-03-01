@@ -13,6 +13,8 @@ import { DetallePyComponent } from '../components/detalle-py/detalle-py.componen
 import { BulletComponent } from '../components/bullet/bullet.component';
 import { MapaUploadComponent } from '../components/mapa-upload/mapa-upload.component';
 import { GestionFComponent } from './ficha/gestion.component';
+import { RegistradaComponent } from './registrada/registrada.component';
+import { GestionRComponent } from './registrada/gestion.component';
 
 
 @NgModule({
@@ -25,14 +27,18 @@ import { GestionFComponent } from './ficha/gestion.component';
         DetallePyComponent,
         BulletComponent,
         MapaUploadComponent,
-        GestionFComponent
+        GestionFComponent,
+        RegistradaComponent,
+        GestionRComponent
     ],
     exports: [
         DashboardComponent,
         FichaComponent,
         InformacionComponent,
         VerificacionComponent,
-        GestionFComponent
+        GestionFComponent,
+        RegistradaComponent,
+        GestionRComponent
     ],
     imports: [
         SharedModule,

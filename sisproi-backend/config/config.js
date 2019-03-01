@@ -8,6 +8,7 @@ module.exports.ESTADOS = {
 };
 
 // Estado por default
+module.exports.ESTADO_INICIAL = 0;
 module.exports.ESTADO_ACTIVO = 1;
 module.exports.ESTADO_ELIMINADO = 3;
 

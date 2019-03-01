@@ -3,6 +3,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 var Departamento = require('./departamento');
 var ESTADOS = require('../config/config').ESTADOS;
+var ESTADO_INICIAL = require('../config/config').ESTADO_INICIAL;
 var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
 var Schema = mongoose.Schema;
@@ -32,24 +33,45 @@ var FichaSchema = new Schema({
     localizacion_longitud: { type: String },
     area_influencia: { type: String },
 
-    is_evaluado: { type: Boolean },
-    prio_politica_ext: { type: String },
-    prio_politica_ext_comentario: { type: String },
+    estado_registro: { type: Number, required: true, default: ESTADO_ACTIVO },
+    estado_evaluacion: { type: Number, required: true, default: ESTADO_INICIAL },
 
+    prio_politica_sect: { type: String },
+    prio_politica_sect_comentario: { type: String },
     riesgo_dis_tec: { type: String },
     riesgo_dis_tec_comentario: { type: String },
-
+    riesgo_dis_deman: { type: String },
+    riesgo_dis_deman_comentario: { type: String },
     riesgo_socioamb: { type: String },
     riesgo_socioamb_comentario: { type: String },
-
-    riesgo_otros: { type: String },
-    riesgo_otros_comentario: { type: String },
-
     riesgo_politico: { type: String },
     riesgo_politico_comentario: { type: String },
+    riesgo_otros: { type: String },
+    riesgo_otros_comentario: { type: String },
+    
+    productiva_mineria: {type: Boolean},
+    productiva_mineria_comentario: { type: String },
+    productiva_agri: {type: Boolean},
+    productiva_agri_comentario: { type: String },
+    productiva_pesca: {type: Boolean},
+    productiva_pesca_comentario: { type: String },
+    productiva_indus: {type: Boolean},
+    productiva_indus_comentario: { type: String },
+    productiva_otros: {type: Boolean},
+    productiva_otros_comentario: { type: String },
 
-    riesgo_otro: { type: String },
-    riesgo_otro_comentario: { type: String },
+    social_trans: {type: Boolean},
+    social_trans_comentario: { type: String },
+    social_telco: {type: Boolean},
+    social_telco_comentario: { type: String },
+    social_agua: {type: Boolean},
+    social_agua_comentario: { type: String },
+    social_riego: {type: Boolean},
+    social_riego_comentario: { type: String },
+    social_educa: {type: Boolean},
+    social_educa_comentario: { type: String },
+    social_salud: {type: Boolean},
+    social_salud_comentario: { type: String },
 
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS },
 }, { collection: 'ficha' });

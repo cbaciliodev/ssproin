@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,17 @@ export class FichaService {
 
   constructor(private http: HttpClient) { }
 
-  list() {
+  list(tipo) {
     let URL = env.URI_API.concat('ficha/');
-    return this.http.get<any>(URL);
+    return this.http.post<any>(URL, tipo).pipe(
+      map(res => {
+        let estado_0 = res.data.find(f => f.estado === 0);
+        let estado_1 = res.data.find(f => f.estado === 1);
+        let estado_2 = res.data.find(f => f.estado === 2);
+
+        return { estado_0, estado_1, estado_2 };
+      })
+    );
   }
 
   get(id) {
@@ -20,7 +29,12 @@ export class FichaService {
   }
 
   save(data) {
-    let URL = env.URI_API.concat('ficha/', data._id? 'update': 'insert');
+    let URL = env.URI_API.concat('ficha/', data._id ? 'update' : 'insert');
     return this.http.post<any>(URL, data);
+  }
+
+  procesar(ficha) {
+    let URL = env.URI_API.concat('ficha/procesar');
+    return this.http.post<any>(URL, ficha);
   }
 }

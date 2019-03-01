@@ -65,10 +65,12 @@
   </div>
 </div>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-5">
-    <i class="fa fa-check no-animation"></i>
+<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-5" (click)="procesar()"
+  [disabled]="processing" *ngIf="valor('estado_registro') == 1">
+  <i class="fa no-animation" [ngClass]="{'fa-check': !processing, 'fa-spinner fa-pulse': processing}"></i>
 </button>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()" [disabled]="saving">
-    <i class="fa no-animation" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i>
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()"
+  [disabled]="saving" *ngIf="valor('estado_registro') != 2">
+  <i class="fa no-animation" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i>
 </button>

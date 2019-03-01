@@ -120,7 +120,7 @@
   <div class="form-group row">
     <label class="col-sm-2">Departamento</label>
     <div class="col-sm-4">
-      <select #depart class="form-control" (change)="changeDepartamento(depart.value)">
+      <select #depart formControlName="select_departamento" class="form-control" (change)="changeDepartamento(depart.value)">
         <option value="">-- seleccione --</option>
         <option *ngFor="let dep of departamento; let i=index" [value]="i">{{dep.alias}}</option>
       </select>

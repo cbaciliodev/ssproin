@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
 import { FichaService } from 'src/app/services/ficha.service';
@@ -16,6 +16,7 @@ import swal from 'sweetalert';
 export class FichaComponent implements OnInit, OnDestroy {
 
   public saving = false;
+  public processing = false;
   public fichaForm: FormGroup;
 
   private nivel_1: Array<Parametro> = [];
@@ -53,24 +54,51 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.onChangeNivel1();
     this.createDepartamentos(ficha.departamento);
     this.fichaForm.patchValue(ficha);
+
+    if(ficha.estado_registro == 2) this.fichaForm.disable();
   }
 
   public guardar() {
     if (this.fichaForm.invalid) return;
 
     this.saving = true;
+    this.control('estado_registro').setValue(1);
     this._ficha.save(this.fichaForm.value)
       .subscribe(
         res => {
-          if (res.data.insert) {
-            this.fichaForm.addControl('_id', new FormControl(res.data.ficha._id));
-            swal('Atención', env.MSG.SUCCESS_INSERT, 'success');
-          } else swal('Atención', env.MSG.SUCCESS_UPDATE, 'success');
+          if (res.data.insert) this.afterSave(res.data.ficha._id);
+          else swal('Atención', env.MSG.SUCCESS_UPDATE, 'success');
         }, _ => swal('Atención', env.MSG.ERROR_INSERT, 'error'),
         () => this.saving = false);
   }
 
-  onChangeNivel1() {
+  public procesar() {
+    swal({
+      title: 'Estas seguro?',
+      text: env.MSG.WARN_PROCESS,
+      icon: 'warning',
+      buttons: ['Cancel', 'Ok'],
+      dangerMode: true
+    }).then(res => {
+      if(res) {
+        this.processing = true;
+        this.control('estado_registro').setValue(2);
+        let ficha = { _id: this.valor('_id'), estado_registro: 2 };
+        this._ficha.procesar(ficha)
+          .subscribe(_ => {
+            swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
+          }, _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
+          () => this.processing = false);
+      }
+    });
+  }
+
+  private afterSave(id) {
+    this.fichaForm.addControl('_id', new FormControl(id));
+    swal('Atención', env.MSG.SUCCESS_INSERT, 'success');
+  }
+
+  public onChangeNivel1() {
     while (this.sector_nivel_2.length !== 0) this.sector_nivel_2.removeAt(0);
     while (this.sector_nivel_3.length !== 0) this.sector_nivel_3.removeAt(0);
 
@@ -92,13 +120,9 @@ export class FichaComponent implements OnInit, OnDestroy {
     }
   }
 
-  public valor(field) {
-    return this.fichaForm.get(field).value;
-  }
-
-  public invalid(field) {
-    return this.fichaForm.get(field).invalid && this.fichaForm.get(field).touched;
-  }
+  public valor(field) { return this.fichaForm.get(field).value; }
+  public control(field): AbstractControl { return this.fichaForm.get(field) };
+  public invalid(field) { return this.fichaForm.get(field).invalid && this.fichaForm.get(field).touched; }
 
   get sector_nivel_2() { return this.fichaForm.get('sector_nivel_2') as FormArray }
   get sector_nivel_3() { return this.fichaForm.get('sector_nivel_3') as FormArray }
@@ -126,9 +150,11 @@ export class FichaComponent implements OnInit, OnDestroy {
       anio_inicio_posible: [''],
       meses_ejecucion: [''],
       departamento: this.builder.array([]),
+      select_departamento: [''],
       localizacion_latitud: [''],
       localizacion_longitud: [''],
-      area_influencia: ['']
+      area_influencia: [''],
+      estado_registro: [0]
     });
   }
 

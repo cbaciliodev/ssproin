@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class VerificacionComponent implements OnInit {
 
-  @Input() public fichaForm: FormGroup;
+  @Input() public registradaForm: FormGroup;
 
   constructor() { }
 

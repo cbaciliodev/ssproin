@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { FichaService } from '../services/ficha.service';
+import { FichaService } from '../ficha.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 

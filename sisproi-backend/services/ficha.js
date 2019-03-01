@@ -5,13 +5,14 @@ module.exports = {
     list: list,
     select: select,
     insert: insert,
-    update: update
+    update: update,
+    procesar: procesar
 }
 
-function list() {
+function list(filtro) {
     return new Promise((resolve, reject) => {
         Ficha.aggregate()
-            .match({estado: { $ne: ESTADO_ELIMINADO }})
+            .match({ estado: { $ne: ESTADO_ELIMINADO } })
             .lookup({
                 from: 'parametro',
                 let: { prioridad: '$prioridad_sector' },
@@ -21,10 +22,7 @@ function list() {
                 ],
                 as: 'prioridad'
             })
-            .unwind({
-                path: '$prioridad',
-                preserveNullAndEmptyArrays: true
-            })
+            .unwind({ path: '$prioridad', preserveNullAndEmptyArrays: true })
             .lookup({
                 from: 'parametro',
                 let: { modalidad: '$modalidad_ejecutiva' },
@@ -34,10 +32,9 @@ function list() {
                 ],
                 as: 'modalidad'
             })
-            .unwind({
-                path: '$modalidad',
-                preserveNullAndEmptyArrays: true
-            })
+            .unwind({ path: '$modalidad', preserveNullAndEmptyArrays: true })
+            .group({ _id: `$${filtro.tipo}`, lista_fichas: { $push: '$$ROOT' } })
+            .project({ _id: 0, estado: '$_id', lista_fichas: 1 })
             .exec((err, data) => {
                 if (err) reject(err);
                 resolve(data);
@@ -67,6 +64,15 @@ function insert(ficha) {
 function update(id, ficha) {
     return new Promise((resolve, reject) => {
         Ficha.findByIdAndUpdate(id, ficha, (err, data) => {
+            if (err) reject(err);
+            resolve(data);
+        });
+    });
+}
+
+function procesar(ficha) {
+    return new Promise((resolve, reject) => {
+        Ficha.findByIdAndUpdate(ficha._id, ficha, (err, data) => {
             if (err) reject(err);
             resolve(data);
         });
