@@ -120,24 +120,24 @@
   <div class="form-group row">
     <label class="col-sm-2">Departamento</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Buscar departamento">
-
-      <!-- <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="departamento1" value="option1">
-        <label class="form-check-label" for="departamento1">Departamento 1</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="departamento2" value="option2">
-        <label class="form-check-label" for="departamento2">Departamento 2</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="departamento3" value="option3">
-        <label class="form-check-label" for="departamento3">Departamento 3</label>
-      </div> -->
+      <select #depart class="form-control" (change)="changeDepartamento(depart.value)">
+        <option value="">-- seleccione --</option>
+        <option *ngFor="let dep of departamento; let i=index" [value]="i">{{dep.alias}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="departamentos.length > 0">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-10">
+      <ng-container *ngFor="let dep of departamentos.value; let i=index">
+        <span class="label label-info label-rounded mr-1">
+          {{dep.alias}} <i class="fa fa-times" (click)="removeDepart(i)"></i>
+        </span>
+      </ng-container>
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Localización del proyecto</label>
+    <label class="col-sm-2 col-form-label">Localización del proyecto</label>
     <div class="col-sm-10">
         <app-mapa-upload></app-mapa-upload>
     </div>
@@ -146,29 +146,6 @@
     <label class="col-sm-2 col-form-label">Área de influencia</label>
     <div class="col-sm-10">
       <input formControlName="area_influencia" type="text" class="form-control" placeholder="Área de influencia">
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Google maps</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="maps-container">
-          <img src="assets/images/googlemaps.png" alt="Google maps" width="100%">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
     </div>
   </div>
 </div>
