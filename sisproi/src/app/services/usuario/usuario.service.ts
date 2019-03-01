@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment as env } from 'src/environments/environment';
 import { Usuario } from 'src/app/models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,31 +8,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioService {
 
-  URL_SERVICIOS= 'http://localhost:3000';
+  public token = localStorage.getItem('token');
 
-  constructor(private http: HttpClient) { 
-    console.log("Serviocio de usuario listo");
+  constructor(private http: HttpClient) { }
+
+  estaLogeado() {
+    return this.token ? true : false;
   }
- 
-//servicio para consuñtar usuario
-login(usuario :Usuario ,recordar:boolean =false){
-  
-  let url = this.URL_SERVICIOS + '/login';
-  return this.http.post<any>(url,usuario)
 
-}
+  asignarToken() {
+    this.token = localStorage.getItem('token');
+  }
 
-//servicio para crear usuario
-  crearUsuario(usuario :Usuario){
-    let url = this.URL_SERVICIOS + '/usuario';
-    return this.http.post(url,usuario)
-}
+  //servicio para consultar usuario
+  login(usuario: Usuario, recordar: boolean = false) {
+    let url = env.URI_API.concat('login');
+    return this.http.post<any>(url, usuario)
 
-  
-  // save(data) {
-  //   let URL = env.URI_API.concat('ficha/', data._id? 'update': 'insert');
-  //   return this.http.post<any>(URL, data);
-  // }
+  }
+
+  //servicio para crear usuario
+  crearUsuario(usuario: Usuario) {
+    let url = env.URI_API.concat('usuario');
+    return this.http.post(url, usuario)
+  }
 
 
 

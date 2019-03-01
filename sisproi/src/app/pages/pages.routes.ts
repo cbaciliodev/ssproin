@@ -4,11 +4,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FichaComponent } from './ficha/ficha.component';
 import { FichaResolver } from '../resolvers/ficha.resolver';
 import { GestionFComponent } from './ficha/gestion.component';
+import { LoginGuardGuard } from '../services/service.index';
 
 const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
+        canActivate:[LoginGuardGuard],
         children: [
             {
                 path: 'dashboard', component: DashboardComponent, data: {
