@@ -51,6 +51,7 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.fichaForm.addControl('_id', new FormControl(''));
     this.fichaForm.patchValue({ sector_nivel_1: ficha.sector_nivel_1 });
     this.onChangeNivel1();
+    this.createDepartamentos(ficha.departamento);
     this.fichaForm.patchValue(ficha);
   }
 
@@ -82,6 +83,15 @@ export class FichaComponent implements OnInit, OnDestroy {
     }
   }
 
+  private createDepartamentos(depas) {
+    for (let i = 0; i < depas.length; i++) {
+      this.departamento.push(this.builder.group({
+        nombre: [''],
+        alias: ['']
+      }));
+    }
+  }
+
   public valor(field) {
     return this.fichaForm.get(field).value;
   }
@@ -92,6 +102,7 @@ export class FichaComponent implements OnInit, OnDestroy {
 
   get sector_nivel_2() { return this.fichaForm.get('sector_nivel_2') as FormArray }
   get sector_nivel_3() { return this.fichaForm.get('sector_nivel_3') as FormArray }
+  get departamento() { return this.fichaForm.get('departamento') as FormArray }
 
   private configFormulario() {
     this.fichaForm = this.builder.group({
@@ -114,7 +125,7 @@ export class FichaComponent implements OnInit, OnDestroy {
       nivel_avance_financiero: [0],
       anio_inicio_posible: [''],
       meses_ejecucion: [''],
-      departamento: [''],
+      departamento: this.builder.array([]),
       localizacion_latitud: [''],
       localizacion_longitud: [''],
       area_influencia: ['']

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
+var Departamento = require('./departamento');
 var ESTADOS = require('../config/config').ESTADOS;
 var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
@@ -26,7 +27,7 @@ var FichaSchema = new Schema({
     nivel_avance_financiero: { type: Number },
     anio_inicio_posible: { type: Number },
     meses_ejecucion: { type: Number },
-    departamento: { type: String },
+    departamento: [Departamento],
     localizacion_latitud: { type: String },
     localizacion_longitud: { type: String },
     area_influencia: { type: String },
