@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FichaComponent } from './ficha/ficha.component';
 import { GestionFComponent } from './ficha/gestion.component';
 import { GestionRComponent } from './registrada/gestion.component';
+import { LoginGuardGuard } from '../services/service.index';
 
 import { FichaResolver } from '../services/resolvers/ficha.resolver';
 import { RegistradaComponent } from './registrada/registrada.component';
@@ -12,6 +13,7 @@ const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
+        canActivate:[LoginGuardGuard],
         children: [
             {
                 path: 'dashboard', component: DashboardComponent, data: {

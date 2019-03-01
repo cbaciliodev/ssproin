@@ -22,7 +22,6 @@ app.use(bodyParser.json());
 var appRoutes = require('./routes/app');
 var loginRoutes = require('./routes/login');
 var parametroRoutes = require('./routes/parametro');
-var loginRoutes = require('./routes/usuario');
 var fichaRoutes = require('./routes/ficha');
 var serveIndex = require('serve-index');
 var usuarioRoutes = require('./routes/usuario');
