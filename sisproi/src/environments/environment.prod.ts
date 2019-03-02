@@ -12,7 +12,8 @@ export const environment = {
     MODALIDAD_EJECU: 'MODALIDAD_EJECU',
     NIVEL_AVANCE: 'NIVEL_AVANCE',
     DEPARTAMENTO: 'DEPARTAMENTO',
-    MES: 'MES'
+    MES: 'MES',
+    PRIORIDAD_POLITICA: 'PRIORIDAD_POLITICA'
   },
   MSG: {
     SUCCESS_INSERT: 'El registro fue guardado correctamente',

@@ -16,7 +16,6 @@ import { GestionFComponent } from './ficha/gestion.component';
 import { RegistradaComponent } from './registrada/registrada.component';
 import { GestionRComponent } from './registrada/gestion.component';
 
-
 @NgModule({
     declarations: [
         PagesComponent,

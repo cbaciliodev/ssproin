@@ -5,8 +5,7 @@ module.exports = {
     list: list,
     select: select,
     insert: insert,
-    update: update,
-    procesar: procesar
+    update: update
 }
 
 function list(filtro) {
@@ -17,7 +16,7 @@ function list(filtro) {
                 from: 'parametro',
                 let: { prioridad: '$prioridad_sector' },
                 pipeline: [
-                    { $match: { grupo: 'PRIORIDAD_SECTOR', $expr: { $eq: ['$nombre', '$$prioridad'] } } },
+                    { $match: { grupo: 'PRIORIDAD', $expr: { $eq: ['$nombre', '$$prioridad'] } } },
                     { $limit: 1 }
                 ],
                 as: 'prioridad'
@@ -64,15 +63,6 @@ function insert(ficha) {
 function update(id, ficha) {
     return new Promise((resolve, reject) => {
         Ficha.findByIdAndUpdate(id, ficha, (err, data) => {
-            if (err) reject(err);
-            resolve(data);
-        });
-    });
-}
-
-function procesar(ficha) {
-    return new Promise((resolve, reject) => {
-        Ficha.findByIdAndUpdate(ficha._id, ficha, (err, data) => {
             if (err) reject(err);
             resolve(data);
         });

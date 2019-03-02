@@ -1,251 +1,191 @@
-<div class="form-group row">
-  <label class="col-sm-2">Prioridad coincide con politica del sector? </label>
-  <div class="col-sm-10">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="prioridadOptions" id="prioridad1" value="1">
-      <label class="form-check-label" for="prioridad1">Si</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="prioridadOptions" id="prioridad2" value="2">
-      <label class="form-check-label" for="prioridad2">No</label>
-    </div>
-    <div class="mb-3">
-      <textarea class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+<div [formGroup]="registradaForm">
+  <div class="form-group row">
+    <label class="col-sm-2">Prioridad coincide con politica del sector? </label>
+    <div class="col-sm-10">
+      <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+          <input formControlName="prio_politica_sect" class="form-check-input" type="radio" [id]="'prio_' + i" [value]="pp.nombre">
+          <label class="form-check-label" [for]="'prio_' + i">{{pp.alias}}</label>
+      </div>
+      <div class="mb-3">
+        <textarea formControlName="prio_politica_sect_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+      </div>
     </div>
   </div>
-</div>
-<hr>
-<h2>Riesgo</h2>
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label">Diseño Tecnico</label>
-  <div class="col-sm-10">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="disenoOptions" id="diseno1" value="1">
-      <label class="form-check-label" for="diseno1">Bajo</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="disenoOptions" id="diseno2" value="2">
-      <label class="form-check-label" for="diseno2">Medio</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="disenoOptions" id="diseno3" value="3">
-      <label class="form-check-label" for="diseno3">Alto</label>
-    </div>
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label">Demanda</label>
-  <div class="col-sm-10">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="demandaOptions" id="demanda1" value="1">
-      <label class="form-check-label" for="demanda1">Bajo</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="demandaOptions" id="demanda2" value="2">
-      <label class="form-check-label" for="demanda2">Medio</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="demandaOptions" id="demanda3" value="3">
-      <label class="form-check-label" for="demanda3">Alto</label>
-    </div>
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label">Socioambiental</label>
-  <div class="col-sm-10">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="socioambientalOptions" id="socioambiental1" value="1">
-      <label class="form-check-label" for="socioambiental1">Bajo</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="socioambientalOptions" id="socioambiental2" value="2">
-      <label class="form-check-label" for="socioambiental2">Medio</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="socioambientalOptions" id="socioambiental3" value="3">
-      <label class="form-check-label" for="socioambiental3">Alto</label>
-    </div>
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label">Político</label>
-  <div class="col-sm-10">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="politicoOptions" id="politico1" value="1">
-      <label class="form-check-label" for="politico1">Bajo</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="politicoOptions" id="politico2" value="2">
-      <label class="form-check-label" for="politico2">Medio</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="politicoOptions" id="politico3" value="3">
-      <label class="form-check-label" for="politico3">Alto</label>
-    </div>
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label">Otros</label>
-  <div class="col-sm-10">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="anotherOptions" id="another1" value="3">
-      <label class="form-check-label" for="another1">Bajo</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="anotherOptions" id="another2" value="2">
-      <label class="form-check-label" for="another2">Medio</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="anotherOptions" id="another3" value="1">
-      <label class="form-check-label" for="another3">Alto</label>
-    </div>
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-  </div>
-</div>
-<hr>
-<h2>Concordancia productiva</h2>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="mineriaOptions" id="mineria" [(ngModel)]="proyecto.mineria"
-        value="1">
-      <label class="form-check-label" for="mineria">Minería</label>
+  <hr>
+  <h2>Riesgo</h2>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Diseño Tecnico</label>
+    <div class="col-sm-10">
+      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+        <input formControlName="riesgo_dis_tec" class="form-check-input" type="radio" [id]="'dist_' + i" [value]="p.nombre">
+        <label class="form-check-label" [for]="'dist_' + i">{{p.alias}}</label>
+      </div>
+      <textarea formControlName="riesgo_dis_tec_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario"
-      [disabled]="!proyecto.mineria"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="agriculturaOptions" id="agricultura"
-        [(ngModel)]="proyecto.agricultura" value="1">
-      <label class="form-check-label" for="agricultura">Agricultura</label>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Demanda</label>
+    <div class="col-sm-10">
+      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+        <input formControlName="riesgo_dis_deman" class="form-check-input" type="radio" [id]="'deman_' + i" [value]="p.nombre">
+        <label class="form-check-label" [for]="'deman_' + i">{{p.alias}}</label>
+      </div>
+      <textarea formControlName="riesgo_dis_deman_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario"
-      [disabled]="!proyecto.agricultura"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="pescaOptions" id="pesca" [(ngModel)]="proyecto.pesca"
-        value="1">
-      <label class="form-check-label" for="pesca">Pesca</label>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Socioambiental</label>
+    <div class="col-sm-10">
+      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+        <input formControlName="riesgo_socioamb" class="form-check-input" type="radio" [id]="'soc_' + i" [value]="p.nombre">
+        <label class="form-check-label" [for]="'soc_' + i">{{p.alias}}</label>
+      </div>
+      <textarea formControlName="riesgo_socioamb_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario" [disabled]="!proyecto.pesca"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="industriaOptions" id="industria"
-        [(ngModel)]="proyecto.industria" value="1">
-      <label class="form-check-label" for="industria">Industria</label>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Político</label>
+    <div class="col-sm-10">
+      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+        <input formControlName="riesgo_politico" class="form-check-input" type="radio" [id]="'pol_' + i" [value]="p.nombre">
+        <label class="form-check-label" [for]="'pol_' + i">{{p.alias}}</label>
+      </div>
+      <textarea formControlName="riesgo_politico_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario"
-      [disabled]="!proyecto.industria"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="otrosOptions" id="otros" [(ngModel)]="proyecto.otros"
-        value="1">
-      <label class="form-check-label" for="otros">Otros</label>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Otros</label>
+    <div class="col-sm-10">
+      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+        <input formControlName="riesgo_otros" class="form-check-input" type="radio" [id]="'otr1_' + i" [value]="p.nombre">
+        <label class="form-check-label" [for]="'otr1_' + i">{{p.alias}}</label>
+      </div>
+      <textarea formControlName="riesgo_otros_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario" [disabled]="!proyecto.otros"></textarea>
-  </div>
-</div>
-<hr>
-<h2>Concordancia social</h2>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="transporteOptions" id="transporte"
-        [(ngModel)]="proyecto.transporte" value="1">
-      <label class="form-check-label" for="transporte">Transporte</label>
+  <hr>
+  <h2>Concordancia productiva</h2>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="productiva_mineria" class="form-check-input" type="checkbox" id="mineria">
+        <label class="form-check-label" for="mineria">Minería</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="productiva_mineria_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario"
-      [disabled]="!proyecto.transporte"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="telecomunicacionOptions" id="telecomunicacion"
-        [(ngModel)]="proyecto.telecomunicacion" value="1">
-      <label class="form-check-label" for="telecomunicacion">Telecomunicación</label>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="productiva_agri" class="form-check-input" type="checkbox" id="agricultura">
+        <label class="form-check-label" for="agricultura">Agricultura</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="productiva_agri_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" laceholder="Ingrese un comentario"
-      [disabled]="!proyecto.telecomunicacion"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" Energía="saneamientoOptions" id="saneamiento"
-        [(ngModel)]="proyecto.saneamiento" value="1">
-      <label class="form-check-label" for="saneamiento">Agua y Saneamiento</label>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="productiva_pesca" class="form-check-input" type="checkbox" id="pesca">
+        <label class="form-check-label" for="pesca">Pesca</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="productiva_pesca_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario"
-      [disabled]="!proyecto.saneamiento"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" Energía="riegoOptions" id="riego" [(ngModel)]="proyecto.riego"
-        value="1">
-      <label class="form-check-label" for="riego">Riego</label>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="productiva_indus" class="form-check-input" type="checkbox" id="industria">
+        <label class="form-check-label" for="industria">Industria</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="productiva_indus_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario" [disabled]="!proyecto.riego"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" Energía="educacionOptions" id="educacion"
-        [(ngModel)]="proyecto.educacion" value="1">
-      <label class="form-check-label" for="educacion">Educación</label>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="productiva_otros" class="form-check-input" type="checkbox" id="otros">
+        <label class="form-check-label" for="otros">Otros</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="productiva_otros_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario"
-      [disabled]="!proyecto.educacion"></textarea>
-  </div>
-</div>
-<div class="form-group row">
-  <div class="col-sm-2">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" Energía="saludOptions" id="salud" [(ngModel)]="proyecto.salud"
-        value="1">
-      <label class="form-check-label" for="salud">Salud</label>
+  <hr>
+  <h2>Concordancia social</h2>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="social_trans" class="form-check-input" type="checkbox" id="transporte">
+        <label class="form-check-label" for="transporte">Transporte</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="social_trans_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
-  <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="Ingrese un comentario" [disabled]="!proyecto.salud"></textarea>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="social_telco" class="form-check-input" type="checkbox" id="telecomunicacion">
+        <label class="form-check-label" for="telecomunicacion">Telecomunicación</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="social_telco_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="social_agua" class="form-check-input" type="checkbox" id="saneamiento">
+        <label class="form-check-label" for="saneamiento">Agua y Saneamiento</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="social_agua_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="social_riego" class="form-check-input" type="checkbox" id="riego">
+        <label class="form-check-label" for="riego">Riego</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="social_riego_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="social_educa" class="form-check-input" type="checkbox" id="educacion">
+        <label class="form-check-label" for="educacion">Educación</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="social_educa_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-check form-check-inline">
+        <input formControlName="social_salud" class="form-check-input" type="checkbox" id="salud">
+        <label class="form-check-label" for="salud">Salud</label>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <textarea formControlName="social_salud_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+    </div>
   </div>
 </div>
