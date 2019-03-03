@@ -13,7 +13,7 @@ const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate:[LoginGuardGuard],
+        // canActivate:[LoginGuardGuard],
         children: [
             {
                 path: 'dashboard', component: DashboardComponent, data: {

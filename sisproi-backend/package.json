@@ -15,8 +15,10 @@
         "express": "^4.16.4",
         "express-fileupload": "^1.0.0",
         "jsonwebtoken": "^8.4.0",
+        "mime-types": "^2.1.22",
         "mongoose": "^5.4.0",
         "mongoose-unique-validator": "^2.0.2",
+        "multer": "^1.4.1",
         "serve-index": "^1.9.1"
     }
 }

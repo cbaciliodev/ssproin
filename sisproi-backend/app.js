@@ -6,17 +6,17 @@ var bodyParser = require('body-parser');
 // Inicializar variables
 var app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Habilitando CORS
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
     next();
 });
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // Importando rutas
 var appRoutes = require('./routes/app');
@@ -25,15 +25,14 @@ var parametroRoutes = require('./routes/parametro');
 var fichaRoutes = require('./routes/ficha');
 var serveIndex = require('serve-index');
 var usuarioRoutes = require('./routes/usuario');
-
-app.use(express.static('/data/ssproi/'));
-app.use('/uploads', serveIndex('/data/ssproi/uploads'));
+var filesRoutes = require('./routes/fileUpload');
 
 // Route
 app.use('/parametro', parametroRoutes);
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
 app.use('/ficha', fichaRoutes);
+app.use('/files', filesRoutes);
 app.use('/', appRoutes);
 
 // MongoDB Access

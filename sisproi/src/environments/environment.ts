@@ -26,6 +26,10 @@ export const environment = {
     ERROR_INSERT: 'Tuvimos problemas al guardar el registro',
     ERROR_PROCESS: 'Tuvimos problemas al procesar el registro',
     ERROR_LIST: 'Tuvimos problemas al listar los registros'
+  },
+  TIPO_FORMULARIO: {
+    MAPA: 0,
+    ARCHIVO: 1
   }
 };
 
