@@ -14,6 +14,9 @@ export class FichaService {
     let URL = env.URI_API.concat('ficha/');
     return this.http.post<any>(URL, tipo).pipe(
       map(res => {
+
+        console.log(res);
+
         let estado_0 = res.data.find(f => f.estado === 0);
         let estado_1 = res.data.find(f => f.estado === 1);
         let estado_2 = res.data.find(f => f.estado === 2);
@@ -33,8 +36,4 @@ export class FichaService {
     return this.http.post<any>(URL, data);
   }
 
-  procesar(ficha) {
-    let URL = env.URI_API.concat('ficha/procesar');
-    return this.http.post<any>(URL, ficha);
-  }
 }

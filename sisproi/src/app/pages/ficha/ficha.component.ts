@@ -19,7 +19,6 @@ export class FichaComponent implements OnInit, OnDestroy {
   public processing = false;
   public fichaForm: FormGroup;
 
-  private nivel_1: Array<Parametro> = [];
   private nivel_trans_2: Array<Parametro> = [];
   private nivel_trans_3: Array<Parametro> = [];
   private nivel_agua_2: Array<Parametro> = [];
@@ -51,11 +50,10 @@ export class FichaComponent implements OnInit, OnDestroy {
   private configFicha(ficha) {
     this.fichaForm.addControl('_id', new FormControl(''));
     this.fichaForm.patchValue({ sector_nivel_1: ficha.sector_nivel_1 });
-    this.onChangeNivel1();
-    this.createDepartamentos(ficha.departamento);
+    this.createDepartamentos(ficha.departamento); this.onChangeNivel1();
     this.fichaForm.patchValue(ficha);
 
-    if(ficha.estado_registro == 2) this.fichaForm.disable();
+    if (ficha.estado_registro == 2) this.fichaForm.disable();
   }
 
   public guardar() {
@@ -80,15 +78,14 @@ export class FichaComponent implements OnInit, OnDestroy {
       buttons: ['Cancel', 'Ok'],
       dangerMode: true
     }).then(res => {
-      if(res) {
+      if (res) {
         this.processing = true;
-        this.control('estado_registro').setValue(2);
-        let ficha = { _id: this.valor('_id'), estado_registro: 2 };
-        this._ficha.procesar(ficha)
+        this.beforeProcess();
+        this._ficha.save(this.fichaForm.value)
           .subscribe(_ => {
             swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
           }, _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
-          () => this.processing = false);
+            () => this.processing = false);
       }
     });
   }
@@ -98,10 +95,12 @@ export class FichaComponent implements OnInit, OnDestroy {
     swal('Atención', env.MSG.SUCCESS_INSERT, 'success');
   }
 
-  public onChangeNivel1() {
-    while (this.sector_nivel_2.length !== 0) this.sector_nivel_2.removeAt(0);
-    while (this.sector_nivel_3.length !== 0) this.sector_nivel_3.removeAt(0);
+  private beforeProcess() {
+    this.control('estado_registro').setValue(2);
+    this.control('estado_evaluacion').setValue(0);
+  }
 
+  public onChangeNivel1() {
     if (this.valor('sector_nivel_1') == 'PTRANSPORTE') {
       for (let i = 0; i < this.nivel_trans_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
       for (let i = 0; i < this.nivel_trans_3.length; i++) this.sector_nivel_3.push(new FormControl(false));
@@ -122,7 +121,6 @@ export class FichaComponent implements OnInit, OnDestroy {
 
   public valor(field) { return this.fichaForm.get(field).value; }
   public control(field): AbstractControl { return this.fichaForm.get(field) };
-  public invalid(field) { return this.fichaForm.get(field).invalid && this.fichaForm.get(field).touched; }
 
   get sector_nivel_2() { return this.fichaForm.get('sector_nivel_2') as FormArray }
   get sector_nivel_3() { return this.fichaForm.get('sector_nivel_3') as FormArray }
@@ -148,18 +146,18 @@ export class FichaComponent implements OnInit, OnDestroy {
       nivel_avance_fisico: [0],
       nivel_avance_financiero: [0],
       anio_inicio_posible: [''],
-      meses_ejecucion: [''],
+      meses_ejecucion: [0],
       departamento: this.builder.array([]),
       select_departamento: [''],
       localizacion_latitud: [''],
       localizacion_longitud: [''],
       area_influencia: [''],
-      estado_registro: [0]
+      estado_registro: [0],
+      estado_evaluacion: []
     });
   }
 
   private configParametros() {
-    this.nivel_1 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_1));
     this.nivel_trans_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TRANS_2));
     this.nivel_trans_3 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TRANS_3));
     this.nivel_agua_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_AGUA_2));

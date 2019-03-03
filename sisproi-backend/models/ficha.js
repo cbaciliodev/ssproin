@@ -34,7 +34,7 @@ var FichaSchema = new Schema({
     area_influencia: { type: String },
 
     estado_registro: { type: Number, required: true, default: ESTADO_ACTIVO },
-    estado_evaluacion: { type: Number, required: true, default: ESTADO_INICIAL },
+    estado_evaluacion: { type: Number },
 
     prio_politica_sect: { type: String },
     prio_politica_sect_comentario: { type: String },

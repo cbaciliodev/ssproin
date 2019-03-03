@@ -32,11 +32,4 @@ app.post('/update', (req, res) => {
     )
 });
 
-app.post('/procesar', (req, res) => {
-    _ficha.procesar(req.body).then(
-        _ => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, {}),
-        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
-    )
-});
-
 module.exports = app;

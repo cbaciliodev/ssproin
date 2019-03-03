@@ -1,4 +1,59 @@
 <div [formGroup]="fichaForm">
+  <h2>Información base</h2>
+  <div class="form-group row">
+    <label class="col-sm-2">Nivel 1</label>
+    <div class="col-sm-10" [class.has-danger]="invalid('sector_nivel_1')">
+      <select formControlName="sector_nivel_1" (change)="onChangeNivel1()" class="form-control">
+        <option value="">-- seleccione --</option>
+        <option *ngFor="let n1 of nivel_1" [value]="n1.nombre">{{n1.alias}}</option>
+      </select>
+      <div class="pt-1" *ngIf="invalid('sector_nivel_1')">
+        <span class="form-control-feedback">
+          <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+        </span>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PTRANSPORTE'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let sn2 of sector_nivel_2.controls; let i=index" class="form-check">
+            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn2_' + i">
+            <label class="form-check-label" [for]="'sn2_' + i">{{nivel_trans_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let sn3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn3_' + i">
+          <label class="form-check-label" [for]="'sn3_' + i">{{nivel_trans_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PAGUA_SANEA'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na2_' + i">
+          <label class="form-check-label" [for]="'na2_' + i">{{nivel_agua_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na3_' + i">
+          <label class="form-check-label" [for]="'na3_' + i">{{nivel_agua_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
   <div class="form-group row">
     <label class="col-sm-2">Jurisdicción</label>
     <div class="col-sm-10" [class.has-danger]="invalid('jurisdiccion')">
@@ -112,7 +167,7 @@
     <label class="col-sm-2 col-form-label">Plazo de ejecución (meses)</label>
     <div class="col-sm-4">
       <select formControlName="meses_ejecucion" class="form-control">
-        <option value="">-- seleccione --</option>
+        <option value="0">-- seleccione --</option>
         <option *ngFor="let m of meses" [value]="m.valor_numero">{{m.alias}}</option>
       </select>
     </div>

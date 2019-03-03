@@ -9,6 +9,7 @@ function list() {
     return new Promise((resolve, reject) => {
         Parametro.aggregate()
             .match({ estado: { $ne: ESTADO_ELIMINADO } })
+            .sort({ orden: 1 })
             .group({
                 _id: '$grupo',
                 parametros: {
