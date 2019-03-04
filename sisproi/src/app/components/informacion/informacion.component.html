@@ -128,52 +128,52 @@
         </span>
       </div>
     </div>
-</div>
-<div class="form-group row" *ngIf="valor('jurisdiccion') == 'JUR_OTRA'">
+  </div>
+  <div class="form-group row" *ngIf="valor('jurisdiccion') == 'JUR_OTRA'">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
       <textarea formControlName="jurisdiccion_otro" class="form-control" rows="3"
         placeholder="Indique la Jurisdicción"></textarea>
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nombre del programa</label>
     <div class="col-sm-10">
-        <input formControlName="nombre_programa" type="text" class="form-control" placeholder="Nombre del programa">
+      <input formControlName="nombre_programa" type="text" class="form-control" placeholder="Nombre del programa">
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Descripción del programa</label>
     <div class="col-sm-10">
       <textarea formControlName="descripcion_programa" class="form-control" rows="3"
         placeholder="Descripción del programa"></textarea>
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nombre del proyecto</label>
     <div class="col-sm-10" [class.has-danger]="invalid('nombre_proyecto')">
-        <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
-        <div class="pt-1" *ngIf="invalid('nombre_proyecto')">
-            <span class="form-control-feedback">
+      <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
+      <div class="pt-1" *ngIf="invalid('nombre_proyecto')">
+        <span class="form-control-feedback">
           <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
         </span>
-        </div>
+      </div>
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Descripción del proyecto</label>
     <div class="col-sm-10">
       <textarea formControlName="descripcion_proyecto" class="form-control" rows="3"
         placeholder="Descripción del proyecto"></textarea>
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Monto estimado (US$)</label>
     <div class="col-sm-10">
-        <input formControlName="monto_estimado" type="number" class="form-control" placeholder="Monto estimado">
+      <input formControlName="monto_estimado" type="number" class="form-control" placeholder="Monto estimado">
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2">Prioridad del sector</label>
     <div class="col-sm-10">
       <div *ngFor="let ps of prioridad_sector; let i=index" class="form-check">
@@ -277,15 +277,15 @@
         <label class="form-check-label" [for]="'me_' + i">{{me.alias}}</label>
       </div>
     </div>
-</div>
-<div class="form-group row" *ngIf="valor('modalidad_ejecutiva') == 'EJECU_OTRA'">
+  </div>
+  <div class="form-group row" *ngIf="valor('modalidad_ejecutiva') == 'EJECU_OTRA'">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
       <textarea formControlName="modalidad_ejecutiva_otra" class="form-control" rows="3"
         placeholder="Indique la modalidad ejecutiva"></textarea>
     </div>
-</div>
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2">Nivel de avance</label>
     <div class="col-sm-10">
       <div *ngFor="let na of nivel_avance; let i=index" class="form-check">
