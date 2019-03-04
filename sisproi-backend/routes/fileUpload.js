@@ -48,7 +48,7 @@ app.get('/:filename', function(req, res) {
     console.log(mime.lookup(filename));
 
     res.writeHead(200, {
-        'Content-Type': 'audio/mpeg',
+        'Content-Type': mime.lookup(filename),
         'Content-Length': stat.size
     });
 
