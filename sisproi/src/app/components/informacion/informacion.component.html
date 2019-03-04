@@ -1,209 +1,139 @@
 <div [formGroup]="fichaForm">
-    <h2>Información base</h2>
-    <div class="form-group row">
-        <label class="col-sm-2">Nivel 1</label>
-        <div class="col-sm-10" [class.has-danger]="invalid('sector_nivel_1')">
-            <select formControlName="sector_nivel_1" (change)="onChangeNivel1()" class="form-control">
+  <h2>Información base</h2>
+  <div class="form-group row">
+    <label class="col-sm-2">Nivel 1</label>
+    <div class="col-sm-10" [class.has-danger]="invalid('sector_nivel_1')">
+      <select formControlName="sector_nivel_1" (change)="onChangeNivel1()" class="form-control">
         <option value="">-- seleccione --</option>
         <option *ngFor="let n1 of nivel_1" [value]="n1.nombre">{{n1.alias}}</option>
       </select>
-            <div class="pt-1" *ngIf="invalid('sector_nivel_1')">
-                <span class="form-control-feedback">
+      <div class="pt-1" *ngIf="invalid('sector_nivel_1')">
+        <span class="form-control-feedback">
           <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
         </span>
-            </div>
-        </div>
+      </div>
     </div>
-    <ng-container *ngIf="valor('sector_nivel_1') == 'PTRANSPORTE'">
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 2</label>
-            <div formArrayName="sector_nivel_2" class="col-sm-10">
-                <div *ngFor="let sn2 of sector_nivel_2.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn2_' + i">
-                    <label class="form-check-label" [for]="'sn2_' + i">{{nivel_trans_2[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 3</label>
-            <div formArrayName="sector_nivel_3" class="col-sm-10">
-                <div *ngFor="let sn3 of sector_nivel_3.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn3_' + i">
-                    <label class="form-check-label" [for]="'sn3_' + i">{{nivel_trans_3[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="valor('sector_nivel_1') == 'PAGUA_SANEA'">
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 2</label>
-            <div formArrayName="sector_nivel_2" class="col-sm-10">
-                <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na2_' + i">
-                    <label class="form-check-label" [for]="'na2_' + i">{{nivel_agua_2[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 3</label>
-            <div formArrayName="sector_nivel_3" class="col-sm-10">
-                <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na3_' + i">
-                    <label class="form-check-label" [for]="'na3_' + i">{{nivel_agua_3[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="valor('sector_nivel_1') == 'PENERGIA'">
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 2</label>
-            <div formArrayName="sector_nivel_2" class="col-sm-10">
-                <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne2_' + i">
-                    <label class="form-check-label" [for]="'ne2_' + i">{{nivel_energia_2[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 3</label>
-            <div formArrayName="sector_nivel_3" class="col-sm-10">
-                <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne3_' + i">
-                    <label class="form-check-label" [for]="'ne3_' + i">{{nivel_energia_3[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 4</label>
-            <div formArrayName="sector_nivel_4" class="col-sm-10">
-                <div *ngFor="let na3 of sector_nivel_4.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne4_' + i">
-                    <label class="form-check-label" [for]="'ne4_' + i">{{nivel_energia_4[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="valor('sector_nivel_1') == 'PTELECOMUNIC'">
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 2</label>
-            <div formArrayName="sector_nivel_2" class="col-sm-10">
-                <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl2_' + i">
-                    <label class="form-check-label" [for]="'tl2_' + i">{{nivel_telecom_2[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 3</label>
-            <div formArrayName="sector_nivel_3" class="col-sm-10">
-                <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl3_' + i">
-                    <label class="form-check-label" [for]="'tl3_' + i">{{nivel_telecom_3[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="valor('sector_nivel_1') == 'PRIEGO'">
-        <div class="form-group row">
-            <label class="col-sm-2">Nivel 2</label>
-            <div formArrayName="sector_nivel_2" class="col-sm-10">
-                <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
-                    <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ri2_' + i">
-                    <label class="form-check-label" [for]="'ri2_' + i">{{nivel_riego_2[i].alias}}</label>
-                </div>
-            </div>
-        </div>
-    </ng-container>
+  </div>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PTRANSPORTE'">
     <div class="form-group row">
-        <label class="col-sm-2">Jurisdicción</label>
-        <div class="col-sm-10" [class.has-danger]="invalid('jurisdiccion')">
-            <div *ngFor="let jur of jurisdiccion; let i=index" class="form-check">
-                <input formControlName="jurisdiccion" class="form-check-input" type="radio" [id]="'jur_' + i" [value]="jur.nombre">
-                <label class="form-check-label" [for]="'jur_' + i">{{jur.alias}}</label>
-            </div>
-            <div class="pt-1" *ngIf="invalid('jurisdiccion')">
-                <span class="form-control-feedback">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let sn2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn2_' + i">
+          <label class="form-check-label" [for]="'sn2_' + i">{{nivel_trans_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let sn3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn3_' + i">
+          <label class="form-check-label" [for]="'sn3_' + i">{{nivel_trans_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PAGUA_SANEA'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na2_' + i">
+          <label class="form-check-label" [for]="'na2_' + i">{{nivel_agua_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na3_' + i">
+          <label class="form-check-label" [for]="'na3_' + i">{{nivel_agua_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PENERGIA'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne2_' + i">
+          <label class="form-check-label" [for]="'ne2_' + i">{{nivel_energia_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne3_' + i">
+          <label class="form-check-label" [for]="'ne3_' + i">{{nivel_energia_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 4</label>
+      <div formArrayName="sector_nivel_4" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_4.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne4_' + i">
+          <label class="form-check-label" [for]="'ne4_' + i">{{nivel_energia_4[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PTELECOMUNIC'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl2_' + i">
+          <label class="form-check-label" [for]="'tl2_' + i">{{nivel_telecom_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl3_' + i">
+          <label class="form-check-label" [for]="'tl3_' + i">{{nivel_telecom_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PRIEGO'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ri2_' + i">
+          <label class="form-check-label" [for]="'ri2_' + i">{{nivel_riego_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="form-group row">
+    <label class="col-sm-2">Jurisdicción</label>
+    <div class="col-sm-10" [class.has-danger]="invalid('jurisdiccion')">
+      <div *ngFor="let jur of jurisdiccion; let i=index" class="form-check">
+        <input formControlName="jurisdiccion" class="form-check-input" type="radio" [id]="'jur_' + i"
+          [value]="jur.nombre">
+        <label class="form-check-label" [for]="'jur_' + i">{{jur.alias}}</label>
+      </div>
+      <div class="pt-1" *ngIf="invalid('jurisdiccion')">
+        <span class="form-control-feedback">
           <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
         </span>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row" *ngIf="valor('jurisdiccion') == 'JUR_OTRA'">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">
-            <textarea formControlName="jurisdiccion_otro" class="form-control" rows="3" placeholder="Indique la Jurisdicción"></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Nombre del programa</label>
-        <div class="col-sm-10">
-            <input formControlName="nombre_programa" type="text" class="form-control" placeholder="Nombre del programa">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Descripción del programa</label>
-        <div class="col-sm-10">
-            <textarea formControlName="descripcion_programa" class="form-control" rows="3" placeholder="Descripción del programa"></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Nombre del proyecto</label>
-        <div class="col-sm-10" [class.has-danger]="invalid('nombre_proyecto')">
-            <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
-            <div class="pt-1" *ngIf="invalid('nombre_proyecto')">
-                <span class="form-control-feedback">
-          <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
-        </span>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Descripción del proyecto</label>
-        <div class="col-sm-10">
-            <textarea formControlName="descripcion_proyecto" class="form-control" rows="3" placeholder="Descripción del proyecto"></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Monto estimado (US$)</label>
-        <div class="col-sm-10">
-            <input formControlName="monto_estimado" type="number" class="form-control" placeholder="Monto estimado">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2">Prioridad del sector</label>
-        <div class="col-sm-10">
-            <div *ngFor="let ps of prioridad_sector; let i=index" class="form-check">
-                <input formControlName="prioridad_sector" class="form-check-input" type="radio" [id]="'ps_' + i" [value]="ps.nombre">
-                <label class="form-check-label" [for]="'ps_' + i">{{ps.alias}}</label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2">Comentarios de la prioridad</label>
-        <div class="col-sm-10">
-            <textarea formControlName="comentarios_prioridad_sector" class="form-control" rows="3" placeholder="Comentarios de la prioridad del sector"></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2">Modalidad ejecutiva</label>
-        <div class="col-sm-10">
-            <div *ngFor="let me of modalidad_ejecutiva; let i=index" class="form-check">
-                <input formControlName="modalidad_ejecutiva" class="form-check-input" type="radio" [id]="'me_' + i" [value]="me.nombre">
-                <label class="form-check-label" [for]="'me_' + i">{{me.alias}}</label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row" *ngIf="valor('modalidad_ejecutiva') == 'EJECU_OTRA'">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">
-            <textarea formControlName="modalidad_ejecutiva_otra" class="form-control" rows="3" placeholder="Indique la modalidad ejecutiva"></textarea>
-        </div>
+      </div>
     </div>
   </div>
   <div class="form-group row" *ngIf="valor('jurisdiccion') == 'JUR_OTRA'">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
-      <textarea formControlName="jurisdiccion_otro" class="form-control" rows="3" placeholder="Indique la Jurisdicción"></textarea>
+      <textarea formControlName="jurisdiccion_otro" class="form-control" rows="3"
+        placeholder="Indique la Jurisdicción"></textarea>
     </div>
   </div>
   <div class="form-group row">
@@ -215,7 +145,8 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Descripción del programa</label>
     <div class="col-sm-10">
-      <textarea formControlName="descripcion_programa" class="form-control" rows="3" placeholder="Descripción del programa"></textarea>
+      <textarea formControlName="descripcion_programa" class="form-control" rows="3"
+        placeholder="Descripción del programa"></textarea>
     </div>
   </div>
   <div class="form-group row">
@@ -232,7 +163,8 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Descripción del proyecto</label>
     <div class="col-sm-10">
-      <textarea formControlName="descripcion_proyecto" class="form-control" rows="3" placeholder="Descripción del proyecto"></textarea>
+      <textarea formControlName="descripcion_proyecto" class="form-control" rows="3"
+        placeholder="Descripción del proyecto"></textarea>
     </div>
   </div>
   <div class="form-group row">
@@ -245,22 +177,25 @@
     <label class="col-sm-2">Prioridad del sector</label>
     <div class="col-sm-10">
       <div *ngFor="let ps of prioridad_sector; let i=index" class="form-check">
-        <input formControlName="prioridad_sector" class="form-check-input" type="radio" [id]="'ps_' + i" [value]="ps.nombre">
+        <input formControlName="prioridad_sector" class="form-check-input" type="radio" [id]="'ps_' + i"
+          [value]="ps.nombre">
         <label class="form-check-label" [for]="'ps_' + i">{{ps.alias}}</label>
       </div>
     </div>
   </div>
   <div class="form-group row">
-      <label class="col-sm-2">Comentarios de la prioridad</label>
-      <div class="col-sm-10">
-        <textarea formControlName="comentarios_prioridad_sector" class="form-control" rows="3" placeholder="Comentarios de la prioridad del sector"></textarea>
-      </div>
+    <label class="col-sm-2">Comentarios de la prioridad</label>
+    <div class="col-sm-10">
+      <textarea formControlName="comentarios_prioridad_sector" class="form-control" rows="3"
+        placeholder="Comentarios de la prioridad del sector"></textarea>
     </div>
+  </div>
   <div class="form-group row">
     <label class="col-sm-2">Modalidad ejecutiva</label>
     <div class="col-sm-10">
       <div *ngFor="let me of modalidad_ejecutiva; let i=index" class="form-check">
-        <input formControlName="modalidad_ejecutiva" class="form-check-input" type="radio" [id]="'me_' + i" [value]="me.nombre">
+        <input formControlName="modalidad_ejecutiva" class="form-check-input" type="radio" [id]="'me_' + i"
+          [value]="me.nombre">
         <label class="form-check-label" [for]="'me_' + i">{{me.alias}}</label>
       </div>
     </div>
@@ -268,16 +203,96 @@
   <div class="form-group row" *ngIf="valor('modalidad_ejecutiva') == 'EJECU_OTRA'">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
-      <textarea formControlName="modalidad_ejecutiva_otra" class="form-control" rows="3" placeholder="Indique la modalidad ejecutiva"></textarea>
+      <textarea formControlName="modalidad_ejecutiva_otra" class="form-control" rows="3"
+        placeholder="Indique la modalidad ejecutiva"></textarea>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="valor('jurisdiccion') == 'JUR_OTRA'">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <textarea formControlName="jurisdiccion_otro" class="form-control" rows="3"
+        placeholder="Indique la Jurisdicción"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Nombre del programa</label>
+    <div class="col-sm-10">
+      <input formControlName="nombre_programa" type="text" class="form-control" placeholder="Nombre del programa">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Descripción del programa</label>
+    <div class="col-sm-10">
+      <textarea formControlName="descripcion_programa" class="form-control" rows="3"
+        placeholder="Descripción del programa"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Nombre del proyecto</label>
+    <div class="col-sm-10" [class.has-danger]="invalid('nombre_proyecto')">
+      <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
+      <div class="pt-1" *ngIf="invalid('nombre_proyecto')">
+        <span class="form-control-feedback">
+          <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Descripción del proyecto</label>
+    <div class="col-sm-10">
+      <textarea formControlName="descripcion_proyecto" class="form-control" rows="3"
+        placeholder="Descripción del proyecto"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Monto estimado (US$)</label>
+    <div class="col-sm-10">
+      <input formControlName="monto_estimado" type="number" class="form-control" placeholder="Monto estimado">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2">Prioridad del sector</label>
+    <div class="col-sm-10">
+      <div *ngFor="let ps of prioridad_sector; let i=index" class="form-check">
+        <input formControlName="prioridad_sector" class="form-check-input" type="radio" [id]="'ps_' + i"
+          [value]="ps.nombre">
+        <label class="form-check-label" [for]="'ps_' + i">{{ps.alias}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2">Comentarios de la prioridad</label>
+    <div class="col-sm-10">
+      <textarea formControlName="comentarios_prioridad_sector" class="form-control" rows="3"
+        placeholder="Comentarios de la prioridad del sector"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2">Modalidad ejecutiva</label>
+    <div class="col-sm-10">
+      <div *ngFor="let me of modalidad_ejecutiva; let i=index" class="form-check">
+        <input formControlName="modalidad_ejecutiva" class="form-check-input" type="radio" [id]="'me_' + i"
+          [value]="me.nombre">
+        <label class="form-check-label" [for]="'me_' + i">{{me.alias}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="valor('modalidad_ejecutiva') == 'EJECU_OTRA'">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <textarea formControlName="modalidad_ejecutiva_otra" class="form-control" rows="3"
+        placeholder="Indique la modalidad ejecutiva"></textarea>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2">Nivel de avance</label>
     <div class="col-sm-10">
       <div *ngFor="let na of nivel_avance; let i=index" class="form-check">
-        <input formControlName="nivel_avance" class="form-check-input" type="radio" [id]="'na_' + i" [value]="na.nombre">
+        <input formControlName="nivel_avance" class="form-check-input" type="radio" [id]="'na_' + i"
+          [value]="na.nombre">
         <label class="form-check-label" [for]="'na_' + i">{{na.alias}}</label>
-        
+
         <div *ngIf="(nivel_avance.length - 1) == i" class="pt-1 row">
           <div class="col-sm-2 col-lg-3">
             <input type="number" class="form-control" placeholder="Avance físico"
@@ -288,53 +303,58 @@
               [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
           </div>
         </div>
+      </div>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2">Observaciones del avance</label>
     <div class="col-sm-10">
-      <textarea formControlName="nivel_avance_observacion" class="form-control" rows="3" placeholder="Observaciones del nivel de avance"></textarea>
+      <textarea formControlName="nivel_avance_observacion" class="form-control" rows="3"
+        placeholder="Observaciones del nivel de avance"></textarea>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Año de inicio posible</label>
     <div class="col-sm-4">
-      <input formControlName="anio_inicio_posible" type="number" class="form-control" placeholder="Año de inicio posible">
+      <input formControlName="anio_inicio_posible" type="number" class="form-control"
+        placeholder="Año de inicio posible">
     </div>
     <label class="col-sm-2 col-form-label">Año de puesta en operación</label>
     <div class="col-sm-4">
-      <input formControlName="anio_puesta_operacion" type="number" class="form-control" placeholder="Año de puesta en operación">
+      <input formControlName="anio_puesta_operacion" type="number" class="form-control"
+        placeholder="Año de puesta en operación">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2">Departamento(s)</label>
     <div class="col-sm-4">
-      <select #depart formControlName="select_departamento" class="form-control" (change)="changeDepartamento(depart.value)">
+      <select #depart formControlName="select_departamento" class="form-control"
+        (change)="changeDepartamento(depart.value)">
         <option value="">-- seleccione --</option>
         <option *ngFor="let dep of departamento; let i=index" [value]="i">{{dep.alias}}</option>
       </select>
-        </div>
     </div>
-    <div class="form-group row" *ngIf="departamentos.length > 0">
-        <label class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-            <ng-container *ngFor="let dep of departamentos.value; let i=index">
-                <span class="label label-info label-rounded mr-1">
+  </div>
+  <div class="form-group row" *ngIf="departamentos.length > 0">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-10">
+      <ng-container *ngFor="let dep of departamentos.value; let i=index">
+        <span class="label label-info label-rounded mr-1">
           {{dep.alias}} <i class="fa fa-times" (click)="removeDepart(i)"></i>
         </span>
-            </ng-container>
-        </div>
+      </ng-container>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Localización del proyecto</label>
-        <div class="col-sm-10">
-            <app-mapa-upload #mapaUpload [data]="dataMapa"></app-mapa-upload>
-        </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Localización del proyecto</label>
+    <div class="col-sm-10">
+      <app-mapa-upload #mapaUpload [data]="dataMapa"></app-mapa-upload>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Área de influencia</label>
-        <div class="col-sm-10">
-            <input formControlName="area_influencia" type="text" class="form-control" placeholder="Área de influencia">
-        </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Área de influencia</label>
+    <div class="col-sm-10">
+      <input formControlName="area_influencia" type="text" class="form-control" placeholder="Área de influencia">
     </div>
+  </div>
 </div>
