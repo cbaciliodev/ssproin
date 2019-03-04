@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URI_API: 'http://localhost:3040/',
+  URI_API: 'http://3.17.110.176:3040/',
   PARAMETRO: {
     NIVEL_1: 'NIVEL_1',
     NIVEL_TRANS_2: 'NIVEL_TRANS_2',
