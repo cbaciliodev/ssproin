@@ -119,7 +119,7 @@
                                 <td>{{ getSector( fe.sector_nivel_1 ) }}</td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>{{fe.nombre_proyecto}}</td>
-                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
+                                <td class="text-right">{{ fe.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fe.prioridad">
                                         {{fe.prioridad.alias}}
@@ -176,7 +176,7 @@
                                 <td>{{ getSector( fe.sector_nivel_1 ) }}</td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>{{fe.nombre_proyecto}}</td>
-                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
+                                <td class="text-right">{{ fe.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fe.prioridad">
                                         {{fe.prioridad.alias}}
