@@ -32,7 +32,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
-                                <td>$ {{fr.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
                                         {{fr.prioridad.alias}}
@@ -89,7 +89,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>{{fe.nombre_proyecto}}</td>
-                                <td>$ {{fe.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fe.prioridad">
                                         {{fe.prioridad.alias}}
@@ -145,7 +145,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>{{fe.nombre_proyecto}}</td>
-                                <td>$ {{fe.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fe.prioridad">
                                         {{fe.prioridad.alias}}

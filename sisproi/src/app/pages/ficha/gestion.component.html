@@ -2,7 +2,7 @@
     <div class="card-body collapse show">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#ficha_registro" role="tab">Fichas de registro</a>
+                <a class="nav-link active" data-toggle="tab" href="#ficha_registro" role="tab">Fichas en registro</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#ficha_registrada" role="tab">Fichas registradas</a>
@@ -29,7 +29,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
-                                <td>$ {{fr.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
                                         {{fr.prioridad.alias}}
@@ -86,7 +86,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
-                                <td>$ {{fr.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
                                         {{fr.prioridad.alias}}
