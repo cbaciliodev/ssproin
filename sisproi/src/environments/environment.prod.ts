@@ -25,6 +25,7 @@ export const environment = {
     SUCCESS_INSERT: 'El registro fue guardado correctamente',
     SUCCESS_UPDATE: 'El registro fue actualizado correctamente',
     SUCCESS_PROCESS: 'El registro fue procesado correctamente',
+    SUCCESS_FILE: 'El archivo fue cargado correctamente',
     WARN_PROCESS: 'Una vez procesado, no podrá editar el registro',
     ERROR_INSERT: 'Tuvimos problemas al guardar el registro',
     ERROR_PROCESS: 'Tuvimos problemas al procesar el registro',

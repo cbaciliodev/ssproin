@@ -2,3 +2,9 @@
     width:100%;
     height:400px;
 }
+
+.hidden-file {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}

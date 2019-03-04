@@ -1,9 +1,13 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { MapaUploadComponent } from '../mapa-upload/mapa-upload.component';
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
+import { FileUploader } from 'ng2-file-upload';
+import swal from 'sweetalert';
 import { } from 'googlemaps';
-import { MapaUploadComponent } from '../mapa-upload/mapa-upload.component';
+
+const URL = env.URI_API.concat('files/');
 
 @Component({
   selector: 'ficha-informacion',
@@ -18,6 +22,7 @@ export class InformacionComponent implements OnInit {
 
   @ViewChild('mapaUpload') mapaUpload: MapaUploadComponent;
 
+  public fileUploaded = false;
   private map: google.maps.Map;
   private marker: google.maps.Marker;
 
@@ -38,10 +43,13 @@ export class InformacionComponent implements OnInit {
   private nivel_avance: Array<Parametro> = [];
   private departamento: Array<Parametro> = [];
 
+  public uploader: FileUploader = new FileUploader({ url: URL.concat('/upload'), itemAlias: 'file' });
+
   constructor(private builder: FormBuilder) { }
 
   ngOnInit() {
     this.configParametros();
+    this.configUploadFile();
   }
 
   public onChangeNivel1() {
@@ -93,6 +101,18 @@ export class InformacionComponent implements OnInit {
   get sector_nivel_3() { return this.fichaForm.get('sector_nivel_3') as FormArray }
   get sector_nivel_4() { return this.fichaForm.get('sector_nivel_4') as FormArray }
   get departamentos() { return this.fichaForm.get('departamento') as FormArray }
+
+  private configUploadFile() {
+    this.uploader.onAfterAddingFile = (f) => {
+      this.fichaForm.get('area_influencia').setValue(f.file.name);
+      f.withCredentials = false;
+    };
+
+    this.uploader.onCompleteItem = () => {
+      swal('Atención', env.MSG.SUCCESS_FILE, 'success');
+      this.fileUploaded = true;
+     };
+  }
 
   private configParametros() {
     this.nivel_1 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_1));
