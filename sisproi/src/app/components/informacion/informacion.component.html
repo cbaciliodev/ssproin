@@ -207,11 +207,11 @@
         <label class="form-check-label" [for]="'na_' + i">{{na.alias}}</label>
         
         <div *ngIf="(nivel_avance.length - 1) == i" class="pt-1 row">
-          <div class="col-sm-2">
+          <div class="col-sm-2 col-lg-3">
             <input type="number" class="form-control" placeholder="Avance físico"
               [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-2 col-lg-3">
             <input type="number" class="form-control" placeholder="Avance financiero"
               [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
           </div>
@@ -220,20 +220,23 @@
     </div>
   </div>
   <div class="form-group row">
+    <label class="col-sm-2">Observaciones del avance</label>
+    <div class="col-sm-10">
+      <textarea formControlName="nivel_avance_observacion" class="form-control" rows="3" placeholder="Observaciones del nivel de avance"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label">Año de inicio posible</label>
     <div class="col-sm-4">
       <input formControlName="anio_inicio_posible" type="number" class="form-control" placeholder="Año de inicio posible">
     </div>
-    <label class="col-sm-2 col-form-label">Plazo de ejecución (meses)</label>
+    <label class="col-sm-2 col-form-label">Año de puesta en operación</label>
     <div class="col-sm-4">
-      <select formControlName="meses_ejecucion" class="form-control">
-        <option value="0">-- seleccione --</option>
-        <option *ngFor="let m of meses" [value]="m.valor_numero">{{m.alias}}</option>
-      </select>
+      <input formControlName="anio_puesta_operacion" type="number" class="form-control" placeholder="Año de puesta en operación">
     </div>
   </div>
   <div class="form-group row">
-    <label class="col-sm-2">Departamento</label>
+    <label class="col-sm-2">Departamento(s)</label>
     <div class="col-sm-4">
       <select #depart formControlName="select_departamento" class="form-control" (change)="changeDepartamento(depart.value)">
         <option value="">-- seleccione --</option>
