@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
+import { InformacionComponent } from '../../components/informacion/informacion.component';
 
 @Component({
   selector: 'ficha-proyecto',
@@ -31,6 +32,8 @@ export class FichaComponent implements OnInit, OnDestroy {
   private nivel_riego_2: Array<Parametro> = [];
 
   private unsubscribe = new Subject<void>();
+
+  @ViewChild('informacionComponent') informacionComponent: InformacionComponent;
 
   constructor(private builder: FormBuilder,
     private route: ActivatedRoute,
@@ -67,7 +70,11 @@ export class FichaComponent implements OnInit, OnDestroy {
 
     this.saving = true;
     this.control('estado_registro').setValue(1);
-    this._ficha.save(this.fichaForm.value)
+
+    const ficha = this.fichaForm.value;
+    ficha.localizacion_latitud = this.informacionComponent.getDataMapUpload();
+
+    this._ficha.save(ficha)
       .subscribe(
         res => {
           if (res.data.insert) this.afterSave(res.data.ficha._id);

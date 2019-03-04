@@ -9,10 +9,10 @@ declare function init_plugins();
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  
+
   constructor( public _ajustes: SettingsService ) { }
-  
-  ngOnInit(){
+
+  ngOnInit() {
     init_plugins();
   }
 

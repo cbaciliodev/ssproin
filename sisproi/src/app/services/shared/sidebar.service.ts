@@ -11,8 +11,8 @@ export class SidebarService {
       titulo: 'Gestión',
       icono: 'mdi mdi-gauge',
       submenu: [
-        { titulo: 'Ficha de proyecto', url: '/ficha' },
-        { titulo: 'Fichas registradas', url: '/registrada' }
+        { titulo: 'Gestión de fichas', url: '/ficha' },
+        { titulo: 'Evaluación de fichas', url: '/registrada' }
       ]
     }
   ];

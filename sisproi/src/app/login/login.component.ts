@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  forma : FormGroup
+  forma : FormGroup;
   userExiste =true;
 
   constructor(public router: Router ,public _usuario : UsuarioService) { }

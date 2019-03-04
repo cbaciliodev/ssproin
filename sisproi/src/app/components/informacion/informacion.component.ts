@@ -3,6 +3,7 @@ import { FormGroup, FormArray, FormBuilder, FormControl, AbstractControl } from 
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
 import { } from 'googlemaps';
+import { MapaUploadComponent } from '../mapa-upload/mapa-upload.component';
 
 @Component({
   selector: 'ficha-informacion',
@@ -12,7 +13,10 @@ import { } from 'googlemaps';
 export class InformacionComponent implements OnInit {
 
   @Input() public fichaForm: FormGroup;
+  @Input() public dataMapa = '';
   @ViewChild('gmap') gmapElement: ElementRef;
+
+  @ViewChild('mapaUpload') mapaUpload: MapaUploadComponent;
 
   private map: google.maps.Map;
   private marker: google.maps.Marker;
@@ -109,4 +113,7 @@ export class InformacionComponent implements OnInit {
     this.departamento = JSON.parse(localStorage.getItem(env.PARAMETRO.DEPARTAMENTO));
   }
 
+  getDataMapUpload() {
+    return this.mapaUpload.mapGenerated();
+  }
 }
