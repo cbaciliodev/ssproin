@@ -8,34 +8,39 @@
                 <h3 class="text-info"> {{ proyectos }} Proyectos</h3>
             </div>
 
-            <div class="col-12 mt-4">
+            <div class="col-md-12 col-12 mt-4 mb-4 b-r">
                 <h5>{{ recibidos }} recibidos<span class="pull-right">{{ recibidosPrc }}</span></h5>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': recibidosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar"
+                        [ngStyle]="{'width': recibidosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
-            </div>
 
-            <div class="col-12 mt-4 pb-4 b-b">
-                <h5>{{ evaluados }} evaluados<span class="pull-right">{{ evaluadosPrc }}</span></h5>
+                <h5 class="mt-4">{{ evaluados }} evaluados<span class="pull-right">{{ evaluadosPrc }}</span></h5>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': evaluadosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar"
+                        [ngStyle]="{'width': evaluadosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
             </div>
 
-            <div class="col-12">
-                <div class="row m-3">
-                    <div class="col-5 text-center p-0">
-                        <span class="mr-2">12 Ene</span>
-                        <i class="mdi mdi-brightness-1 text-success"></i>
-                    </div>
-                    <div class="col-2 text-center p-0">
-                        <hr> </div>
-                    <div class="col-5 text-center p-0">
-                        <span class="mr-2">26 Feb</span>
-                        <i class="mdi mdi-brightness-1 text-danger"></i>
-                    </div>
-                </div>
+            <div class="col-md-4 col-12 mb-4">
+                <i class="mdi mdi-brightness-1 text-success"></i>
+                <span class="mr-2"> 16 Ene</span> <br>
+                <strong><small>Ajust. sector</small></strong>
             </div>
+
+            <div class="col-md-4 col-12">
+                <i class="mdi mdi-brightness-1 text-danger"></i>
+                <span class="mr-2"> 26 Feb</span> <br>
+                <strong><small>Prliminar</small></strong>
+            </div>
+            <div class="col-md-4 col-12">
+                <i class="mdi mdi-brightness-1 text-success"></i>
+                <span class="mr-2"> 26 Mar</span> <br>
+                <strong><small>Final</small></strong>
+            </div>
+
         </div>
     </div>
 </div>
