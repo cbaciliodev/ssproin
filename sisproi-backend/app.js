@@ -45,6 +45,6 @@ mongoose.connect(db.MONGODB_URI, db.MONGOOSE_OPTS, (err) => {
 });
 
 // Escuchar peticiones
-app.listen(3000, () => {
-    console.log('Servidor iniciado en el puerto 3000: \x1b[32m%s\x1b[0m', 'online');
+app.listen(3040, () => {
+    console.log('Servidor iniciado en el puerto 3040: \x1b[32m%s\x1b[0m', 'online');
 });

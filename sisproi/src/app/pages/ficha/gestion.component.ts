@@ -35,4 +35,26 @@ export class GestionFComponent implements OnInit {
     return { tipo: 'estado_registro' };
   }
 
+  getSector( sector: string ) {
+    if ( sector == 'PTRANSPORTE' ) {
+      return 'Transporte';
+    }
+
+    if ( sector == 'PAGUA_SANEA' ) {
+      return 'Agua y saneamiento urbano';
+    }
+
+    if ( sector == 'PENERGIA' ) {
+      return 'Energía';
+    }
+
+    if ( sector == 'PTELECOMUNIC' ) {
+      return 'Telecomunicaciones';
+    }
+
+    if ( sector == 'PRIEGO' ) {
+      return 'Riego';
+    }
+  }
+
 }

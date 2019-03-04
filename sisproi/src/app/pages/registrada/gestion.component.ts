@@ -37,4 +37,26 @@ export class GestionRComponent implements OnInit {
     return { tipo: 'estado_evaluacion' };
   }
 
+  getSector( sector: string ) {
+    if ( sector == 'PTRANSPORTE' ) {
+      return 'Transporte';
+    }
+
+    if ( sector == 'PAGUA_SANEA' ) {
+      return 'Agua y saneamiento urbano';
+    }
+
+    if ( sector == 'PENERGIA' ) {
+      return 'Energía';
+    }
+
+    if ( sector == 'PTELECOMUNIC' ) {
+      return 'Telecomunicaciones';
+    }
+
+    if ( sector == 'PRIEGO' ) {
+      return 'Riego';
+    }
+  }
+
 }

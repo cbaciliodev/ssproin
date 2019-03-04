@@ -1,129 +1,133 @@
 <div class="card">
-  <div class="card-body collapse show">
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#ficha_registro" role="tab">Fichas de registro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#ficha_registrada" role="tab">Fichas registradas</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="ficha_registro" role="tabpanel">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Nombre del programa</th>
-                <th>Nombre del proyecto</th>
-                <th>Monto estimado</th>
-                <th>Prioridad</th>
-                <th>Modalidad</th>
-                <th>Año de inicio</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let fr of fichas_registro">
-                <td>{{fr.nombre_programa}}</td>
-                <td>{{fr.nombre_proyecto}}</td>
-                <td>$ {{fr.monto_estimado}}</td>
-                <td>
-                  <ng-container *ngIf="fr.prioridad">
-                    {{fr.prioridad.alias}}
-                  </ng-container>
-                </td>
-                <td>
-                  <ng-container *ngIf="fr.modalidad">
-                    {{fr.modalidad.alias}}
-                  </ng-container>
-                </td>
-                <td>{{fr.anio_inicio_posible}}</td>
-                <td>
-                  <button class="btn btn-outline-secondary btn-sm" routerLink="registro" [queryParams]="{id: fr._id}">
+    <div class="card-body collapse show">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#ficha_registro" role="tab">Fichas de registro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#ficha_registrada" role="tab">Fichas registradas</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="ficha_registro" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sector</th>
+                                <th>Programa</th>
+                                <th>Proyecto</th>
+                                <th>Monto estimado</th>
+                                <th>Prioridad</th>
+                                <th>Modalidad</th>
+                                <th>Año de inicio</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fr of fichas_registro">
+                                <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
+                                <td>{{fr.nombre_programa}}</td>
+                                <td>{{fr.nombre_proyecto}}</td>
+                                <td>$ {{fr.monto_estimado}}</td>
+                                <td>
+                                    <ng-container *ngIf="fr.prioridad">
+                                        {{fr.prioridad.alias}}
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container *ngIf="fr.modalidad">
+                                        {{fr.modalidad.alias}}
+                                    </ng-container>
+                                </td>
+                                <td>{{fr.anio_inicio_posible}}</td>
+                                <td>
+                                    <button class="btn btn-outline-secondary btn-sm" routerLink="registro" [queryParams]="{id: fr._id}">
                     <i class="fa fa-edit"></i> Editar
                   </button>
-                </td>
-              </tr>
+                                </td>
+                            </tr>
 
-              <tr *ngIf="loading">
-                <td class="text-center" colspan="7">
-                  <i class="fa fa-spinner fa-pulse fa-2x"></i>
-                </td>
-              </tr>
+                            <tr *ngIf="loading">
+                                <td class="text-center" colspan="7">
+                                    <i class="fa fa-spinner fa-pulse fa-2x"></i>
+                                </td>
+                            </tr>
 
-              <tr *ngIf="fichas_registro.length <= 0 && !loading">
-                <td colspan="7">
-                  No se encontraron fichas de registro
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                            <tr *ngIf="fichas_registro.length <= 0 && !loading">
+                                <td colspan="7">
+                                    No se encontraron fichas de registro
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-          <div>Mostrando {{fichas_registro.length}} fichas de registro</div>
+                    <div>Mostrando {{fichas_registro.length}} fichas de registro</div>
 
-        </div>
-      </div>
-      <div class="tab-pane fade" id="ficha_registrada" role="tabpanel">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Nombre del programa</th>
-                <th>Nombre del proyecto</th>
-                <th>Monto estimado</th>
-                <th>Prioridad</th>
-                <th>Modalidad</th>
-                <th>Año de inicio</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let fr of fichas_registradas">
-                  <td>{{fr.nombre_programa}}</td>
-                  <td>{{fr.nombre_proyecto}}</td>
-                  <td>$ {{fr.monto_estimado}}</td>
-                  <td>
-                    <ng-container *ngIf="fr.prioridad">
-                      {{fr.prioridad.alias}}
-                    </ng-container>
-                  </td>
-                  <td>
-                    <ng-container *ngIf="fr.modalidad">
-                      {{fr.modalidad.alias}}
-                    </ng-container>
-                  </td>
-                  <td>{{fr.anio_inicio_posible}}</td>
-                  <td>
-                    <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion != 2">
+                </div>
+            </div>
+            <div class="tab-pane fade" id="ficha_registrada" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sector</th>
+                                <th>Programa</th>
+                                <th>Proyecto</th>
+                                <th>Monto estimado</th>
+                                <th>Prioridad</th>
+                                <th>Modalidad</th>
+                                <th>Año de inicio</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fr of fichas_registradas">
+                                <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
+                                <td>{{fr.nombre_programa}}</td>
+                                <td>{{fr.nombre_proyecto}}</td>
+                                <td>$ {{fr.monto_estimado}}</td>
+                                <td>
+                                    <ng-container *ngIf="fr.prioridad">
+                                        {{fr.prioridad.alias}}
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container *ngIf="fr.modalidad">
+                                        {{fr.modalidad.alias}}
+                                    </ng-container>
+                                </td>
+                                <td>{{fr.anio_inicio_posible}}</td>
+                                <td>
+                                    <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion != 2">
                       En evaluación
                     </span>
-                    <span class="label label-success label-rounded" *ngIf="fr.estado_evaluacion == 2">
+                                    <span class="label label-success label-rounded" *ngIf="fr.estado_evaluacion == 2">
                       Evaluado
                       </span>
-                  </td>
-                </tr>
-  
-                <tr *ngIf="loading">
-                  <td class="text-center" colspan="7">
-                    <i class="fa fa-spinner fa-pulse fa-2x"></i>
-                  </td>
-                </tr>
-  
-                <tr *ngIf="fichas_registradas.length <= 0 && !loading">
-                  <td colspan="7">
-                    No se encontraron fichas registradas
-                  </td>
-                </tr>
-              </tbody>
-          </table>
+                                </td>
+                            </tr>
 
-          <div>Mostrando {{fichas_registradas.length}} fichas registradas</div>
+                            <tr *ngIf="loading">
+                                <td class="text-center" colspan="7">
+                                    <i class="fa fa-spinner fa-pulse fa-2x"></i>
+                                </td>
+                            </tr>
 
+                            <tr *ngIf="fichas_registradas.length <= 0 && !loading">
+                                <td colspan="7">
+                                    No se encontraron fichas registradas
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div>Mostrando {{fichas_registradas.length}} fichas registradas</div>
+
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" routerLink="registro">

@@ -35,7 +35,11 @@ export class MapaUploadComponent implements OnInit {
   ngOnInit() {
     initMap();
 
+    this.tipoMapa.tipo = env.TIPO_FORMULARIO.MAPA;
+
     if ( !Util.isEmpty( this.data ) ) {
+      const dataJson = Util.toJson( this.data );
+      this.tipoMapa.tipo = dataJson.tipo;
       loadMap( this.data );
     }
 

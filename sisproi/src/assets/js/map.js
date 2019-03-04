@@ -33,8 +33,9 @@ function addLatLng(event) {
             marker.setMap(null);
         }
 
-        objectMarker = { position: event.latLng, map: map };
+        objectMarker = { position: event.latLng };
         marker = new google.maps.Marker(objectMarker);
+        marker.setMap(map);
 
         return;
     }
@@ -116,7 +117,7 @@ function loadMapaByData(data) {
     // Marker
     if (data.tipoForma == 0) {
         objectMarker = data.objectData;
-        marker = new google.maps.Polygon(objectMarker);
+        marker = new google.maps.Marker(objectMarker);
         marker.setMap(map);
     }
 
@@ -130,6 +131,7 @@ function loadMapaByData(data) {
 
 function jsonMap() {
     if (tipoForma == 0) {
+        console.log(objectMarker);
         return {
             tipoForma: tipoForma,
             objectData: objectMarker

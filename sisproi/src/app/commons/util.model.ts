@@ -8,6 +8,7 @@ export class Util {
     }
 
     static toStr( data: any ) {
+        console.log( data );
         return JSON.stringify( data );
     }
 

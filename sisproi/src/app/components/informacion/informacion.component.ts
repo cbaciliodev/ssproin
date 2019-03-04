@@ -21,6 +21,7 @@ export class InformacionComponent implements OnInit {
   @ViewChild('gmap') gmapElement: ElementRef;
 
   @ViewChild('mapaUpload') mapaUpload: MapaUploadComponent;
+  @ViewChild('mapaInfluencia') mapaInfluencia: MapaUploadComponent;
 
   public fileUploaded = false;
   private map: google.maps.Map;
