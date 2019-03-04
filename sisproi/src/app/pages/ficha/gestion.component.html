@@ -1,8 +1,35 @@
 <div class="card">
     <div class="card-body collapse show">
+
+        <div [formGroup]="filtroForm" class="pt-2 pb-4">
+            <div class="form-group row">
+                <label class="col-sm-1">Sector</label>
+                <div class="col-sm-3">
+                    <select formControlName="sector_nivel_1" class="form-control">
+                        <option value="">-- Todos --</option>
+                        <option *ngFor="let s1 of sector_1" [value]="s1.nombre">{{s1.alias}}</option>
+                    </select>
+                </div>
+                <label class="col-sm-1">Programa</label>
+                <div class="col-sm-3">
+                    <input formControlName="nombre_programa" type="text" class="form-control" placeholder="Nombre del programa">
+                </div>
+                <label class="col-sm-1">Proyecto</label>
+                <div class="col-sm-3">
+                    <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button class="btn btn-info" (click)="getFichas()">
+                    <i class="fa fa-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#ficha_registro" role="tab">Fichas de registro</a>
+                <a class="nav-link active" data-toggle="tab" href="#ficha_registro" role="tab">Fichas en registro</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#ficha_registrada" role="tab">Fichas registradas</a>
@@ -29,7 +56,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
-                                <td>$ {{fr.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
                                         {{fr.prioridad.alias}}
@@ -42,20 +69,21 @@
                                 </td>
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
-                                    <button class="btn btn-outline-secondary btn-sm" routerLink="registro" [queryParams]="{id: fr._id}">
-                    <i class="fa fa-edit"></i> Editar
-                  </button>
+                                    <button class="btn btn-outline-secondary btn-sm" routerLink="registro"
+                                        [queryParams]="{id: fr._id}">
+                                        <i class="fa fa-edit"></i> Editar
+                                    </button>
                                 </td>
                             </tr>
 
                             <tr *ngIf="loading">
-                                <td class="text-center" colspan="7">
+                                <td class="text-center" colspan="8">
                                     <i class="fa fa-spinner fa-pulse fa-2x"></i>
                                 </td>
                             </tr>
 
                             <tr *ngIf="fichas_registro.length <= 0 && !loading">
-                                <td colspan="7">
+                                <td colspan="8">
                                     No se encontraron fichas de registro
                                 </td>
                             </tr>
@@ -86,7 +114,7 @@
                                 <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
-                                <td>$ {{fr.monto_estimado}}</td>
+                                <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
                                         {{fr.prioridad.alias}}
@@ -100,22 +128,22 @@
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
                                     <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion != 2">
-                      En evaluación
-                    </span>
+                                        En evaluación
+                                    </span>
                                     <span class="label label-success label-rounded" *ngIf="fr.estado_evaluacion == 2">
-                      Evaluado
-                      </span>
+                                        Evaluado
+                                    </span>
                                 </td>
                             </tr>
 
                             <tr *ngIf="loading">
-                                <td class="text-center" colspan="7">
+                                <td class="text-center" colspan="8">
                                     <i class="fa fa-spinner fa-pulse fa-2x"></i>
                                 </td>
                             </tr>
 
                             <tr *ngIf="fichas_registradas.length <= 0 && !loading">
-                                <td colspan="7">
+                                <td colspan="8">
                                     No se encontraron fichas registradas
                                 </td>
                             </tr>
@@ -131,5 +159,5 @@
 </div>
 
 <button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" routerLink="registro">
-  <i class="fa fa-plus no-animation"></i>
+    <i class="fa fa-plus no-animation"></i>
 </button>

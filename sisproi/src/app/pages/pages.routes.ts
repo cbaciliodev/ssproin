@@ -18,7 +18,7 @@ const pagesRoutes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             {
                 path: 'dashboard', component: DashboardComponent, data: {
-                    title: 'Proyectos', routes: [{ title: 'Proyectos' }, { title: 'tablero de control' }]
+                    title: 'Inicio', routes: [{ title: 'Inicio' }, { title: 'Cuadro general' }]
                 }
             },
             {

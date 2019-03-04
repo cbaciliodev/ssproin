@@ -1,18 +1,19 @@
 var polygon = null;
 var tipoForma = null;
 var georssLayer = null;
+var polilinea = null;
 
 var marker = null;
 var map = null;
 
 var objectMarker = null;
 var objectPolygon = null;
+var objectPoliline = null;
 
-function initMap() {
-
+function initMap( ) {
     tipoForma = 0;
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById( 'map' ), {
         zoom: 10,
         center: { lat: -12.079116, lng: -77.042365 },
         mapTypeId: 'hybrid',
@@ -21,6 +22,8 @@ function initMap() {
 
     // Construct the polygon.
     generatePolygon();
+
+    generatePolilinea();
 
     map.addListener('click', addLatLng);
 }
@@ -40,14 +43,25 @@ function addLatLng(event) {
         return;
     }
 
-    polygon.setMap(map);
-    var path = polygon.getPath();
-    if (typeof path == 'undefined') {
-        path = [];
+    if (tipoForma == 1) {
+        polygon.setMap(map);
+        var path = polygon.getPath();
+        if (typeof path == 'undefined') {
+            path = [];
+            path.push(event.latLng);
+            polygon.setPath(path);
+        }
         path.push(event.latLng);
-        polygon.setPath(path);
     }
-    path.push(event.latLng);
+
+        polilinea.setMap(map);
+        var path = polilinea.getPath();
+        if (typeof path == 'undefined') {
+            path = [];
+            path.push(event.latLng);
+            polygon.setPath(path);
+        }
+        path.push(event.latLng);
 
 }
 
@@ -71,11 +85,17 @@ function cleanMapa() {
         polygon = null;
     }
 
+    if (polilinea !== null) {
+        polilinea.setMap(null);
+        polilinea = null;
+    }
+
     if (georssLayer != null) {
         georssLayer.setMap(null);
         georssLayer = null;
     }
     generatePolygon();
+    generatePolilinea();
 }
 
 function generatePolygon() {
@@ -93,6 +113,24 @@ function generatePolygon() {
 
     polygon = new google.maps.Polygon(objectPolygon);
 }
+
+function generatePolilinea() {
+    var triangleCoords = [];
+
+    objectPoliline = {
+        paths: triangleCoords,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        editable: true,
+        fillOpacity: 0.35
+    };
+
+    polilinea = new google.maps.Polyline(objectPoliline);
+}
+
+
 
 function loadMapByURL(url) {
     cleanMapa();

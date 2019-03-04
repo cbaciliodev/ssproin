@@ -161,6 +161,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       localizacion_latitud: [''],
       localizacion_longitud: [''],
       area_influencia: [''],
+      comentarios: [''],
       estado_registro: [0]
     });
 
