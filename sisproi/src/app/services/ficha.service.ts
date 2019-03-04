@@ -10,9 +10,9 @@ export class FichaService {
 
   constructor(private http: HttpClient) { }
 
-  list(tipo) {
+  list(filtro) {
     let URL = env.URI_API.concat('ficha/');
-    return this.http.post<any>(URL, tipo).pipe(
+    return this.http.post<any>(URL, filtro).pipe(
       map(res => {
         let estado_0 = res.data.find(f => f.estado === 0);
         let estado_1 = res.data.find(f => f.estado === 1);

@@ -11,7 +11,12 @@ module.exports = {
 function list(filtro) {
     return new Promise((resolve, reject) => {
         Ficha.aggregate()
-            .match({ estado: { $ne: ESTADO_ELIMINADO } })
+            .match({
+                estado: { $ne: ESTADO_ELIMINADO },
+                sector_nivel_1: { $regex: `.*${filtro.sector_nivel_1}.*` },
+                nombre_programa: { $regex: `.*${filtro.nombre_programa}.*`, $options: 'i' },
+                nombre_proyecto: { $regex: `.*${filtro.nombre_proyecto}.*`, $options: 'i' }
+            })
             .lookup({
                 from: 'parametro',
                 let: { prioridad: '$prioridad_sector' },
