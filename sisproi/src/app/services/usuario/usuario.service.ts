@@ -8,16 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioService {
 
-  public token = localStorage.getItem('token');
-
   constructor(private http: HttpClient) { }
 
   estaLogeado() {
-    return this.token ? true : false;
-  }
-
-  asignarToken() {
-    this.token = localStorage.getItem('token');
+    return localStorage.getItem('token') ? true : false;
   }
 
   //servicio para consultar usuario
