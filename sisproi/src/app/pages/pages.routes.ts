@@ -13,8 +13,9 @@ const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        // canActivate:[LoginGuardGuard],
+        canActivate: [LoginGuardGuard],
         children: [
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             {
                 path: 'dashboard', component: DashboardComponent, data: {
                     title: 'Proyectos', routes: [{ title: 'Proyectos' }, { title: 'tablero de control' }]
