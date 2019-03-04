@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'ficha-verificacion',
@@ -46,11 +47,14 @@ export class VerificacionComponent implements OnInit {
   }
 
   private fieldOnChange(field, disabled) {
-    this.registradaForm.get(field).valueChanges
-      .subscribe(val => {
-        if (val) this.registradaForm.get(disabled).enable();
-        else this.registradaForm.get(disabled).disable();
-      });
+    let initial = this.registradaForm.get(field).value;
+
+    this.registradaForm.get(field).valueChanges.pipe(
+      startWith(initial)
+    ).subscribe(val => {
+      if (val) this.registradaForm.get(disabled).enable();
+      else this.registradaForm.get(disabled).disable();
+    });
   }
 
 }

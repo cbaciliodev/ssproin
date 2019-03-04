@@ -54,6 +54,66 @@
       </div>
     </div>
   </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PENERGIA'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne2_' + i">
+          <label class="form-check-label" [for]="'ne2_' + i">{{nivel_energia_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne3_' + i">
+          <label class="form-check-label" [for]="'ne3_' + i">{{nivel_energia_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 4</label>
+      <div formArrayName="sector_nivel_4" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_4.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne4_' + i">
+          <label class="form-check-label" [for]="'ne4_' + i">{{nivel_energia_4[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PTELECOMUNIC'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl2_' + i">
+          <label class="form-check-label" [for]="'tl2_' + i">{{nivel_telecom_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 3</label>
+      <div formArrayName="sector_nivel_3" class="col-sm-10">
+        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl3_' + i">
+          <label class="form-check-label" [for]="'tl3_' + i">{{nivel_telecom_3[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="valor('sector_nivel_1') == 'PRIEGO'">
+    <div class="form-group row">
+      <label class="col-sm-2">Nivel 2</label>
+      <div formArrayName="sector_nivel_2" class="col-sm-10">
+        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+          <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ri2_' + i">
+          <label class="form-check-label" [for]="'ri2_' + i">{{nivel_riego_2[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
   <div class="form-group row">
     <label class="col-sm-2">Jurisdicción</label>
     <div class="col-sm-10" [class.has-danger]="invalid('jurisdiccion')">

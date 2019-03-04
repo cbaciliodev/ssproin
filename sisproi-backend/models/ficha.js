@@ -12,6 +12,7 @@ var FichaSchema = new Schema({
     sector_nivel_1: { type: String, required: [true, 'Sector nivel 1 es requerido'] },
     sector_nivel_2: [{ type: Boolean }],
     sector_nivel_3: [{ type: Boolean }],
+    sector_nivel_4: [{ type: Boolean }],
     jurisdiccion: { type: String, required: [true, 'Jurisdiccion es requerido'] },
     jurisdiccion_otro: { type: String },
     nombre_programa: { type: String },
