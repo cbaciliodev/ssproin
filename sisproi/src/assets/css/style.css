@@ -8047,3 +8047,7 @@ table.dataTable thead .sorting:after {
         overflow: hidden;
     }
 }
+
+.no-animation {
+    animation: none !important;
+}
