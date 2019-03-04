@@ -18,6 +18,7 @@ import { GestionRComponent } from './registrada/gestion.component';
 
 // Apis externas
 import { FileSelectDirective } from 'ng2-file-upload';
+import { MapaUpload2Component } from '../components/mapa-upload.2/mapa-upload-2.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
         DetallePyComponent,
         BulletComponent,
         MapaUploadComponent,
+        MapaUpload2Component,
         GestionFComponent,
         RegistradaComponent,
         GestionRComponent,

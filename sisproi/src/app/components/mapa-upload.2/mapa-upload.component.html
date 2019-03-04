@@ -1,20 +1,20 @@
 <div class="row">
     <div class="col-6">
         <div class="m-2">
-            <input name="group1" type="radio" id="radio_1" checked="" (click)="tipoFormaMapa(0)">
-            <label for="radio_1" class="mb-0 pr-4" style="font-size: 0.8em"><i class="ti ti-pin-alt"></i> Punto GPS</label>
-            <input name="group1" type="radio" id="radio_2" (click)="tipoFormaMapa(1)">
-            <label for="radio_2" class="m-b-0 pr-4" style="font-size: 0.8em"><i class="ti ti-vector"></i> Polígono</label>
-            <input name="group1" type="radio" id="radio_3" (click)="tipoFormaMapa(2)">
-            <label for="radio_3" class="m-b-0" style="font-size: 0.8em"><i class="ti ti-ink-pen"></i> Polilínea</label>
+            <input name="group2" type="radio" id="radio_a1" checked="" (click)="tipoFormaMapa(0)">
+            <label for="radio_a1" class="mb-0 pr-4" style="font-size: 0.8em"><i class="ti ti-pin-alt"></i> Punto GPS</label>
+            <input name="group2" type="radio" id="radio_a2" (click)="tipoFormaMapa(1)">
+            <label for="radio_a2" class="m-b-0 pr-4" style="font-size: 0.8em"><i class="ti ti-vector"></i> Polígono</label>
+            <input name="group2" type="radio" id="radio_a3" (click)="tipoFormaMapa(2)">
+            <label for="radio_a3" class="m-b-0" style="font-size: 0.8em"><i class="ti ti-ink-pen"></i> Polilínea</label>
         </div>
     </div>
     <div class="col-6 text-right">
-        <button class="btn btn-sm btn-outline-secondary m-2" onclick="cleanMapa()"><i class="ti ti-eraser"></i>
+        <button class="btn btn-sm btn-outline-secondary m-2" onclick="cleanMapa2()"><i class="ti ti-eraser"></i>
       Limpiar</button>
     </div>
     <div class="col-12">
-        <div id="map" class="w-100" style="min-height: 300px;"></div>
+        <div id="map2" class="w-100" style="min-height: 300px;"></div>
     </div>
     <div class="col-12">
         <div class="card">

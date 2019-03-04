@@ -8,19 +8,19 @@ import { Util } from 'src/app/commons/util.model';
 
 const URL = env.URI_API.concat('files/');
 
-declare function initMap( );
-declare function loadMapByURL( url: string );
-declare function loadMap( kml: string );
-declare function jsonMap( );
-declare function setFormType( tipoFormulario: number );
+declare function initMap2( );
+declare function loadMap2ByURL2( url: string );
+declare function loadMap2( kml: string );
+declare function jsonMap2( );
+declare function setFormType2( tipoFormulario: number );
 
 
 @Component({
-  selector: 'app-mapa-upload',
+  selector: 'app-mapa-upload-2',
   templateUrl: './mapa-upload.component.html',
   styleUrls: ['./mapa-upload.component.css']
 })
-export class MapaUploadComponent implements OnInit {
+export class MapaUpload2Component implements OnInit {
 
   // Parametros de ingreso
   @Input() data = '';
@@ -33,14 +33,14 @@ export class MapaUploadComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    initMap( );
+    initMap2( );
 
     this.tipoMapa.tipo = env.TIPO_FORMULARIO.MAPA;
 
     if ( !Util.isEmpty( this.data ) ) {
       const dataJson = Util.toJson( this.data );
       this.tipoMapa.tipo = dataJson.tipo;
-      loadMap( this.data );
+      loadMap2( this.data );
     }
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -48,12 +48,12 @@ export class MapaUploadComponent implements OnInit {
       const resp = JSON.parse(response);
       this.fileName = resp.data.filename;
       this.tipoMapa.tipo = env.TIPO_FORMULARIO.ARCHIVO;
-      loadMapByURL( URL.concat(this.fileName) );
+      loadMap2ByURL2( URL.concat(this.fileName) );
      };
   }
 
   tipoFormaMapa( typeForm: number ) {
-    setFormType( typeForm );
+    setFormType2( typeForm );
     this.tipoMapa.tipo = env.TIPO_FORMULARIO.MAPA;
   }
 
@@ -63,7 +63,7 @@ export class MapaUploadComponent implements OnInit {
     if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO ) ) {
       this.tipoMapa.valor = URL.concat(this.fileName);
     } else {
-      this.tipoMapa.valor = jsonMap();
+      this.tipoMapa.valor = jsonMap2();
     }
 
     return Util.toStr( this.tipoMapa );

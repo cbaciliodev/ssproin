@@ -6,6 +6,7 @@ import { Parametro } from 'src/app/models/parametro.model';
 import { FileUploader } from 'ng2-file-upload';
 import swal from 'sweetalert';
 import { } from 'googlemaps';
+import { MapaUpload2Component } from '../mapa-upload.2/mapa-upload-2.component';
 
 const URL = env.URI_API.concat('files/');
 
@@ -21,7 +22,7 @@ export class InformacionComponent implements OnInit {
   @ViewChild('gmap') gmapElement: ElementRef;
 
   @ViewChild('mapaUpload') mapaUpload: MapaUploadComponent;
-  @ViewChild('mapaInfluencia') mapaInfluencia: MapaUploadComponent;
+  @ViewChild('mapaInfluencia') mapaInfluencia: MapaUpload2Component;
 
   public fileUploaded = false;
   private map: google.maps.Map;
