@@ -23,18 +23,10 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Sub sector 1</label>
                     <div formArrayName="sector_nivel_2" class="col-sm-10">
-                        <div *ngFor="let sn2 of sector_nivel_2.controls; let i=index" class="form-check">
+                        <div *ngFor="let sn2 of sector_nivel_2.controls; let i=index" class="form-check"
+                            [class.ml-4]="nivel_trans_2[i].valor_numero == 1">
                             <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn2_' + i">
                             <label class="form-check-label" [for]="'sn2_' + i">{{nivel_trans_2[i].alias}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2">Sub sector 2</label>
-                    <div formArrayName="sector_nivel_3" class="col-sm-10">
-                        <div *ngFor="let sn3 of sector_nivel_3.controls; let i=index" class="form-check">
-                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'sn3_' + i">
-                            <label class="form-check-label" [for]="'sn3_' + i">{{nivel_trans_3[i].alias}}</label>
                         </div>
                     </div>
                 </div>
@@ -43,18 +35,10 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Sub sector 1</label>
                     <div formArrayName="sector_nivel_2" class="col-sm-10">
-                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check"
+                            [class.ml-4]="nivel_agua_2[i].valor_numero == 1">
                             <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na2_' + i">
                             <label class="form-check-label" [for]="'na2_' + i">{{nivel_agua_2[i].alias}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2">Sub sector 2</label>
-                    <div formArrayName="sector_nivel_3" class="col-sm-10">
-                        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
-                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'na3_' + i">
-                            <label class="form-check-label" [for]="'na3_' + i">{{nivel_agua_3[i].alias}}</label>
                         </div>
                     </div>
                 </div>
@@ -63,27 +47,10 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Sub sector 1</label>
                     <div formArrayName="sector_nivel_2" class="col-sm-10">
-                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check"
+                            [class.ml-4]="nivel_energia_2[i].valor_numero == 1" [class.ml-8]="nivel_energia_2[i].valor_numero == 2">
                             <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne2_' + i">
                             <label class="form-check-label" [for]="'ne2_' + i">{{nivel_energia_2[i].alias}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2">Sub sector 2</label>
-                    <div formArrayName="sector_nivel_3" class="col-sm-10">
-                        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
-                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne3_' + i">
-                            <label class="form-check-label" [for]="'ne3_' + i">{{nivel_energia_3[i].alias}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2">Sector 4</label>
-                    <div formArrayName="sector_nivel_4" class="col-sm-10">
-                        <div *ngFor="let na3 of sector_nivel_4.controls; let i=index" class="form-check">
-                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne4_' + i">
-                            <label class="form-check-label" [for]="'ne4_' + i">{{nivel_energia_4[i].alias}}</label>
                         </div>
                     </div>
                 </div>
@@ -92,18 +59,10 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Sub sector 1</label>
                     <div formArrayName="sector_nivel_2" class="col-sm-10">
-                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check"
+                            [class.ml-4]="nivel_telecom_2[i].valor_numero == 1">
                             <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl2_' + i">
                             <label class="form-check-label" [for]="'tl2_' + i">{{nivel_telecom_2[i].alias}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2">Sub sector 2</label>
-                    <div formArrayName="sector_nivel_3" class="col-sm-10">
-                        <div *ngFor="let na3 of sector_nivel_3.controls; let i=index" class="form-check">
-                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'tl3_' + i">
-                            <label class="form-check-label" [for]="'tl3_' + i">{{nivel_telecom_3[i].alias}}</label>
                         </div>
                     </div>
                 </div>
