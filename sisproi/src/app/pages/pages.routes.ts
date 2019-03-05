@@ -8,6 +8,8 @@ import { LoginGuardGuard } from '../services/service.index';
 
 import { FichaResolver } from '../services/resolvers/ficha.resolver';
 import { RegistradaComponent } from './registrada/registrada.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { SignupComponent } from './usuario/signup.component';
 
 const pagesRoutes: Routes = [
     {
@@ -39,6 +41,16 @@ const pagesRoutes: Routes = [
             {
                 path: 'registrada/evaluacion', component: RegistradaComponent, resolve: { ficha: FichaResolver }, data: {
                     title: 'Ficha registrada', routes: [{ title: 'Gestión', link: '/registrada' }, { title: 'Ficha registrada' }]
+                }
+            },
+            {
+                path: 'usuario', component: UsuarioComponent, data: {
+                    title: 'Usuarios', routes: [{ title: 'Usuarios' }, { title: 'Usuarios' }]
+                }
+            },
+            {
+                path: 'signup', component: SignupComponent, data: {
+                    title: 'Signup', routes: [{ title: 'Signup' }, { title: 'Signup' }]
                 }
             }
         ]
