@@ -6,186 +6,192 @@
           <input formControlName="prio_politica_sect" class="form-check-input" type="radio" [id]="'prio_' + i" [value]="pp.nombre">
           <label class="form-check-label" [for]="'prio_' + i">{{pp.alias}}</label>
       </div>
-      <div class="mb-3">
-        <textarea formControlName="prio_politica_sect_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+      <textarea formControlName="prio_politica_sect_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+    </div>
+  </div>
+
+  <div class="col-12 b-b">
+    <h5><span>RIESGO</span></h5>
+  </div>
+  
+  <div class="col-12 mt-4">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Diseño Tecnico</label>
+      <div class="col-sm-10">
+        <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+          <input formControlName="riesgo_dis_tec" class="form-check-input" type="radio" [id]="'dist_' + i" [value]="p.nombre">
+          <label class="form-check-label" [for]="'dist_' + i">{{p.alias}}</label>
+        </div>
+        <textarea formControlName="riesgo_dis_tec_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Demanda</label>
+      <div class="col-sm-10">
+        <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+          <input formControlName="riesgo_dis_deman" class="form-check-input" type="radio" [id]="'deman_' + i" [value]="p.nombre">
+          <label class="form-check-label" [for]="'deman_' + i">{{p.alias}}</label>
+        </div>
+        <textarea formControlName="riesgo_dis_deman_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Socioambiental</label>
+      <div class="col-sm-10">
+        <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+          <input formControlName="riesgo_socioamb" class="form-check-input" type="radio" [id]="'soc_' + i" [value]="p.nombre">
+          <label class="form-check-label" [for]="'soc_' + i">{{p.alias}}</label>
+        </div>
+        <textarea formControlName="riesgo_socioamb_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Político</label>
+      <div class="col-sm-10">
+        <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+          <input formControlName="riesgo_politico" class="form-check-input" type="radio" [id]="'pol_' + i" [value]="p.nombre">
+          <label class="form-check-label" [for]="'pol_' + i">{{p.alias}}</label>
+        </div>
+        <textarea formControlName="riesgo_politico_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Otros</label>
+      <div class="col-sm-10">
+        <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
+          <input formControlName="riesgo_otros" class="form-check-input" type="radio" [id]="'otr1_' + i" [value]="p.nombre">
+          <label class="form-check-label" [for]="'otr1_' + i">{{p.alias}}</label>
+        </div>
+        <textarea formControlName="riesgo_otros_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
       </div>
     </div>
   </div>
-  <hr>
-  <h2>Riesgo</h2>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Diseño Tecnico</label>
-    <div class="col-sm-10">
-      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
-        <input formControlName="riesgo_dis_tec" class="form-check-input" type="radio" [id]="'dist_' + i" [value]="p.nombre">
-        <label class="form-check-label" [for]="'dist_' + i">{{p.alias}}</label>
+  
+  <div class="col-12 b-b">
+    <h5><span>CONCORDANCIA PRODUCTIVA</span></h5>
+  </div>
+
+  <div class="col-12 mt-4">
+    <div class="form-group row">
+      <label class="col-sm-2">Minería</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="productiva_mineria" class="form-check-input" type="radio" [id]="'min_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'min_' + i">{{pp.alias}}</label>
+        </div>
+        <div class="mb-3">
+          <textarea formControlName="productiva_mineria_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+        </div>
       </div>
-      <textarea formControlName="riesgo_dis_tec_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Agricultura</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="productiva_agri" class="form-check-input" type="radio" [id]="'agr_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'agr_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="productiva_agri_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Pesca</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="productiva_pesca" class="form-check-input" type="radio" [id]="'pes_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'pes_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="productiva_pesca_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Industria</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="productiva_indus" class="form-check-input" type="radio" [id]="'ind_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'ind_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="productiva_indus_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2">Otros</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="productiva_otros" class="form-check-input" type="radio" [id]="'otr2_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'otr2_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="productiva_otros_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+      </div>
     </div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Demanda</label>
-    <div class="col-sm-10">
-      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
-        <input formControlName="riesgo_dis_deman" class="form-check-input" type="radio" [id]="'deman_' + i" [value]="p.nombre">
-        <label class="form-check-label" [for]="'deman_' + i">{{p.alias}}</label>
-      </div>
-      <textarea formControlName="riesgo_dis_deman_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-    </div>
+
+  <div class="col-12 b-b">
+    <h5><span>CONCORDANCIA SOCIAL</span></h5>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Socioambiental</label>
-    <div class="col-sm-10">
-      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
-        <input formControlName="riesgo_socioamb" class="form-check-input" type="radio" [id]="'soc_' + i" [value]="p.nombre">
-        <label class="form-check-label" [for]="'soc_' + i">{{p.alias}}</label>
-      </div>
-      <textarea formControlName="riesgo_socioamb_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Político</label>
-    <div class="col-sm-10">
-      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
-        <input formControlName="riesgo_politico" class="form-check-input" type="radio" [id]="'pol_' + i" [value]="p.nombre">
-        <label class="form-check-label" [for]="'pol_' + i">{{p.alias}}</label>
-      </div>
-      <textarea formControlName="riesgo_politico_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Otros</label>
-    <div class="col-sm-10">
-      <div *ngFor="let p of prioridad; let i=index" class="form-check form-check-inline">
-        <input formControlName="riesgo_otros" class="form-check-input" type="radio" [id]="'otr1_' + i" [value]="p.nombre">
-        <label class="form-check-label" [for]="'otr1_' + i">{{p.alias}}</label>
-      </div>
-      <textarea formControlName="riesgo_otros_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario."></textarea>
-    </div>
-  </div>
-  <hr>
-  <h2>Concordancia productiva</h2>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="productiva_mineria" class="form-check-input" type="checkbox" id="mineria">
-        <label class="form-check-label" for="mineria">Minería</label>
+  
+  <div class="col-12 mt-4">
+    <div class="form-group row">
+      <label class="col-sm-2">Transporte</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="social_trans" class="form-check-input" type="radio" [id]="'tra_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'tra_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="social_trans_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
       </div>
     </div>
-    <div class="col-sm-10">
-      <textarea formControlName="productiva_mineria_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="productiva_agri" class="form-check-input" type="checkbox" id="agricultura">
-        <label class="form-check-label" for="agricultura">Agricultura</label>
+    <div class="form-group row">
+      <label class="col-sm-2">Telecomunicación</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="social_telco" class="form-check-input" type="radio" [id]="'tel_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'tel_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="social_telco_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
       </div>
     </div>
-    <div class="col-sm-10">
-      <textarea formControlName="productiva_agri_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="productiva_pesca" class="form-check-input" type="checkbox" id="pesca">
-        <label class="form-check-label" for="pesca">Pesca</label>
+    <div class="form-group row">
+      <label class="col-sm-2">Agua y Saneamiento</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="social_agua" class="form-check-input" type="radio" [id]="'agu_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'agu_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="social_agua_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
       </div>
     </div>
-    <div class="col-sm-10">
-      <textarea formControlName="productiva_pesca_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="productiva_indus" class="form-check-input" type="checkbox" id="industria">
-        <label class="form-check-label" for="industria">Industria</label>
+    <div class="form-group row">
+      <label class="col-sm-2">Riego</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="social_riego" class="form-check-input" type="radio" [id]="'rie_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'rie_' + i">{{pp.alias}}</label>
+        </div>
+        <div class="mb-3">
+          <textarea formControlName="social_riego_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+        </div>
       </div>
     </div>
-    <div class="col-sm-10">
-      <textarea formControlName="productiva_indus_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="productiva_otros" class="form-check-input" type="checkbox" id="otros">
-        <label class="form-check-label" for="otros">Otros</label>
+    <div class="form-group row">
+      <label class="col-sm-2">Educación</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="social_educa" class="form-check-input" type="radio" [id]="'edu_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'edu_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="social_educa_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
       </div>
     </div>
-    <div class="col-sm-10">
-      <textarea formControlName="productiva_otros_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <hr>
-  <h2>Concordancia social</h2>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="social_trans" class="form-check-input" type="checkbox" id="transporte">
-        <label class="form-check-label" for="transporte">Transporte</label>
+    <div class="form-group row">
+      <label class="col-sm-2">Salud</label>
+      <div class="col-sm-10">
+        <div *ngFor="let pp of prioridad_politica; let i=index" class="form-check form-check-inline">
+            <input formControlName="social_salud" class="form-check-input" type="radio" [id]="'sal_' + i" [value]="pp.nombre">
+            <label class="form-check-label" [for]="'sal_' + i">{{pp.alias}}</label>
+        </div>
+        <textarea formControlName="social_salud_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
       </div>
-    </div>
-    <div class="col-sm-10">
-      <textarea formControlName="social_trans_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="social_telco" class="form-check-input" type="checkbox" id="telecomunicacion">
-        <label class="form-check-label" for="telecomunicacion">Telecomunicación</label>
-      </div>
-    </div>
-    <div class="col-sm-10">
-      <textarea formControlName="social_telco_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="social_agua" class="form-check-input" type="checkbox" id="saneamiento">
-        <label class="form-check-label" for="saneamiento">Agua y Saneamiento</label>
-      </div>
-    </div>
-    <div class="col-sm-10">
-      <textarea formControlName="social_agua_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="social_riego" class="form-check-input" type="checkbox" id="riego">
-        <label class="form-check-label" for="riego">Riego</label>
-      </div>
-    </div>
-    <div class="col-sm-10">
-      <textarea formControlName="social_riego_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="social_educa" class="form-check-input" type="checkbox" id="educacion">
-        <label class="form-check-label" for="educacion">Educación</label>
-      </div>
-    </div>
-    <div class="col-sm-10">
-      <textarea formControlName="social_educa_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="form-check form-check-inline">
-        <input formControlName="social_salud" class="form-check-input" type="checkbox" id="salud">
-        <label class="form-check-label" for="salud">Salud</label>
-      </div>
-    </div>
-    <div class="col-sm-10">
-      <textarea formControlName="social_salud_comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
     </div>
   </div>
 </div>
