@@ -23,17 +23,17 @@ const pagesRoutes: Routes = [
             },
             {
                 path: 'ficha', component: GestionFComponent, data: {
-                    title: 'Gestión de fichas', routes: [{ title: 'Gestión de fichas' }]
+                    title: 'Registros sectoriales', routes: [{ title: 'Gestión de fichas' }]
                 }
             },
             {
                 path: 'ficha/registro', component: FichaComponent, resolve: { ficha: FichaResolver }, data: {
-                    title: 'Ficha de proyecto', routes: [{ title: 'Gestión', link: '/ficha' }, { title: 'Ficha de proyecto' }]
+                    title: 'Registro sectorial', routes: [{ title: 'Proyectos', link: '/ficha' }, { title: 'Registro sectorial' }]
                 }
             },
             {
                 path: 'registrada', component: GestionRComponent, data: {
-                    title: 'Gestión de fichas registradas', routes: [{ title: 'Gestión de fichas registradas' }]
+                    title: 'Evaluación sectorial', routes: [{ title: 'Evaluación sectorial' }]
                 }
             },
             {
