@@ -3,7 +3,6 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 var Departamento = require('./departamento');
 var ESTADOS = require('../config/config').ESTADOS;
-var ESTADO_INICIAL = require('../config/config').ESTADO_INICIAL;
 var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
 var Schema = mongoose.Schema;
@@ -52,28 +51,28 @@ var FichaSchema = new Schema({
     riesgo_otros: { type: String },
     riesgo_otros_comentario: { type: String },
 
-    productiva_mineria: { type: Boolean },
+    productiva_mineria: { type: String },
     productiva_mineria_comentario: { type: String },
-    productiva_agri: { type: Boolean },
+    productiva_agri: { type: String },
     productiva_agri_comentario: { type: String },
-    productiva_pesca: { type: Boolean },
+    productiva_pesca: { type: String },
     productiva_pesca_comentario: { type: String },
-    productiva_indus: { type: Boolean },
+    productiva_indus: { type: String },
     productiva_indus_comentario: { type: String },
-    productiva_otros: { type: Boolean },
+    productiva_otros: { type: String },
     productiva_otros_comentario: { type: String },
 
-    social_trans: { type: Boolean },
+    social_trans: { type: String },
     social_trans_comentario: { type: String },
-    social_telco: { type: Boolean },
+    social_telco: { type: String },
     social_telco_comentario: { type: String },
-    social_agua: { type: Boolean },
+    social_agua: { type: String },
     social_agua_comentario: { type: String },
-    social_riego: { type: Boolean },
+    social_riego: { type: String },
     social_riego_comentario: { type: String },
-    social_educa: { type: Boolean },
+    social_educa: { type: String },
     social_educa_comentario: { type: String },
-    social_salud: { type: Boolean },
+    social_salud: { type: String },
     social_salud_comentario: { type: String },
 
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS },
