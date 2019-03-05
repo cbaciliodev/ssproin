@@ -6,13 +6,13 @@
     <div class="card-body p-0">
         <div class="row m-0">
             <div class="col-md-12 col-12 mt-4 mb-3 b-b pb-4">
-                <span><small>{{ recibidos }} en proceso de ingreso <span class="pull-right">{{ recibidosPrc }}</span></small></span>
+                <span><small>{{ recibidos }} en proceso de registro <span class="pull-right">{{ recibidosPrc }}</span></small></span>
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': recibidosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
                 <div class="mt-2"></div>
-                <span><small>{{ evaluados }} ingresados <span class="pull-right">{{ evaluadosPrc }}</span></small></span>
+                <span><small>{{ evaluados }} registrados <span class="pull-right">{{ evaluadosPrc }}</span></small></span>
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': evaluadosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -31,20 +31,24 @@
             </div>
 
             <div class="col-12 mb-2">
-                <i class="mdi mdi-brightness-1 text-success"></i>
-                <span class="mr-2"> 16 Ene</span>
+                <small class="text-info">POLÍTICA SECTORIAL</small>
+            </div>
+
+            <div class="col-12 mb-2">
+                <i class="mdi mdi-brightness-1 text-danger"></i>
+                <span class="mr-2"> 18 Mar</span>
                 <small><strong>Preliminar</strong></small>
             </div>
 
             <div class="col-12 mb-2">
                 <i class="mdi mdi-brightness-1 text-danger"></i>
-                <span class="mr-2"> 26 Feb</span>
+                <span class="mr-2"> 08 Abr</span>
                 <small><strong>Ajuste por sector</strong></small>
             </div>
 
             <div class="col-12 mb-3">
-                <i class="mdi mdi-brightness-1 text-success"></i>
-                <span class="mr-2"> 26 Mar</span>
+                <i class="mdi mdi-brightness-1 text-danger"></i>
+                <span class="mr-2"> 29 Abr</span>
                 <small><strong>Final</strong></small>
             </div>
 
