@@ -14,7 +14,7 @@ export class SidebarService {
         { titulo: 'Registros sectoriales', url: '/ficha' },
         { titulo: 'Evaluación sectorial', url: '/registrada' }
       ]
-    },
+    }/* ,
     {
       titulo: 'Administración',
       icono: 'mdi mdi-account-circle',
@@ -22,7 +22,7 @@ export class SidebarService {
         { titulo: 'Usuarios', url: '/usuario' },
         { titulo: 'Registrar', url: '/signup' }
       ]
-    }
+    } */
   ];
 
   constructor() { }
