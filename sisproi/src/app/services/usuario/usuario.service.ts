@@ -26,8 +26,25 @@ export class UsuarioService {
     let url = env.URI_API.concat('usuario');
     return this.http.post(url, usuario)
   }
+  //servicio para mostrar usuario
+  allUsuario(){
+    let url = env.URI_API.concat('usuario');
+    return this.http.get<any>(url)
+  }
 
+  selectOne(id){
+    let url = env.URI_API.concat('usuario'+`/${id}`);
+    return this.http.get<any>(url)
+  }
 
-
-
+  //servicio para mostrar usuario
+  delete(id){
+    let url = env.URI_API.concat('usuario'+ `/${id}`);
+    return this.http.delete<any>(url)
+  }
+//servicio para actualizar usuario
+  updateUsuario(id,updateusuario:Usuario){
+    let url = env.URI_API.concat('usuario'+ `/${id}`);
+    return this.http.put<any>(url,updateusuario)
+  }
 }

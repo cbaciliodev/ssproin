@@ -19,6 +19,8 @@ import { GestionRComponent } from './registrada/gestion.component';
 // Apis externas
 import { FileSelectDirective } from 'ng2-file-upload';
 import { MapaUpload2Component } from '../components/mapa-upload.2/mapa-upload-2.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { SignupComponent } from './usuario/signup.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { MapaUpload2Component } from '../components/mapa-upload.2/mapa-upload-2.
         GestionFComponent,
         RegistradaComponent,
         GestionRComponent,
-        FileSelectDirective
+        FileSelectDirective,
+        UsuarioComponent,
+        SignupComponent
     ],
     exports: [
         DashboardComponent,

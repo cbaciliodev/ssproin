@@ -9,6 +9,37 @@ var _http = require('../commons/http');
 var Usuario =require('../models/usuario');
 
 
+
+
+//  OBTENER UN USUARIO
+// ==========================================
+app.get('/:id',  (req, res) => {
+    var id = req.params.id;
+
+    Usuario.findById(id , (err, usuario) => {
+        
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'Error al buscar usuario',
+                errors: err
+            });
+        }
+
+        if (!usuario) {
+            return res.status(400).json({
+                ok: false,
+                mensaje: 'El usuario con el id ' + id + ' no existe',
+                errors: { message: 'No existe un usuario con ese ID' }
+            });
+        }
+        
+        res.status(200).json({
+            ok: true,
+            usuario: usuario
+        });
+        })
+    })
 //  OBTENER TODOS LOS USUARIOS
 // ==========================================
 app.get('/', (req, res) => {
@@ -21,7 +52,7 @@ app.get('/', (req, res) => {
 
 // Actualizar usuario
 // ==========================================
-app.put('/:id',mdAutenticacion.verificaToken,  (req, res) => {
+app.put('/:id',  (req, res) => {
 
     var id = req.params.id;
     var body = req.body;
@@ -46,7 +77,7 @@ app.put('/:id',mdAutenticacion.verificaToken,  (req, res) => {
 
 
         usuario.nombre = body.nombre;
-        usuario.email = body.email;
+        usuario.password = body.password;
         usuario.perfil = body.perfil;
 
         usuario.save((err, usuarioGuardado) => {
