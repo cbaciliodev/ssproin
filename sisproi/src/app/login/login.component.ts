@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   forma : FormGroup;
   userExiste =true;
 
-  constructor(public router: Router ,public _usuario : UsuarioService) { }
+  constructor(public router: Router ,public _usuario : UsuarioService) {}
 
   ngOnInit() {
     this.forma = new FormGroup({
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('id',res.id);
         localStorage.setItem('token',res.token);
         localStorage.setItem('usuario',JSON.stringify(res.usuario));
-        this._usuario.asignarToken();
         this.router.navigate( ['/dashboard'] );
       },err=>{
         this.userExiste=false;
