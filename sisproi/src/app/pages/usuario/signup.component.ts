@@ -18,13 +18,16 @@ export class SignupComponent implements OnInit {
   invalido=false;
   id='';
 
+
   constructor(public _usuario : UsuarioService , private activeroute :ActivatedRoute,private router :Router) { }
 
   ngOnInit() {
 
   if(this.activeroute.snapshot.queryParamMap.get('id')){
     this.id=this.activeroute.snapshot.queryParamMap.get('id');
+    this.actualizarUsuario(this.id);
     this.actualizar=true;
+
   } 
       this.formUsuario= new FormGroup({
       nombre : new FormControl('',Validators.required),
@@ -40,7 +43,14 @@ export class SignupComponent implements OnInit {
       this._usuario.selectOne(id).subscribe(res =>{
         this.usuario=res.usuario;
         console.log(res.usuario);
-       
+        this.formUsuario= new FormGroup({
+          nombre : new FormControl(res.usuario.nombre,Validators.required),
+          correo : new FormControl(res.usuario.correo,[Validators.required,Validators.email]),
+          perfil : new FormControl(res.usuario.perfil,Validators.required),
+          password : new FormControl(res.usuario.password,Validators.required),
+          vpassword : new FormControl(res.usuario.password,Validators.required),
+    
+        })
     })  
   }  
 
@@ -65,11 +75,13 @@ export class SignupComponent implements OnInit {
   );
 
   if(this.actualizar){
-
+     
       this._usuario.updateUsuario(this.id,usuario)
       .subscribe(res =>{
+
         swal('Good job!', 'Usuario Actualizado', 'success');
       })
+      this.router.navigate( ['/usuario'] );
     return
   }
   this._usuario.crearUsuario(usuario)
