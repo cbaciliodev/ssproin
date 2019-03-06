@@ -188,12 +188,10 @@
         
                         <div *ngIf="(nivel_avance.length - 1) == i" class="pt-1 row">
                             <div class="col-sm-2 col-lg-3">
-                                <input type="number" class="form-control" placeholder="% Avance físico"
-                                    [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
+                                <input formControlName="nivel_avance_fisico" type="number" class="form-control" placeholder="% Avance físico">
                             </div>
                             <div class="col-sm-2 col-lg-3">
-                                <input type="number" class="form-control" placeholder="% Avance financiero"
-                                    [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
+                                <input formControlName="nivel_avance_financiero" type="number" class="form-control" placeholder="% Avance financiero">
                             </div>
                         </div>
                     </div>

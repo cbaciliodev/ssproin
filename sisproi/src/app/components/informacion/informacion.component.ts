@@ -7,6 +7,7 @@ import { FileUploader } from 'ng2-file-upload';
 import swal from 'sweetalert';
 import { } from 'googlemaps';
 import { MapaUpload2Component } from '../mapa-upload.2/mapa-upload-2.component';
+import { startWith } from 'rxjs/operators';
 
 const URL = env.URI_API.concat('files/');
 
@@ -47,6 +48,23 @@ export class InformacionComponent implements OnInit {
   ngOnInit() {
     this.configParametros();
     this.configUploadFile();
+    this.validateAvance();
+  }
+
+  private validateAvance() {
+    let initial = this.fichaForm.get('nivel_avance').value;
+
+    this.fichaForm.get('nivel_avance').valueChanges.pipe(
+      startWith(initial)
+    ).subscribe(val => {
+      if (val == 'AVANCE_EJECUCION') {
+        this.fichaForm.get('nivel_avance_fisico').enable();
+        this.fichaForm.get('nivel_avance_financiero').enable();
+      } else {
+        this.fichaForm.get('nivel_avance_fisico').disable();
+        this.fichaForm.get('nivel_avance_financiero').disable();
+      }
+    });
   }
 
   public onChangeNivel1() {
@@ -79,7 +97,7 @@ export class InformacionComponent implements OnInit {
   }
 
   public removeDepart(i) {
-    if(this.valor('estado_registro') == 2) return;
+    if (this.valor('estado_registro') == 2) return;
     this.departamentos.removeAt(i);
   }
 
@@ -99,7 +117,7 @@ export class InformacionComponent implements OnInit {
     this.uploader.onCompleteItem = () => {
       swal('Atención', env.MSG.SUCCESS_FILE, 'success');
       this.fileUploaded = true;
-     };
+    };
   }
 
   private configParametros() {
