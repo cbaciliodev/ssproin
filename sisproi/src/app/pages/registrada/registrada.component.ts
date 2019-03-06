@@ -83,9 +83,9 @@ export class RegistradaComponent implements OnInit, OnDestroy {
         this.processing = true;
         this.control('estado_evaluacion').setValue(2);
         this._ficha.save(this.registradaForm.value)
-          .subscribe(_ => {
-            swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
-          }, _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
+          .subscribe(
+            _ => swal('Atención', env.MSG.SUCCESS_PROCESS, 'success'),
+            _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
             () => this.processing = false);
       }
     });
@@ -137,8 +137,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       modalidad_ejecutiva: [''],
       modalidad_ejecutiva_otra: [''],
       nivel_avance: [''],
-      nivel_avance_fisico: [0],
-      nivel_avance_financiero: [0],
+      nivel_avance_fisico: [],
+      nivel_avance_financiero: [],
       nivel_avance_observacion: [''],
       anio_inicio_posible: [''],
       anio_puesta_operacion: [''],
@@ -163,6 +163,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       riesgo_socioamb_comentario: [''],
       riesgo_politico: [''],
       riesgo_politico_comentario: [''],
+      riesgo_institucional: [''],
+      riesgo_institucional_comentario: [''],
       riesgo_otros: [''],
       riesgo_otros_comentario: [''],
       productiva_mineria: [''],
@@ -187,6 +189,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       social_educa_comentario: [''],
       social_salud: [''],
       social_salud_comentario: [''],
+      sintesis_evaluacion: [''],
       estado_evaluacion: [0]
     });
   }

@@ -21,7 +21,7 @@ function list(filtro) {
                 from: 'parametro',
                 let: { prioridad: '$prioridad_sector' },
                 pipeline: [
-                    { $match: { grupo: 'PRIORIDAD', $expr: { $eq: ['$nombre', '$$prioridad'] } } },
+                    { $match: { grupo: 'PRIORIDAD_SECTOR', $expr: { $eq: ['$nombre', '$$prioridad'] } } },
                     { $limit: 1 }
                 ],
                 as: 'prioridad'

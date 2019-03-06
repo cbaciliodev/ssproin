@@ -46,6 +46,8 @@ var FichaSchema = new Schema({
     riesgo_socioamb_comentario: { type: String },
     riesgo_politico: { type: String },
     riesgo_politico_comentario: { type: String },
+    riesgo_institucional: { type: String },
+    riesgo_institucional_comentario: { type: String },
     riesgo_otros: { type: String },
     riesgo_otros_comentario: { type: String },
 
@@ -72,6 +74,7 @@ var FichaSchema = new Schema({
     social_educa_comentario: { type: String },
     social_salud: { type: String },
     social_salud_comentario: { type: String },
+    sintesis_evaluacion: { type: String },
 
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS },
 }, { collection: 'ficha' });
