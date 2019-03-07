@@ -11,6 +11,9 @@ import swal from 'sweetalert';
 })
 export class GestionFComponent implements OnInit {
 
+  public totalItems = 34;
+  public currentPage = 1;
+
   public loading = false;
   public fichas_registro: Array<any> = [];
   public fichas_registradas: Array<any> = [];
@@ -42,32 +45,16 @@ export class GestionFComponent implements OnInit {
       );
   }
 
+  public onPaginate(paginate) {
+    this.currentPage = paginate.page;
+    let skip = paginate.limit * (paginate.page - 1);
+    console.log(skip);
+  }
+
   get filtro() {
     return this.filtroForm.value;
   }
-
-  getSector(sector: string) {
-    if (sector == 'PTRANSPORTE') {
-      return 'Transporte';
-    }
-
-    if (sector == 'PAGUA_SANEA') {
-      return 'Agua y saneamiento urbano';
-    }
-
-    if (sector == 'PENERGIA') {
-      return 'Energía';
-    }
-
-    if (sector == 'PTELECOMUNIC') {
-      return 'Telecomunicaciones';
-    }
-
-    if (sector == 'PRIEGO') {
-      return 'Riego';
-    }
-  }
-
+  
   private configFiltro() {
     this.filtroForm = this.builder.group({
       tipo: ['estado_registro'],

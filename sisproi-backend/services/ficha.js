@@ -19,6 +19,16 @@ function list(filtro) {
             })
             .lookup({
                 from: 'parametro',
+                let: { sector: '$sector_nivel_1' },
+                pipeline: [
+                    { $match: { grupo: 'NIVEL_1', $expr: { $eq: ['$nombre', '$$sector'] } } },
+                    { $limit: 1 }
+                ],
+                as: 'sector'
+            })
+            .unwind({ path: '$sector', preserveNullAndEmptyArrays: true })
+            .lookup({
+                from: 'parametro',
                 let: { prioridad: '$prioridad_sector' },
                 pipeline: [
                     { $match: { grupo: 'PRIORIDAD_SECTOR', $expr: { $eq: ['$nombre', '$$prioridad'] } } },

@@ -35,6 +35,8 @@ export class InformacionComponent implements OnInit {
   private nivel_energia_2: Array<Parametro> = [];
   private nivel_telecom_2: Array<Parametro> = [];
   private nivel_riego_2: Array<Parametro> = [];
+  private nivel_salud_2: Array<Parametro> = [];
+  private nivel_educacion_2: Array<Parametro> = [];
   private jurisdiccion: Array<Parametro> = [];
   private prioridad_sector: Array<Parametro> = [];
   private modalidad_ejecutiva: Array<Parametro> = [];
@@ -80,6 +82,10 @@ export class InformacionComponent implements OnInit {
       for (let i = 0; i < this.nivel_telecom_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     } else if (this.valor('sector_nivel_1') == 'PRIEGO') {
       for (let i = 0; i < this.nivel_riego_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.valor('sector_nivel_1') == 'PSALUD') {
+      for (let i = 0; i < this.nivel_salud_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.valor('sector_nivel_1') == 'PEDUCACION') {
+      for (let i = 0; i < this.nivel_educacion_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     }
   }
 
@@ -127,6 +133,8 @@ export class InformacionComponent implements OnInit {
     this.nivel_energia_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_ENERGIA_2));
     this.nivel_telecom_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TELECOM_2));
     this.nivel_riego_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_RIEGO_2));
+    this.nivel_salud_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_SALUD_2));
+    this.nivel_educacion_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_EDUCACION_2));
     this.jurisdiccion = JSON.parse(localStorage.getItem(env.PARAMETRO.JURISDICCION));
     this.prioridad_sector = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD_SECTOR));
     this.modalidad_ejecutiva = JSON.parse(localStorage.getItem(env.PARAMETRO.MODALIDAD_EJECU));

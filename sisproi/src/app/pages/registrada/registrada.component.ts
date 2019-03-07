@@ -25,6 +25,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
   private nivel_energia_2: Array<Parametro> = [];
   private nivel_telecom_2: Array<Parametro> = [];
   private nivel_riego_2: Array<Parametro> = [];
+  private nivel_salud_2: Array<Parametro> = [];
+  private nivel_educacion_2: Array<Parametro> = [];
 
   private unsubscribe = new Subject<void>();
 
@@ -102,6 +104,10 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.nivel_telecom_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     } else if (this.registro('sector_nivel_1') == 'PRIEGO') {
       for (let i = 0; i < this.nivel_riego_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.registro('sector_nivel_1') == 'PSALUD') {
+      for (let i = 0; i < this.nivel_salud_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.registro('sector_nivel_1') == 'PEDUCACION') {
+      for (let i = 0; i < this.nivel_educacion_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     }
   }
 
@@ -200,6 +206,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     this.nivel_energia_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_ENERGIA_2));
     this.nivel_telecom_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TELECOM_2));
     this.nivel_riego_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_RIEGO_2));
+    this.nivel_salud_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_SALUD_2));
+    this.nivel_educacion_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_EDUCACION_2));
   }
 
   ngOnDestroy() {
