@@ -57,7 +57,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let fr of fichas_registro">
-                                <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
+                                <td>
+                                    <ng-container *ngIf="fr.sector">
+                                        {{fr.sector.alias}}
+                                    </ng-container>
+                                </td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
                                 <td class="text-right">{{ fr.monto_estimado | currency }}</td>
@@ -95,6 +99,8 @@
 
                     <div>Mostrando {{fichas_registro.length}} fichas de registro</div>
 
+                    <!-- <ngx-pagination [totalItems]="totalItems" [currentPage]="currentPage" (pageEvent)="onPaginate($event)"></ngx-pagination> -->
+
                 </div>
             </div>
             <div class="tab-pane fade" id="ficha_registrada" role="tabpanel">
@@ -114,7 +120,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let fr of fichas_registradas">
-                                <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
+                                <td>
+                                    <ng-container *ngIf="fr.sector">
+                                        {{fr.sector.alias}}
+                                    </ng-container>
+                                </td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
                                 <td class="text-right">{{ fr.monto_estimado | currency }}</td>

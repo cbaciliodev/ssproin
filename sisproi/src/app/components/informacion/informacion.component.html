@@ -48,7 +48,8 @@
                     <label class="col-sm-2">Sub sector 1</label>
                     <div formArrayName="sector_nivel_2" class="col-sm-10">
                         <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check"
-                            [class.ml-4]="nivel_energia_2[i].valor_numero == 1" [class.ml-8]="nivel_energia_2[i].valor_numero == 2">
+                            [class.ml-4]="nivel_energia_2[i].valor_numero == 1" [class.ml-8]="nivel_energia_2[i].valor_numero == 2"
+                            [class.ml-12]="nivel_energia_2[i].valor_numero == 3">
                             <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ne2_' + i">
                             <label class="form-check-label" [for]="'ne2_' + i">{{nivel_energia_2[i].alias}}</label>
                         </div>
@@ -74,6 +75,29 @@
                         <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
                             <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ri2_' + i">
                             <label class="form-check-label" [for]="'ri2_' + i">{{nivel_riego_2[i].alias}}</label>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="valor('sector_nivel_1') == 'PSALUD'">
+                <div class="form-group row">
+                    <label class="col-sm-2">Sub sector 1</label>
+                    <div formArrayName="sector_nivel_2" class="col-sm-10">
+                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check"
+                            [class.ml-4]="nivel_salud_2[i].valor_numero == 1">
+                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ns2_' + i">
+                            <label class="form-check-label" [for]="'ns2_' + i">{{nivel_salud_2[i].alias}}</label>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="valor('sector_nivel_1') == 'PEDUCACION'">
+                <div class="form-group row">
+                    <label class="col-sm-2">Sub sector 1</label>
+                    <div formArrayName="sector_nivel_2" class="col-sm-10">
+                        <div *ngFor="let na2 of sector_nivel_2.controls; let i=index" class="form-check">
+                            <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'ned2_' + i">
+                            <label class="form-check-label" [for]="'ned2_' + i">{{nivel_educacion_2[i].alias}}</label>
                         </div>
                     </div>
                 </div>
@@ -188,12 +212,10 @@
         
                         <div *ngIf="(nivel_avance.length - 1) == i" class="pt-1 row">
                             <div class="col-sm-2 col-lg-3">
-                                <input type="number" class="form-control" placeholder="% Avance físico"
-                                    [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
+                                <input formControlName="nivel_avance_fisico" type="number" class="form-control" placeholder="% Avance físico">
                             </div>
                             <div class="col-sm-2 col-lg-3">
-                                <input type="number" class="form-control" placeholder="% Avance financiero"
-                                    [disabled]="valor('nivel_avance') != 'AVANCE_EJECUCION'">
+                                <input formControlName="nivel_avance_financiero" type="number" class="form-control" placeholder="% Avance financiero">
                             </div>
                         </div>
                     </div>

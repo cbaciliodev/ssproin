@@ -25,6 +25,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
   private nivel_energia_2: Array<Parametro> = [];
   private nivel_telecom_2: Array<Parametro> = [];
   private nivel_riego_2: Array<Parametro> = [];
+  private nivel_salud_2: Array<Parametro> = [];
+  private nivel_educacion_2: Array<Parametro> = [];
 
   private unsubscribe = new Subject<void>();
 
@@ -83,9 +85,9 @@ export class RegistradaComponent implements OnInit, OnDestroy {
         this.processing = true;
         this.control('estado_evaluacion').setValue(2);
         this._ficha.save(this.registradaForm.value)
-          .subscribe(_ => {
-            swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
-          }, _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
+          .subscribe(
+            _ => swal('Atención', env.MSG.SUCCESS_PROCESS, 'success'),
+            _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
             () => this.processing = false);
       }
     });
@@ -102,6 +104,10 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.nivel_telecom_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     } else if (this.registro('sector_nivel_1') == 'PRIEGO') {
       for (let i = 0; i < this.nivel_riego_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.registro('sector_nivel_1') == 'PSALUD') {
+      for (let i = 0; i < this.nivel_salud_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.registro('sector_nivel_1') == 'PEDUCACION') {
+      for (let i = 0; i < this.nivel_educacion_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     }
   }
 
@@ -137,8 +143,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       modalidad_ejecutiva: [''],
       modalidad_ejecutiva_otra: [''],
       nivel_avance: [''],
-      nivel_avance_fisico: [0],
-      nivel_avance_financiero: [0],
+      nivel_avance_fisico: [],
+      nivel_avance_financiero: [],
       nivel_avance_observacion: [''],
       anio_inicio_posible: [''],
       anio_puesta_operacion: [''],
@@ -163,6 +169,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       riesgo_socioamb_comentario: [''],
       riesgo_politico: [''],
       riesgo_politico_comentario: [''],
+      riesgo_institucional: [''],
+      riesgo_institucional_comentario: [''],
       riesgo_otros: [''],
       riesgo_otros_comentario: [''],
       productiva_mineria: [''],
@@ -187,6 +195,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       social_educa_comentario: [''],
       social_salud: [''],
       social_salud_comentario: [''],
+      sintesis_evaluacion: [''],
       estado_evaluacion: [0]
     });
   }
@@ -197,6 +206,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     this.nivel_energia_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_ENERGIA_2));
     this.nivel_telecom_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TELECOM_2));
     this.nivel_riego_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_RIEGO_2));
+    this.nivel_salud_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_SALUD_2));
+    this.nivel_educacion_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_EDUCACION_2));
   }
 
   ngOnDestroy() {

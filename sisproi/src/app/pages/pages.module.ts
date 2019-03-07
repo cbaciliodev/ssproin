@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 
 import { PAGES_ROUTE } from './pages.routes';
 import { FichaComponent } from './ficha/ficha.component';
+import { NgxPaginationComponent } from '../components/ngx-pagination/ngx-pagination.component';
 import { InformacionComponent } from '../components/informacion/informacion.component';
 import { VerificacionComponent } from '../components/verificacion/verificacion.component';
 import { DetallePyComponent } from '../components/detalle-py/detalle-py.component';
@@ -28,6 +29,7 @@ import { SignupComponent } from './usuario/signup.component';
         PagesComponent,
         DashboardComponent,
         FichaComponent,
+        NgxPaginationComponent,
         InformacionComponent,
         VerificacionComponent,
         DetallePyComponent,

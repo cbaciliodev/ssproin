@@ -8051,3 +8051,7 @@ table.dataTable thead .sorting:after {
 .no-animation {
     animation: none !important;
 }
+
+.mr-6 {
+    margin-right: 3.6rem !important;
+}

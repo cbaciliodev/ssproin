@@ -13,7 +13,7 @@ export class VerificacionComponent implements OnInit {
 
   @Input() public registradaForm: FormGroup;
 
-  private prioridad: Array<Parametro> = [];
+  private prioridad_riesgo: Array<Parametro> = [];
   private prioridad_politica: Array<Parametro> = [];
 
   constructor() { }
@@ -27,7 +27,7 @@ export class VerificacionComponent implements OnInit {
   }
 
   private configParametros() {
-    this.prioridad = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD));
+    this.prioridad_riesgo = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD_RIESGO));
     this.prioridad_politica = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD_POLITICA));
   }
 

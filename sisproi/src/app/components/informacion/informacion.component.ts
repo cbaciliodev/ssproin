@@ -7,6 +7,7 @@ import { FileUploader } from 'ng2-file-upload';
 import swal from 'sweetalert';
 import { } from 'googlemaps';
 import { MapaUpload2Component } from '../mapa-upload.2/mapa-upload-2.component';
+import { startWith } from 'rxjs/operators';
 
 const URL = env.URI_API.concat('files/');
 
@@ -34,6 +35,8 @@ export class InformacionComponent implements OnInit {
   private nivel_energia_2: Array<Parametro> = [];
   private nivel_telecom_2: Array<Parametro> = [];
   private nivel_riego_2: Array<Parametro> = [];
+  private nivel_salud_2: Array<Parametro> = [];
+  private nivel_educacion_2: Array<Parametro> = [];
   private jurisdiccion: Array<Parametro> = [];
   private prioridad_sector: Array<Parametro> = [];
   private modalidad_ejecutiva: Array<Parametro> = [];
@@ -47,6 +50,23 @@ export class InformacionComponent implements OnInit {
   ngOnInit() {
     this.configParametros();
     this.configUploadFile();
+    this.validateAvance();
+  }
+
+  private validateAvance() {
+    let initial = this.fichaForm.get('nivel_avance').value;
+
+    this.fichaForm.get('nivel_avance').valueChanges.pipe(
+      startWith(initial)
+    ).subscribe(val => {
+      if (val == 'AVANCE_EJECUCION') {
+        this.fichaForm.get('nivel_avance_fisico').enable();
+        this.fichaForm.get('nivel_avance_financiero').enable();
+      } else {
+        this.fichaForm.get('nivel_avance_fisico').disable();
+        this.fichaForm.get('nivel_avance_financiero').disable();
+      }
+    });
   }
 
   public onChangeNivel1() {
@@ -62,6 +82,10 @@ export class InformacionComponent implements OnInit {
       for (let i = 0; i < this.nivel_telecom_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     } else if (this.valor('sector_nivel_1') == 'PRIEGO') {
       for (let i = 0; i < this.nivel_riego_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.valor('sector_nivel_1') == 'PSALUD') {
+      for (let i = 0; i < this.nivel_salud_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
+    } else if (this.valor('sector_nivel_1') == 'PEDUCACION') {
+      for (let i = 0; i < this.nivel_educacion_2.length; i++) this.sector_nivel_2.push(new FormControl(false));
     }
   }
 
@@ -79,7 +103,7 @@ export class InformacionComponent implements OnInit {
   }
 
   public removeDepart(i) {
-    if(this.valor('estado_registro') == 2) return;
+    if (this.valor('estado_registro') == 2) return;
     this.departamentos.removeAt(i);
   }
 
@@ -99,7 +123,7 @@ export class InformacionComponent implements OnInit {
     this.uploader.onCompleteItem = () => {
       swal('Atención', env.MSG.SUCCESS_FILE, 'success');
       this.fileUploaded = true;
-     };
+    };
   }
 
   private configParametros() {
@@ -109,8 +133,10 @@ export class InformacionComponent implements OnInit {
     this.nivel_energia_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_ENERGIA_2));
     this.nivel_telecom_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_TELECOM_2));
     this.nivel_riego_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_RIEGO_2));
+    this.nivel_salud_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_SALUD_2));
+    this.nivel_educacion_2 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_EDUCACION_2));
     this.jurisdiccion = JSON.parse(localStorage.getItem(env.PARAMETRO.JURISDICCION));
-    this.prioridad_sector = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD));
+    this.prioridad_sector = JSON.parse(localStorage.getItem(env.PARAMETRO.PRIORIDAD_SECTOR));
     this.modalidad_ejecutiva = JSON.parse(localStorage.getItem(env.PARAMETRO.MODALIDAD_EJECU));
     this.nivel_avance = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_AVANCE));
     this.departamento = JSON.parse(localStorage.getItem(env.PARAMETRO.DEPARTAMENTO));
