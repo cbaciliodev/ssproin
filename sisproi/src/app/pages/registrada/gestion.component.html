@@ -59,7 +59,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let fr of fichas_registradas">
-                                <td>{{ getSector( fr.sector_nivel_1 ) }}</td>
+                                <td>
+                                    <ng-container *ngIf="fr.sector">
+                                        {{fr.sector.alias}}
+                                    </ng-container>
+                                </td>
                                 <td>{{fr.nombre_programa}}</td>
                                 <td>{{fr.nombre_proyecto}}</td>
                                 <td class="text-right">{{ fr.monto_estimado | currency }}</td>
@@ -116,7 +120,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let fe of fichas_evaluacion">
-                                <td>{{ getSector( fe.sector_nivel_1 ) }}</td>
+                                <td>
+                                    <ng-container *ngIf="fe.sector">
+                                        {{fe.sector.alias}}
+                                    </ng-container>
+                                </td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>{{fe.nombre_proyecto}}</td>
                                 <td class="text-right">{{ fe.monto_estimado | currency }}</td>
@@ -172,7 +180,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let fe of fichas_evaluadas">
-                                <td>{{ getSector( fe.sector_nivel_1 ) }}</td>
+                                <td>
+                                    <ng-container *ngIf="fe.sector">
+                                        {{fe.sector.alias}}
+                                    </ng-container>
+                                </td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>{{fe.nombre_proyecto}}</td>
                                 <td class="text-right">{{ fe.monto_estimado | currency }}</td>
