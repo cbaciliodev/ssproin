@@ -48,52 +48,9 @@ app.post('/:dato', (req, res) => {
 // ==========================================
 app.put('/:id',  (req, res) => {
 
-    var id = req.params.id;
-    var body = req.body;
-
-    Usuario.findById(id, (err, usuario) => {
-
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                mensaje: 'Error al buscar usuario',
-                errors: err
-            });
-        }
-
-        if (!usuario) {
-            return res.status(400).json({
-                ok: false,
-                mensaje: 'El usuario con el id ' + id + ' no existe',
-                errors: { message: 'No existe un usuario con ese ID' }
-            });
-        }
-
-
-        usuario.nombre = body.nombre;
-        usuario.password = body.password;
-        usuario.perfil = body.perfil;
-
-        usuario.save((err, usuarioGuardado) => {
-
-            if (err) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Error al actualizar usuario',
-                    errors: err
-                });
-            }
-
-            usuarioGuardado.password = ':)';
-
-            res.status(200).json({
-                ok: true,
-                usuario: usuarioGuardado
-            });
-
-        });
-
-    });
+   _usuario.actualizar(req.params.id,req.body).then(
+    data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+    erro => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, erro));
 
 });
 
