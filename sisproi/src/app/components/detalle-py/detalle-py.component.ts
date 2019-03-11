@@ -17,7 +17,7 @@ export class DetallePyComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (this.proyectos !== 0) {
+    if (Number(this.proyectos) !== 0) {
       this.recibidosPrc =  (this.recibidos / this.proyectos * 100).toFixed() + '%' ;
       this.evaluadosPrc = (this.evaluados / this.proyectos * 100).toFixed() + '%';
     }
