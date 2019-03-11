@@ -29,7 +29,7 @@ export class InformacionComponent implements OnInit {
   private map: google.maps.Map;
   private marker: google.maps.Marker;
 
-  private nivel_1: Array<Parametro> = [];
+  public nivel_1: Array<Parametro> = [];
   private nivel_trans_2: Array<Parametro> = [];
   private nivel_agua_2: Array<Parametro> = [];
   private nivel_energia_2: Array<Parametro> = [];
@@ -37,11 +37,11 @@ export class InformacionComponent implements OnInit {
   private nivel_riego_2: Array<Parametro> = [];
   private nivel_salud_2: Array<Parametro> = [];
   private nivel_educacion_2: Array<Parametro> = [];
-  private jurisdiccion: Array<Parametro> = [];
-  private prioridad_sector: Array<Parametro> = [];
-  private modalidad_ejecutiva: Array<Parametro> = [];
-  private nivel_avance: Array<Parametro> = [];
-  private departamento: Array<Parametro> = [];
+  public jurisdiccion: Array<Parametro> = [];
+  public prioridad_sector: Array<Parametro> = [];
+  public modalidad_ejecutiva: Array<Parametro> = [];
+  public nivel_avance: Array<Parametro> = [];
+  public departamento: Array<Parametro> = [];
 
   public uploader: FileUploader = new FileUploader({ url: URL.concat('/upload'), itemAlias: 'file' });
 

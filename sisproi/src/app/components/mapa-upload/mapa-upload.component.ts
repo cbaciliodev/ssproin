@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { environment as env } from 'src/environments/environment';
 import { TipoMapa } from 'src/app/models/tipoMapa.model';

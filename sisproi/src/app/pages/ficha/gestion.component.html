@@ -77,7 +77,8 @@
                                 </td>
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
-                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id}">
+                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id}"
+                                        *ngIf="_accion.validate('AEDITAR')">
                                         <i class="fa fa-edit"></i> Editar
                                     </button>
                                     <!-- <button class="btn btn-outline-danger btn-sm mr-1" (click)="download()">
@@ -177,6 +178,7 @@
     </div>
 </div>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" routerLink="registro">
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm"
+    *ngIf="_accion.validate('AEDITAR')" routerLink="registro">
     <i class="fa fa-plus no-animation"></i>
 </button>

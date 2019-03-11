@@ -18,7 +18,7 @@ import { RegistradaComponent } from './registrada/registrada.component';
 import { GestionRComponent } from './registrada/gestion.component';
 
 // Apis externas
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { MapaUpload2Component } from '../components/mapa-upload.2/mapa-upload-2.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { SignupComponent } from './usuario/signup.component';
@@ -39,7 +39,6 @@ import { SignupComponent } from './usuario/signup.component';
         GestionFComponent,
         RegistradaComponent,
         GestionRComponent,
-        FileSelectDirective,
         UsuarioComponent,
         SignupComponent
     ],
@@ -57,6 +56,7 @@ import { SignupComponent } from './usuario/signup.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        FileUploadModule,
         PAGES_ROUTE
     ]
 })

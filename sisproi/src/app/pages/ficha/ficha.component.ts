@@ -4,12 +4,11 @@ import { InformacionComponent } from '../../components/informacion/informacion.c
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
 import { FichaService } from 'src/app/services/ficha.service';
+import { AccionService } from 'src/app/services/accion.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
-
-declare function validarUsuario();
 
 @Component({
   selector: 'ficha-proyecto',
@@ -36,14 +35,13 @@ export class FichaComponent implements OnInit, OnDestroy {
 
   constructor(private builder: FormBuilder,
     private route: ActivatedRoute,
-    private _ficha: FichaService) { }
+    private _ficha: FichaService,
+    public _accion: AccionService) { }
 
   ngOnInit() {
     this.configParametros();
     this.configFormulario();
     this.getFicha();
-
-    validarUsuario();
   }
 
   private getFicha() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
+import { AccionService } from 'src/app/services/accion.service';
 import { environment as env } from 'src/environments/environment.prod';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Parametro } from 'src/app/models/parametro.model';
@@ -17,10 +18,11 @@ export class GestionRComponent implements OnInit {
   public fichas_evaluadas: Array<any> = [];
 
   public filtroForm: FormGroup;
-  private sector_1: Array<Parametro> = [];
+  public sector_1: Array<Parametro> = [];
 
   constructor(private builder: FormBuilder,
-    private _fichas: FichaService) { }
+    private _fichas: FichaService,
+    public _accion: AccionService) { }
 
   ngOnInit() {
     this.configParametros();
@@ -28,7 +30,7 @@ export class GestionRComponent implements OnInit {
     this.getFichas();
   }
 
-  private getFichas() {
+  public getFichas() {
     this.loading = true;
     this.fichas_registradas = [];
     this.fichas_evaluacion = [];

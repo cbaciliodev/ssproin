@@ -11,7 +11,7 @@ export class NgxPaginationComponent implements OnInit {
   @Input() currentPage: number;
   @Output() pageEvent = new EventEmitter<any>();
 
-  private totalPages: number;
+  public totalPages: number;
   private limit: number = 10;
 
   constructor() { }
