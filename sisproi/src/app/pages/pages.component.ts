@@ -32,8 +32,12 @@ export class PagesComponent implements OnInit {
     let parametros: Array<any> = [];
     const sector = JSON.parse(localStorage.getItem('usuario')).sector;
 
-    for (const s of sector) { parametros.push(p.parametros.find(_p => _p.nombre == s)); }
-    p.parametros = parametros;
+    let todo = sector.find(_s => _s == 'PTODO');
+
+    if (!todo) {
+      for (const s of sector) { parametros.push(p.parametros.find(_p => _p.nombre == s)); }
+      p.parametros = parametros;
+    }
   }
 
 }
