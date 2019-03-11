@@ -5,6 +5,7 @@ module.exports = {
     list: list,
     crear:crear,
     eliminar:eliminar,
+    actualizar:actualizar,
     listOne:listOne,
     listUsuarios:listUsuarios,
     buscarCorreo:buscarCorreo
@@ -47,7 +48,21 @@ function buscarCorreo(correo) {
     });
 }
 
+function actualizar(id,usuario) {
+    return new Promise((resolve, reject) => {
+        Usuario.findById(id, (err, data) => {
+            if (err) reject(err);
+        
+        data.nombre = usuario.nombre;
+        data.perfil = usuario.perfil;
 
+        data.save((err, data) => {
+            if (err) reject(err);
+            resolve(data);
+        });    
+    });   
+    });
+}
 
 function crear(usuario) {
     var model = new Usuario(usuario);

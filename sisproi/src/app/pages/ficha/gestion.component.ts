@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
+import { AccionService } from 'src/app/services/accion.service';
 import { environment as env } from 'src/environments/environment';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Parametro } from 'src/app/models/parametro.model';
+import { pdfData } from 'src/app/commons/constant';
+import { saveAs } from 'file-saver';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake from 'pdfmake/build/pdfmake';
 import swal from 'sweetalert';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'gestion-ficha',
@@ -19,10 +25,11 @@ export class GestionFComponent implements OnInit {
   public fichas_registradas: Array<any> = [];
 
   public filtroForm: FormGroup;
-  private sector_1: Array<Parametro> = [];
+  public sector_1: Array<Parametro> = [];
 
   constructor(private builder: FormBuilder,
-    private _fichas: FichaService) { }
+    private _fichas: FichaService,
+    public _accion: AccionService) { }
 
   ngOnInit() {
     this.configParametros();
@@ -30,7 +37,7 @@ export class GestionFComponent implements OnInit {
     this.getFichas();
   }
 
-  private getFichas() {
+  public getFichas() {
     this.loading = true;
     this.fichas_registro = [];
     this.fichas_registradas = [];
@@ -49,6 +56,13 @@ export class GestionFComponent implements OnInit {
     this.currentPage = paginate.page;
     let skip = paginate.limit * (paginate.page - 1);
     console.log(skip);
+  }
+
+  public download() {
+    let pdfGenerator = pdfMake.createPdf(pdfData);
+    pdfGenerator.getBlob((blob) => {
+      saveAs(blob, `${new Date().getTime()}.pdf`);
+    });
   }
 
   get filtro() {

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
 import { FichaService } from 'src/app/services/ficha.service';
+import { AccionService } from 'src/app/services/accion.service';
 import { Parametro } from 'src/app/models/parametro.model';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
@@ -32,7 +33,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
 
   constructor(private builder: FormBuilder,
     private route: ActivatedRoute,
-    private _ficha: FichaService) { }
+    private _ficha: FichaService,
+    public _accion: AccionService) { }
 
   ngOnInit() {
     this.configParametros();

@@ -23,7 +23,20 @@ export class PagesComponent implements OnInit {
 
   private localParametros(parametros) {
     for (let p of parametros) {
+      if (p._id == 'NIVEL_1') this.validateSector(p);
       localStorage.setItem(p._id, JSON.stringify(p.parametros));
+    }
+  }
+
+  private validateSector(p) {
+    let parametros: Array<any> = [];
+    const sector = JSON.parse(localStorage.getItem('usuario')).sector;
+
+    let todo = sector.find(_s => _s == 'PTODO');
+
+    if (!todo) {
+      for (const s of sector) { parametros.push(p.parametros.find(_p => _p.nombre == s)); }
+      p.parametros = parametros;
     }
   }
 

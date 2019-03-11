@@ -13,8 +13,8 @@ export class VerificacionComponent implements OnInit {
 
   @Input() public registradaForm: FormGroup;
 
-  private prioridad_riesgo: Array<Parametro> = [];
-  private prioridad_politica: Array<Parametro> = [];
+  public prioridad_riesgo: Array<Parametro> = [];
+  public prioridad_politica: Array<Parametro> = [];
 
   constructor() { }
 

@@ -15,7 +15,7 @@ export class UsuarioService {
   }
 
   //servicio para consultar usuario
-  login(usuario: Usuario, recordar: boolean = false) {
+  login(usuario: Usuario) {
     let url = env.URI_API.concat('login');
     return this.http.post<any>(url, usuario)
   }

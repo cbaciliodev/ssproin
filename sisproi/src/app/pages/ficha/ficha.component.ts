@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
+import { InformacionComponent } from '../../components/informacion/informacion.component';
 import { environment as env } from 'src/environments/environment';
 import { Parametro } from 'src/app/models/parametro.model';
 import { FichaService } from 'src/app/services/ficha.service';
+import { AccionService } from 'src/app/services/accion.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
-import { InformacionComponent } from '../../components/informacion/informacion.component';
 
 @Component({
   selector: 'ficha-proyecto',
@@ -34,7 +35,8 @@ export class FichaComponent implements OnInit, OnDestroy {
 
   constructor(private builder: FormBuilder,
     private route: ActivatedRoute,
-    private _ficha: FichaService) { }
+    private _ficha: FichaService,
+    public _accion: AccionService) { }
 
   ngOnInit() {
     this.configParametros();
