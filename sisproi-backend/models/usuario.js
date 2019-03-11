@@ -4,7 +4,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 
 var PERFIL = {
-    values: ['ADMIN_PERFIL', 'USER_PERFIL'],
+    values: ['Administrador', 'Usuario'],
     message: '{VALUE} no es un perfil permitido'
 }
 

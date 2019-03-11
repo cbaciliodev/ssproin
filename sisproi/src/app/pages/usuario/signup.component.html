@@ -24,11 +24,19 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Correo </label>
                     <div class="col-sm-10">
-                        <input formControlName="correo" type="text" class="form-control" placeholder="Correo" (focus)="invalido = false" >
+                        <input formControlName="correo" type="text" class="form-control" placeholder="Correo" (focus)="validarCorreo();" >
                         <div class="pt-1 text-danger" *ngIf="invalid('correo')">
                             <span class="form-control-feedback">
                                 <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
-                            </span>
+                            </span> 
+                        </div>
+                       <div class="form-group">
+                                <p class="text-danger " *ngIf="correoDuplicado">
+                                    Correo se encuentra en <strong>uso.</strong></p>
+                        </div>
+                        <div class="form-group">
+                                <p class="text-danger " *ngIf="correoIncorrecto">
+                                    Ingresa correo correctamente, ejemplo: <strong>'ejemplo@gmail.com'.</strong></p>
                         </div>
                     </div>
                   </div>
@@ -37,22 +45,32 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Perfil </label>
 
+                    <div class="col-sm-10 col-form-label">
+                       <div class="form-group row ">
+                      
+                            <div class="col-sm-12 col-form-label ">
                     <div class="form-check">
-                        <input formControlName="perfil" class="form-check-input" type="radio" name="perfil" id="exampleRadios1" value="ADMIN_PERFIL" (focus)="invalido = false" >
+                        <input formControlName="perfil" class="form-check-input" type="radio" name="perfil" id="exampleRadios1" value="Administrador" (focus)="invalido = false" >
                         <label class="form-check-label" for="exampleRadios1">
-                            ADMIN_PERFIL
+                            Administrador
                         </label>
-                      </div>
-                      <div class="form-check">
-                        <input formControlName="perfil" class="form-check-input" type="radio" name="perfil" id="exampleRadios2" value="USER_PERFIL" (focus)="invalido = false">
+                    </div>
+                    </div>
+                    <div class="col-sm-12 col-form-label ">
+                      <div class="form-check mb-0">
+                        <input formControlName="perfil" class="form-check-input" type="radio" name="perfil" id="exampleRadios2" value="Usuario" (focus)="invalido = false">
                         <label class="form-check-label" for="exampleRadios2">
-                            USER_PERFIL
+                            Usuario
                         </label>
                       </div>
+                    </div>
                   </div>
 
-                  <div *ngIf="!actualizar" >
-                  <div class="form-group row">
+                </div>
+                </div>
+
+                  <div *ngIf="!actualizar " >
+                  <div class="form-group row ">
                     <label class="col-sm-2 col-form-label">Contraseña</label>
                     <div class="col-sm-10">
                         <input formControlName="password" type="password" class="form-control" placeholder="Contraseña" (focus)="invalido = false">
@@ -69,34 +87,28 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Validar Contraseña</label>
                     <div class="col-sm-10">
-                        <input formControlName="vpassword" type="password" class="form-control" placeholder="Validar Contraseña" (focus)="invalido = false">
+                        <input formControlName="vpassword" type="password" class="form-control" placeholder="Validar Contraseña" (focus)="invalido = false " (focus)="passiguales = false">
                         <div class="pt-1 text-danger" *ngIf="invalid('vpassword')">
                             <span class="form-control-feedback">
                                 <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
                             </span>
                         </div>
                         <div class="form-group">
-                            <p class="text-danger" *ngIf="passiguales">
-                                Contraseñas no son <strong>iguales.</strong></p>
-                        </div>
+                                <p class="text-danger " *ngIf="formUsuario.errors && !formUsuario.pristine">
+                                    Validar <strong>contraseñas.</strong></p>
+                            </div>
                     </div>
                   </div>
                 </div>
 
-
                   <div class="form-group">
-                      <p class="text-danger" *ngIf="invalido">
-                          Ingresar campos <strong>requeridos.</strong></p>
+                        <p class="text-danger text-right" *ngIf="invalido">
+                            !Ingresar campos <strong>requeridos.</strong></p>
+                    </div>
+                  
                   </div>
                   
-
-
-                  </div>
-                  
-  
-                
-            </div>
-          
+            </div>       
         </div>
     </div>
   </div>

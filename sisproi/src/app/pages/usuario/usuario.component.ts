@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -17,30 +17,37 @@ export class UsuarioComponent implements OnInit {
   public usuarioupdate: Usuario;
 
   ngOnInit() {
-    this.listUsuarios()
+   this.listUsuarios()
   }
 
+  
   listUsuarios(){
-   this._usuario.allUsuario()
+   this._usuario.ListaUsuarios(localStorage.getItem('id'))
    .subscribe(res=>{
-     this.listaUsuarios=res.data;
+     this.listaUsuarios=res.data; 
    })
   }
 
+
   eliminarUsuario(id){  
-      swal("Una vez eliminado, no podrás recuperar este usuario!", {
-        buttons: ["Cancelar!", "Eliminar!"],
+    swal("Una vez eliminado, no podrás recuperar este usuario!", {
+      title: 'Estas seguro?',
+      icon: 'warning',
+      buttons: ['Cancel', 'Ok'],
+      dangerMode: true
           })
       .then((willDelete) => {
         if (willDelete) {
-          this._usuario.delete(id).subscribe()
-          swal("Usuario a sido eliminado!", {
-            icon: "success",
-          });
+          this._usuario.delete(id).subscribe(res=>{
+            this.listUsuarios();
+            swal("Usuario a sido eliminado!", {
+              icon: "success",
+            });
+          });  
         } else {
           swal("No se elimino usuario!");
         }
-      });
+      }); 
   }
-
+  
 }

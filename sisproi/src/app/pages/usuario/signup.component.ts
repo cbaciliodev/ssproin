@@ -16,41 +16,54 @@ export class SignupComponent implements OnInit {
   formUsuario: FormGroup
   passiguales =false;
   invalido=false;
-  id='';
-
+  correoDuplicado=false;
+  correoIncorrecto=false;
 
   constructor(public _usuario : UsuarioService , private activeroute :ActivatedRoute,private router :Router) { }
 
   ngOnInit() {
 
-  if(this.activeroute.snapshot.queryParamMap.get('id')){
-    this.id=this.activeroute.snapshot.queryParamMap.get('id');
-    this.actualizarUsuario(this.id);
-    this.actualizar=true;
-
-  } 
-      this.formUsuario= new FormGroup({
+    this.formUsuario= new FormGroup({
       nombre : new FormControl('',Validators.required),
       correo : new FormControl('',[Validators.required,Validators.email]),
-      perfil : new FormControl('USER_PERFIL',Validators.required),
+      perfil : new FormControl('',Validators.required),
       password : new FormControl('',Validators.required),
       vpassword : new FormControl('',Validators.required),
 
-    })
+    },{validators : this.validar('password','vpassword') })
+
+  if(this.activeroute.snapshot.queryParamMap.get('id')){
+    this.actualizarUsuario(this.activeroute.snapshot.queryParamMap.get('id'));
+    this.actualizar=true;
+  } 
+      
   }
 
+
+  validar(pass:string,vpass:string){ 
+    return (group:FormGroup)=>{
+      if(group.controls[pass].value==group.controls[vpass].value ){
+        return null;
+      } 
+      return {
+        sonIguales: true
+      };
+    };
+  }
+ 
+  
   actualizarUsuario(id){
       this._usuario.selectOne(id).subscribe(res =>{
-        this.usuario=res.usuario;
-        console.log(res.usuario);
+        this.usuario=res.data;
+        
         this.formUsuario= new FormGroup({
-          nombre : new FormControl(res.usuario.nombre,Validators.required),
-          correo : new FormControl(res.usuario.correo,[Validators.required,Validators.email]),
-          perfil : new FormControl(res.usuario.perfil,Validators.required),
-          password : new FormControl(res.usuario.password,Validators.required),
-          vpassword : new FormControl(res.usuario.password,Validators.required),
+          nombre : new FormControl(res.data.nombre,Validators.required),
+          correo : new FormControl(res.data.correo,[Validators.required,Validators.email]),
+          perfil : new FormControl(res.data.perfil,Validators.required),
+          password : new FormControl(res.data.password,Validators.required),
+          vpassword : new FormControl(res.data.password,Validators.required),
     
-        })
+        });
     })  
   }  
 
@@ -58,37 +71,54 @@ export class SignupComponent implements OnInit {
     return this.formUsuario.get(field).invalid && this.formUsuario.get(field).touched;
   }
 
+  public validarCorreo(){
+    this.correoDuplicado = false;
+    this.invalido=false;
+    this.correoIncorrecto=false;
+    return 
+  }
+
   registarUsuario(){
-  
-  if(this.formUsuario.invalid){
-    this.invalido=true;
-    return;}
-  if(this.formUsuario.value.password!=this.formUsuario.value.vpassword){
-    this.passiguales=true;
-      return;
-  }
-  let usuario =  new Usuario(
-    this.formUsuario.value.nombre,
-    this.formUsuario.value.correo,
-    this.formUsuario.value.password,
-    this.formUsuario.value.perfil
-  );
 
-  if(this.actualizar){
-     
-      this._usuario.updateUsuario(this.id,usuario)
-      .subscribe(res =>{
+    let re = /\S+@\S+\.\S+/;  
+    if(!re.test(this.formUsuario.value.correo)){
+        this.correoIncorrecto=true;
+      return
+    } 
+   
+    if(this.formUsuario.invalid){
+      this.invalido=true;
+      return;}
+      //si formulario es valido continuo con el registro
+    this._usuario.duplicidadCorreo(this.formUsuario.value.correo).subscribe(res=>{
 
-        swal('Good job!', 'Usuario Actualizado', 'success');
-      })
+      if(res.data.length>0 && !this.actualizar){
+        this.correoDuplicado=true;
+        return
+      } //si no hay duplicidad en correo continuo con el registro
+        
+      let usuario =  new Usuario(
+        this.formUsuario.value.nombre,
+        this.formUsuario.value.correo,
+        this.formUsuario.value.password,
+        this.formUsuario.value.perfil
+      );
+    
+      if(this.actualizar){
+          this._usuario.updateUsuario(this.activeroute.snapshot.queryParamMap.get('id'),usuario)
+          .subscribe(res =>{
+      swal('Good job!', 'Usuario Actualizado', 'success');
       this.router.navigate( ['/usuario'] );
-    return
-  }
-  this._usuario.crearUsuario(usuario)
-  .subscribe(res =>{
-    swal('Good job!', 'Usuario Registrado', 'success');
-  })
-  this.router.navigate( ['/usuario'] );
+      })
+        return
+      }
+      this._usuario.crearUsuario(usuario)
+      .subscribe(res =>{
+      swal('Good job!', 'Usuario Registrado', 'success');
+      this.router.navigate( ['/usuario'] );
+      })
 
-  }
+      })      
+
+    }
 }
