@@ -61,15 +61,14 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.createDepartamentos(ficha.departamento); this.createSectores();
     this.fichaForm.patchValue(ficha);
 
+    if (this.route.snapshot.queryParamMap.get('ver')) this.fichaForm.disable();
     if (ficha.estado_registro == 2) this.fichaForm.disable();
   }
 
   public guardar() {
     if (this.fichaForm.invalid) return;
 
-    this.saving = true;
-    this.control('estado_registro').setValue(1);
-
+    this.beforeSave();
     const ficha = this.fichaForm.value;
     ficha.localizacion_latitud = this.informacionComponent.getDataMapUpload();
 
@@ -91,15 +90,22 @@ export class FichaComponent implements OnInit, OnDestroy {
       dangerMode: true
     }).then(res => {
       if (res) {
-        this.processing = true;
         this.beforeProcess();
         this._ficha.save(this.fichaForm.value)
-          .subscribe(_ => {
-            swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
-          }, _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
+          .subscribe(
+            _ => this.afterProcess(),
+            _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
             () => this.processing = false);
       }
     });
+  }
+
+  private beforeSave() {
+    this.saving = true;
+    this.control('estado_registro').setValue(1);
+    this.control('usuario_reg').setValue(this.usuario);
+    if (!this.control('_id')) this.control('fecha_inicio_reg').setValue(Date.now());
+    else this.control('fecha_actual_reg').setValue(Date.now());
   }
 
   private afterSave(id) {
@@ -108,8 +114,16 @@ export class FichaComponent implements OnInit, OnDestroy {
   }
 
   private beforeProcess() {
+    this.processing = true;
     this.control('estado_registro').setValue(2);
     this.control('estado_evaluacion').setValue(0);
+    this.control('fecha_final_reg').setValue(Date.now());
+    this.control('usuario_reg').setValue(this.usuario);
+  }
+
+  private afterProcess() {
+    swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
+    this.fichaForm.disable();
   }
 
   public createSectores() {
@@ -144,6 +158,7 @@ export class FichaComponent implements OnInit, OnDestroy {
 
   get sector_nivel_2() { return this.fichaForm.get('sector_nivel_2') as FormArray }
   get departamento() { return this.fichaForm.get('departamento') as FormArray }
+  get usuario() { return JSON.parse(localStorage.getItem('usuario'))._id }
 
   private configFormulario() {
     this.fichaForm = this.builder.group({
@@ -173,7 +188,11 @@ export class FichaComponent implements OnInit, OnDestroy {
       area_influencia: [''],
       comentarios: [''],
       estado_registro: [0],
-      estado_evaluacion: []
+      estado_evaluacion: [],
+      usuario_reg: [this.usuario],
+      fecha_inicio_reg: [''],
+      fecha_actual_reg: [''],
+      fecha_final_reg: ['']
     });
   }
 

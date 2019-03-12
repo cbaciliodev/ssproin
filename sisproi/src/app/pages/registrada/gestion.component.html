@@ -80,7 +80,7 @@
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
                                     <button class="btn btn-outline-secondary btn-sm" routerLink="evaluacion" [queryParams]="{id: fr._id}"
-                                        *ngIf="_accion.validate('AEDITAR')">
+                                        *ngIf="_accion.validate('AEVALUAR')">
                                         <i class="fa fa-edit"></i> Evaluar
                                     </button>
                                 </td>
@@ -142,7 +142,7 @@
                                 <td>{{fe.anio_inicio_posible}}</td>
                                 <td>
                                     <button class="btn btn-outline-secondary btn-sm" routerLink="evaluacion" [queryParams]="{id: fe._id}"
-                                        *ngIf="_accion.validate('AEDITAR')">
+                                        *ngIf="_accion.validate('AEVALUAR')">
                                         <i class="fa fa-edit"></i> Editar
                                     </button>
                                 </td>

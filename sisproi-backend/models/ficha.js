@@ -5,6 +5,7 @@ var Departamento = require('./departamento');
 var ESTADOS = require('../config/config').ESTADOS;
 var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
 var Schema = mongoose.Schema;
 
 var FichaSchema = new Schema({
@@ -75,6 +76,15 @@ var FichaSchema = new Schema({
     social_salud: { type: String },
     social_salud_comentario: { type: String },
     sintesis_evaluacion: { type: String },
+
+    usuario_reg: { type: ObjectId, ref: 'Usuario' },
+    fecha_inicio_reg: { type: Date },
+    fecha_actual_reg: { type: Date },
+    fecha_final_reg: { type: Date },
+    usuario_eval: { type: ObjectId, ref: 'Usuario' },
+    fecha_inicio_eval: { type: Date },
+    fecha_actual_eval: { type: Date },
+    fecha_final_eval: { type: Date },
 
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS },
 }, { collection: 'ficha' });

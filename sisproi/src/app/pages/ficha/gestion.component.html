@@ -77,6 +77,10 @@
                                 </td>
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
+                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id, ver: true}"
+                                        *ngIf="_accion.validate('AVER')">
+                                        <i class="fa fa-eye"></i> Ver
+                                    </button>
                                     <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id}"
                                         *ngIf="_accion.validate('AEDITAR')">
                                         <i class="fa fa-edit"></i> Editar
