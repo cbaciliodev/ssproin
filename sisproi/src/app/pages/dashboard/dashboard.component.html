@@ -5,20 +5,18 @@
                 <h3 class="mb-0">Proyectos</h3>
             </div>
             <div class="col-md-3 col-lg-2 col-12 mt-md-0 b-l p-3">
-                <h5>239 <small>PROYECTOS</small></h5>
+                <h5>0 <small>PROYECTOS</small></h5>
             </div>
             <div class="col-12 col-md-3 col-lg-3 mt-2 mt-md-0 b-l p-3">
-                <h5>90 Registrados<span class="pull-right">37%</span></h5>
+                <h5>0 Registrados<span class="pull-right">0%</span></h5>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 37%; height: 6px;"
-                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
             <div class="col-12 col-md-3 col-lg-3 mt-2  mt-md-0 b-l p-3">
-                <h5>90 Evaluados<span class="pull-right">37%</span></h5>
+                <h5>0 Evaluados<span class="pull-right">0%</span></h5>
                 <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 37%; height: 6px;"
-                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -58,29 +56,48 @@
 <div class="card b-all">
     <div class="card-body">
         <div class="row">
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Transporte" proyectos='37' recibidos='22' evaluados='15'></app-detalle-py>
-            </div>
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Agua y Saneamiento Urbano" proyectos='27' recibidos='15' evaluados='12'>
-                </app-detalle-py>
-            </div>
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Energía" proyectos='31' recibidos='28' evaluados='3'></app-detalle-py>
-            </div>
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Telecomunicaciones" proyectos='24' recibidos='12' evaluados='12'>
-                </app-detalle-py>
-            </div>
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Riego" proyectos='39' recibidos='20' evaluados='19'></app-detalle-py>
-            </div>
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Salud" proyectos='55' recibidos='30' evaluados='25'></app-detalle-py>
-            </div>
-            <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <app-detalle-py titulo="Educación" proyectos='26' recibidos='22' evaluados='4'></app-detalle-py>
-            </div>
+            <ng-container *ngIf="have('PTRASNPORTE')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Transporte" proyectos='0' recibidos='0' evaluados='0'></app-detalle-py>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="have('PAGUA_SANEA')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Agua y Saneamiento Urbano" proyectos='0' recibidos='0' evaluados='0'></app-detalle-py>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="have('PENERGIA')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Energía" proyectos='0' recibidos='0' evaluados='0'></app-detalle-py>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="have('PTELECOMUNIC')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Telecomunicaciones" proyectos='0' recibidos='0' evaluados='0'> </app-detalle-py>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="have('PRIEGO')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Riego" proyectos='0' recibidos='0' evaluados='19'></app-detalle-py>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="have('PSALUD')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Salud" proyectos='0' recibidos='0' evaluados='0'></app-detalle-py>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="have('PEDUCACION')">
+                <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                    <app-detalle-py titulo="Educación" proyectos='0' recibidos='0' evaluados='0'></app-detalle-py>
+                </div>
+            </ng-container>
+
         </div>
     </div>
 </div>

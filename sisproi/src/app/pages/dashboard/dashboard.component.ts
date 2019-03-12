@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 declare function init_plugins();
 
@@ -9,10 +10,25 @@ declare function init_plugins();
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  // tslint:disable-next-line:variable-name
+  constructor( public _usuario: UsuarioService ) { }
 
   ngOnInit() {
     init_plugins();
+  }
+
+  have( sector: string ) {
+
+    for ( const st of this._usuario.userLogin().sector ) {
+
+      console.log( st.concat(', ', sector) );
+
+      if ( st == sector || st == 'PTODO' ) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
 }
