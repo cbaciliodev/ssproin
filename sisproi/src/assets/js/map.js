@@ -10,10 +10,10 @@ var objectMarker = null;
 var objectPolygon = null;
 var objectPoliline = null;
 
-function initMap( ) {
+function initMap() {
     tipoForma = 0;
 
-    map = new google.maps.Map(document.getElementById( 'map' ), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: { lat: -12.079116, lng: -77.042365 },
         mapTypeId: 'hybrid',
@@ -54,14 +54,14 @@ function addLatLng(event) {
         path.push(event.latLng);
     }
 
-        polilinea.setMap(map);
-        var path = polilinea.getPath();
-        if (typeof path == 'undefined') {
-            path = [];
-            path.push(event.latLng);
-            polygon.setPath(path);
-        }
+    polilinea.setMap(map);
+    var path = polilinea.getPath();
+    if (typeof path == 'undefined') {
+        path = [];
         path.push(event.latLng);
+        polygon.setPath(path);
+    }
+    path.push(event.latLng);
 
 }
 
@@ -165,19 +165,34 @@ function loadMapaByData(data) {
         polygon = new google.maps.Polygon(objectPolygon);
         polygon.setMap(map);
     }
+
+    // Polilinea
+    if (data.tipoForma == 2) {
+        objectPoliline = data.objectData;
+        polilinea = new google.maps.Polyline(objectPoliline);
+        polilinea.setMap(map);
+    }
+
+
 }
 
 function jsonMap() {
     if (tipoForma == 0) {
-        console.log(objectMarker);
         return {
             tipoForma: tipoForma,
             objectData: objectMarker
         };
     }
 
+    if (tipoForma == 1) {
+        return {
+            tipoForma: tipoForma,
+            objectData: objectPolygon
+        }
+    }
+
     return {
         tipoForma: tipoForma,
-        objectData: objectPolygon
+        objectData: objectPoliline
     };
 }
