@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Ficha = require('../models/ficha');
 var ESTADO_ELIMINADO = require('../config/config').ESTADO_ELIMINADO;
 
@@ -5,7 +6,8 @@ module.exports = {
     list: list,
     select: select,
     insert: insert,
-    update: update
+    update: update,
+    report: report
 }
 
 function list(filtro) {
@@ -81,5 +83,17 @@ function update(id, ficha) {
             if (err) reject(err);
             resolve(data);
         });
+    });
+}
+
+function report(id) {
+    return new Promise((resolve, reject) => {
+        Ficha.findById(id)
+            .populate('usuario_reg', '-_id nombre')
+            .populate('usuario_eval', '-_id nombre')
+            .exec((err, data) => {
+                if (err) reject(err);
+                resolve(data);
+            });
     });
 }

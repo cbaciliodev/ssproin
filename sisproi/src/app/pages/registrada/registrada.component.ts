@@ -60,6 +60,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     this.registradaForm.patchValue(ficha);
     this.fichaForm.disable();
 
+    if (this.route.snapshot.queryParamMap.get('ver')) this.registradaForm.disable();
     if (ficha.estado_evaluacion == 2) this.registradaForm.disable();
   }
 
@@ -86,7 +87,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
         this.beforeProcess();
         this._ficha.save(this.registradaForm.value)
           .subscribe(
-            _ => swal('Atención', env.MSG.SUCCESS_PROCESS, 'success'),
+            _ => this.afterProcess(),
             _ => swal('Atención', env.MSG.ERROR_PROCESS, 'error'),
             () => this.processing = false);
       }
@@ -100,14 +101,19 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     else this.control('fecha_actual_eval').setValue(Date.now());
 
     this.control('estado_evaluacion').setValue(1);
-    this.control('usuario_reg').setValue(this.usuario);
+    this.control('usuario_eval').setValue(this.usuario);
   }
 
   private beforeProcess() {
     this.processing = true;
     this.control('estado_evaluacion').setValue(2);
     this.control('fecha_final_eval').setValue(Date.now());
-    this.control('usuario_reg').setValue(this.usuario);
+    this.control('usuario_eval').setValue(this.usuario);
+  }
+
+  private afterProcess() {
+    swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
+    this.registradaForm.disable();
   }
 
   public createSectores() {

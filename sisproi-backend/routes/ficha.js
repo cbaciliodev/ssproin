@@ -32,4 +32,11 @@ app.post('/update', (req, res) => {
     )
 });
 
+app.get('/report/:id', (req, res) => {
+    _ficha.report(req.params.id).then(
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+});
+
 module.exports = app;

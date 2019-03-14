@@ -178,6 +178,7 @@
                                 <th>Prioridad</th>
                                 <th>Modalidad</th>
                                 <th>Año de inicio</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -201,16 +202,25 @@
                                     </ng-container>
                                 </td>
                                 <td>{{fe.anio_inicio_posible}}</td>
+                                <td>
+                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="evaluacion" [queryParams]="{id: fe._id, ver: true}"
+                                        *ngIf="_accion.validate('AVER')">
+                                        <i class="fa fa-eye"></i> Ver
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm mr-1" (click)="download(fe._id)">
+                                        <i class="fa fa-file-pdf-o"></i> PDF
+                                    </button>
+                                </td>
                             </tr>
 
                             <tr *ngIf="loading">
-                                <td class="text-center" colspan="7">
+                                <td class="text-center" colspan="8">
                                     <i class="fa fa-spinner fa-pulse fa-2x"></i>
                                 </td>
                             </tr>
 
                             <tr *ngIf="fichas_evaluadas.length <= 0 && !loading">
-                                <td colspan="7">
+                                <td colspan="8">
                                     No se encontraron fichas evaluadas
                                 </td>
                             </tr>

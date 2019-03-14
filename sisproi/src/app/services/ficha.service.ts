@@ -33,4 +33,9 @@ export class FichaService {
     return this.http.post<any>(URL, data);
   }
 
+  report(id) {
+    let URL = env.URI_API.concat('ficha/report/', id);
+    return this.http.get<any>(URL);
+  }
+
 }
