@@ -14,52 +14,42 @@ export class ReporteService {
   constructor(private _param: ParamService) { }
 
   pdfFicha(ficha) {
+    const self = this;
+
     return {
       pageSize: 'A4',
+      pageMargins: [40, 40, 40, 60],
       content: [
         this.membrete(),
         this.fillText('INFORMACIÓN BÁSICA DEL PROYECTO'),
         this.infoFicha(ficha)
       ],
-      footer: this.footer(),
+      footer: function (currentPage, pageCount) {
+        if (currentPage == pageCount) return self.footerEnd(ficha, false);
+        return self.footerEach();
+      },
       styles: this.styles,
       images: this.images
     };
   }
 
   pdfEvaluaion(ficha) {
+    const self = this;
+
     return {
       pageSize: 'A4',
+      pageMargins: [40, 40, 40, 60],
       content: [
         this.membrete(),
         this.fillText('INFORMACIÓN BÁSICA DEL PROYECTO'),
         this.infoFicha(ficha),
         this.fillText('EVALUACIÓN'),
-        this.infoEvaluacion(ficha),
-
-        { canvas: [{ type: 'rect', x: 359, y: 0, w: .5, h: 60, lineColor: 'black' }] },
-        {
-          table: {
-            body: [
-              [{ text: 'REGISTRO', colSpan: 2 }, ''],
-              [{ text: 'Inicio', margin: [5, 0, 0, 0] }, { text: ': ' + this.dataPipe.transform(ficha.fecha_inicio_reg, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }],
-              [{ text: 'Fin', margin: [5, 0, 0, 0] }, { text: ': ' + this.dataPipe.transform(ficha.fecha_final_reg, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }],
-              [{ text: 'Usuario', margin: [5, 0, 0, 0] }, { text: ': ' + ficha.usuario_reg.nombre, color: '#666666' }]
-            ]
-          }, layout: 'noBorders', fontSize: 8, absolutePosition: { x: 251, y: 710 }
-        },
-        {
-          table: {
-            body: [
-              [{ text: 'EVALUACIÓN', colSpan: 2 }, ''],
-              [{ text: 'Inicio', margin: [5, 0, 0, 0] }, { text: ': ' + this.dataPipe.transform(ficha.fecha_inicio_eval, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }],
-              [{ text: 'Fin', margin: [5, 0, 0, 0] }, { text: ': ' + this.dataPipe.transform(ficha.fecha_final_eval, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }],
-              [{ text: 'Usuario', margin: [5, 0, 0, 0] }, { text: ': ' + ficha.usuario_eval.nombre, color: '#666666' }]
-            ]
-          }, layout: 'noBorders', fontSize: 8, absolutePosition: { x: 414, y: 710 }
-        },
+        this.infoEvaluacion(ficha)
       ],
-      footer: this.footer(),
+      footer: function (currentPage, pageCount) {
+        if (currentPage == pageCount) return self.footerEnd(ficha, true);
+        return self.footerEach();
+      },
       styles: this.styles,
       images: this.images
     };
@@ -186,15 +176,69 @@ export class ReporteService {
     };
   }
 
-  private footer() {
+  private footerEach() {
     return {
       table: {
         body: [
-          [{ text: [{ text: 'Fecha de creación: ', bold: true }, { text: this.dataPipe.transform(Date.now(), 'dd/MM/yyyy HH:mm:ss') }], fontSize: 8 }],
-          [{ text: [{ text: 'Usuario: ', bold: true }, { text: this.usuario }], fontSize: 8 }]
+          [
+            {
+              columns: [
+                [
+                  { text: [{ text: 'Fecha de creación: ', bold: true }, { text: this.dataPipe.transform(Date.now(), 'dd/MM/yyyy HH:mm:ss') }], margin: [0, 1, 0, 0] },
+                  { text: [{ text: 'Usuario: ', bold: true }, { text: this.usuario }], margin: [0, 1, 0, 0] }
+                ]
+              ], margin: [0, 10]
+            }
+          ]
         ]
-      }, layout: 'noBorders', margin: [40, 0, 0, 10]
+      }, layout: 'noBorders', margin: [40, 0], fontSize: 8
+    };
+  }
+
+  private footerEnd(ficha, evalu: boolean) {
+    let retorno = {
+      table: {
+        widths: ['*', 'auto'],
+        body: [
+          [
+            {
+              columns: [
+                [
+                  { text: [{ text: 'Fecha de creación: ', bold: true }, { text: this.dataPipe.transform(Date.now(), 'dd/MM/yyyy HH:mm:ss') }], margin: [0, 1, 0, 0] },
+                  { text: [{ text: 'Usuario: ', bold: true }, { text: this.usuario }], margin: [0, 1, 0, 0] }
+                ]
+              ], margin: [0, 10]
+            },
+            {
+              columns: [
+                [
+                  { text: 'REGISTRO' },
+                  { text: [{ text: 'Inicio: ' }, { text: this.dataPipe.transform(ficha.fecha_inicio_reg, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }], margin: [5, 1, 0, 0] },
+                  { text: [{ text: 'Fin: ' }, { text: this.dataPipe.transform(ficha.fecha_final_reg, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }], margin: [5, 1, 0, 0] },
+                  { text: [{ text: 'Usuario: ' }, { text: ficha.usuario_reg.nombre, color: '#666666' }], margin: [5, 1, 0, 0] }
+                ]
+              ], margin: [5, 0]
+            }
+          ]
+        ]
+      }, layout: 'noBorders', margin: [40, 0], fontSize: 8
+    };
+
+    if (evalu) {
+      retorno.table.widths.push('auto');
+      retorno.table.body[0].push({
+        columns: [
+          [
+            { text: 'EVALUACIÓN' },
+            { text: [{ text: 'Inicio: ' }, { text: this.dataPipe.transform(ficha.fecha_inicio_eval, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }], margin: [5, 1, 0, 0] },
+            { text: [{ text: 'Fin: ' }, { text: this.dataPipe.transform(ficha.fecha_final_eval, 'dd/MM/yyyy HH:mm:ss'), color: '#666666' }], margin: [5, 1, 0, 0] },
+            { text: [{ text: 'Usuario: ' }, { text: ficha.usuario_eval.nombre, color: '#666666' }], margin: [5, 1, 0, 0] }
+          ]
+        ], margin: [5, 0]
+      });
     }
+
+    return retorno;
   }
 
   private fillText(text) {
