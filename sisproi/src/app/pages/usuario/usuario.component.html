@@ -16,7 +16,7 @@
                           <tr>
                               <th>Nombre</th>
                               <th>Correo</th>
-                              <th>Perfil</th>
+                              <!-- <th>Perfil</th> -->
                               <th>Acción</th>
                           </tr>
                       </thead>
@@ -24,7 +24,7 @@
                           <tr *ngFor="let lu of listaUsuarios">
                               <td>{{lu.nombre}}</td>
                               <td> {{lu.correo}}</td>
-                              <td>{{lu.perfil}}</td>
+                              <!-- <td>{{lu.perfil}}</td> -->
                               <td>
                                  <button class="btn btn-outline-secondary btn-sm" routerLink="/signup" [queryParams]="{id: lu._id}">
                                       <i class="fa fa-edit"></i> Editar
