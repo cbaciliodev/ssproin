@@ -1,0 +1,228 @@
+<div class="card">
+  <div class="card-body collapse show">
+    <form [formGroup]="productivaForm">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nombre del proyecto</label>
+        <div class="col-sm-10" [class.has-danger]="invalid('nombre_proyecto')">
+          <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
+          <div class="pt-1" *ngIf="invalid('nombre_proyecto')">
+            <span class="form-control-feedback">
+              <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Operador</label>
+        <div class="col-sm-10">
+          <input formControlName="operador" type="text" class="form-control" placeholder="Operador">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Inversionista(s)</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input formControlName="inversion" type="text" class="form-control" placeholder="Inversionista">
+            <button class="btn btn-info" (click)="addInversion()" [disabled]="valor('inversion') == ''">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="inversionistas.controls.length > 0">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+          <ul>
+            <li *ngFor="let inv of inversionistas.value; let i=index">
+              <button class="btn btn-danger btn-sm" (click)="inversionistas.removeAt(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+              {{inv}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Región(es)</label>
+        <div class="col-sm-10">
+          <select #region formControlName="departamento" class="form-control" (change)="addRegion(region.value)">
+            <option value="">-- seleccione --</option>
+            <option *ngFor="let dep of departamentos; let i=index" [value]="i">{{dep.alias}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="regiones.controls.length > 0">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+          <ul>
+            <li *ngFor="let rg of regiones.value; let i=index">
+              <button class="btn btn-danger btn-sm" (click)="regiones.removeAt(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+              {{rg.alias}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Ubicación geográfica</label>
+        <div class="col-sm-10">
+          <app-mapa-upload #ubicacionGeografica [data]="valor('ubicacion')"></app-mapa-upload>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Inversión global (US$)</label>
+        <div class="col-sm-4">
+          <input formControlName="inversion_global" type="number" class="form-control" placeholder="Inversión global">
+        </div>
+        <label class="col-sm-2 col-form-label">Inversión ejecutada (US$)</label>
+        <div class="col-sm-4">
+          <input formControlName="inversion_ejecutada" type="number" class="form-control"
+            placeholder="Inversión ejecutada">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Año inicio de construcción</label>
+        <div class="col-sm-4">
+          <input formControlName="anio_contruccion" type="number" class="form-control"
+            placeholder="Año inicio de construcción">
+        </div>
+        <label class="col-sm-2 col-form-label">Año inicio de operaciones </label>
+        <div class="col-sm-4">
+          <input formControlName="anio_operacion" type="number" class="form-control"
+            placeholder="Año inicio de operaciones">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2">Tipo de proyecto</label>
+        <div class="col-sm-10">
+          <div *ngFor="let tp of tipo_proyecto; let i=index" class="form-check">
+            <input formControlName="tipo_proyecto" class="form-check-input" type="radio" [id]="'tp_' + i"
+              [value]="tp.nombre">
+            <label class="form-check-label" [for]="'tp_' + i">{{tp.alias}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tipo de yacimiento</label>
+        <div class="col-sm-10">
+          <input formControlName="tipo_yacimiento" type="text" class="form-control" placeholder="Tipo de yacimiento">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Vida útil de mina</label>
+        <div class="col-sm-4">
+          <input formControlName="vida_util" type="number" class="form-control" placeholder="Vida útil de mina">
+        </div>
+        <label class="col-sm-2 col-form-label">Potencia de energía</label>
+        <div class="col-sm-4">
+          <input formControlName="potencia_energia" type="number" class="form-control" placeholder="(MVA)">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2">Fuente de agua</label>
+        <div class="col-sm-10">
+          <div formArrayName="fuente_agua" class="col-sm-10">
+            <div *ngFor="let fa of fuente_agua_array.controls; let i=index" class="form-check">
+              <input [formControlName]="i" class="form-check-input" type="checkbox" [id]="'fa_' + i">
+              <label class="form-check-label" [for]="'fa_' + i">{{fuente_agua[i].alias}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Capacidad de agua</label>
+        <div class="col-sm-10">
+          <input formControlName="capacidad_agua" type="text" class="form-control" placeholder="Capacidad de agua">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Producción anual estimada</label>
+        <div class="col-sm-10">
+          <input formControlName="produccion_anual" type="text" class="form-control"
+            placeholder="Producción anual estimada">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2">Etapa de avance</label>
+        <div class="col-sm-10">
+          <div *ngFor="let ea of etapa_avance; let i=index" class="form-check">
+            <input formControlName="etapa_avance" class="form-check-input" type="radio" [id]="'ea' + i"
+              [value]="ea.nombre">
+            <label class="form-check-label" [for]="'ea' + i">{{ea.alias}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Observación</label>
+        <div class="col-sm-10">
+          <textarea formControlName="observacion_avance" class="form-control" rows="3" placeholder="Observación">
+          </textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2">Estudio de impacto Ambiental</label>
+        <div class="col-sm-10">
+          <div *ngFor="let ep of etapa_proceso; let i=index" class="form-check">
+            <input formControlName="impacto_ambiental" class="form-check-input" type="radio" [id]="'epe' + i"
+              [value]="ep.nombre">
+            <label class="form-check-label" [for]="'epe' + i">{{ep.alias}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Observación</label>
+        <div class="col-sm-10">
+          <textarea formControlName="observacion_ambiental" class="form-control" rows="3" placeholder="Observación">
+          </textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2">Inicio de Actividades de Explotación</label>
+        <div class="col-sm-10">
+          <div *ngFor="let ep of etapa_proceso; let i=index" class="form-check">
+            <input formControlName="actividad_explotacion" class="form-check-input" type="radio" [id]="'epi' + i"
+              [value]="ep.nombre">
+            <label class="form-check-label" [for]="'epi' + i">{{ep.alias}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Observación</label>
+        <div class="col-sm-10">
+          <textarea formControlName="observacion_explotacion" class="form-control" rows="3" placeholder="Observación">
+          </textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2">Concesión de Beneficio</label>
+        <div class="col-sm-10">
+          <div *ngFor="let ep of etapa_proceso; let i=index" class="form-check">
+            <input formControlName="concesion_beneficio" class="form-check-input" type="radio" [id]="'epc' + i"
+              [value]="ep.nombre">
+            <label class="form-check-label" [for]="'epc' + i">{{ep.alias}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Observación</label>
+        <div class="col-sm-10">
+          <textarea formControlName="observacion_beneficio" class="form-control" rows="3" placeholder="Observación">
+          </textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Datos adicionales del proyecto</label>
+        <div class="col-sm-10">
+          <textarea formControlName="dato_adicional" class="form-control" rows="4" placeholder="Datos adicionales">
+          </textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()"
+  [disabled]="saving" *ngIf="_accion.validate('AEDITAR')">
+  <i class="fa no-animation" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i>
+</button>

@@ -21,6 +21,7 @@ app.use(function(req, res, next) {
 // Importando rutas
 var appRoutes = require('./routes/app');
 var loginRoutes = require('./routes/login');
+var productivaRoutes = require('./routes/productiva');
 var parametroRoutes = require('./routes/parametro');
 var fichaRoutes = require('./routes/ficha');
 var serveIndex = require('serve-index');
@@ -28,6 +29,7 @@ var usuarioRoutes = require('./routes/usuario');
 var filesRoutes = require('./routes/fileUpload');
 
 // Route
+app.use('/productiva', productivaRoutes);
 app.use('/parametro', parametroRoutes);
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);

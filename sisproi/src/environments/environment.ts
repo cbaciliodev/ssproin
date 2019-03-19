@@ -1,7 +1,3 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false,
   URI_API: 'http://localhost:3040/',
@@ -21,15 +17,22 @@ export const environment = {
     NIVEL_AVANCE: 'NIVEL_AVANCE',
     DEPARTAMENTO: 'DEPARTAMENTO',
     MES: 'MES',
-    PRIORIDAD_POLITICA: 'PRIORIDAD_POLITICA'
+    PRIORIDAD_POLITICA: 'PRIORIDAD_POLITICA',
+    TIPO_PROYECTO: 'TIPO_PROYECTO',
+    ETAPA_AVANCE: 'ETAPA_AVANCE',
+    ETAPA_PROCESO: 'ETAPA_PROCESO',
+    FUENTE_AGUA: 'FUENTE_AGUA'
   },
   MSG: {
     SUCCESS_INSERT: 'El registro fue guardado correctamente',
     SUCCESS_UPDATE: 'El registro fue actualizado correctamente',
+    SUCCESS_DELETE: 'El registro fue eliminado correctamente',
     SUCCESS_PROCESS: 'El registro fue procesado correctamente',
     SUCCESS_FILE: 'El archivo fue cargado correctamente',
     WARN_PROCESS: 'Una vez procesado, no podrá editar el registro',
+    WARN_DELETE: 'Esta seguro de eliminar el registro seleccionado?',
     ERROR_INSERT: 'Tuvimos problemas al guardar el registro',
+    ERROR_DELETE: 'Tuvimos problemas al eliminar el registro',
     ERROR_PROCESS: 'Tuvimos problemas al procesar el registro',
     ERROR_LIST: 'Tuvimos problemas al listar los registros'
   },

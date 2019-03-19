@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var Ficha = require('../models/ficha');
 var ESTADO_ELIMINADO = require('../config/config').ESTADO_ELIMINADO;
 
