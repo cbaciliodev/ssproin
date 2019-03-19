@@ -7,7 +7,10 @@ module.exports = {
     select: select,
     insert: insert,
     update: update,
-    report: report
+    report: report,
+    listRegistro:listRegistro,
+    listEvaluacion:listEvaluacion,
+
 }
 
 function list(filtro) {
@@ -57,6 +60,46 @@ function list(filtro) {
             })
     });
 }
+
+
+function listRegistro() {
+ 
+        var array = [];
+        var sector = ['PTRANSPORTE','PAGUA_SANEA','PENERGIA','PTELECOMUNIC','PRIEGO','PSALUD','PEDUCACION'];
+    
+        return new Promise((resolve, rejec) => {
+            function rep(i){
+                Ficha.find({ sector_nivel_1: sector[i],estado_registro : 1}).exec((err, reg) => {
+                    Ficha.find({ sector_nivel_1: sector[i],estado_registro : 2}).exec((err, data) => {
+                        Ficha.find({ sector_nivel_1: sector[i],estado_evaluacion : 1}).exec((err, e1) => {
+                            Ficha.find({ sector_nivel_1: sector[i],estado_evaluacion : 2}).exec((err, e2) => {
+
+                        if (err) rejec(err);
+                        array.push({sector:sector[i],Registro:reg.length,RegistroFin:data.length,Evaluacion:e1.length,Evaluados:e2.length});
+                        if(i==6){
+                            resolve(array);
+                        }else{
+                            rep(i+1);
+                        }
+                            });
+                         });
+                    });
+                });
+            }
+         rep(0);
+        });              
+}
+
+
+function listEvaluacion() {
+    return new Promise((resolve, rejec) => {
+        Ficha.find().exec((err, data) => {
+            if (err) rejec(err);
+            resolve(data);
+        });
+    });
+}
+
 
 function select(id) {
     return new Promise((resolve, reject) => {

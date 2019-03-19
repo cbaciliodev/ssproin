@@ -39,4 +39,28 @@ app.get('/report/:id', (req, res) => {
     );
 });
 
+app.get('/registro', (req, res) => {
+    _ficha.listRegistro().then(
+        /* data =>{ 
+            _http.ok(res, _http.HTTP_RESP.SUCCESSFULL,res.status(200).json({cantidad:data.length,fichas:data}));
+        },
+        erro => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, erro)); */
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+    
+});
+
+app.get('/evaluacion', (req, res) => {
+    _ficha.listEvaluacion().then(
+        /* data =>{ 
+            _http.ok(res, _http.HTTP_RESP.SUCCESSFULL,res.status(200).json({cantidad:data.length,fichas:data}));
+        },
+        erro => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, erro)); */
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+    
+});
+
 module.exports = app;
