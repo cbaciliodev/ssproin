@@ -12,7 +12,8 @@ export class SidebarService {
       icono: 'mdi mdi-gauge',
       submenu: [
         { titulo: 'Registros sectoriales', url: '/ficha' },
-        { titulo: 'Evaluación sectorial', url: '/registrada' }
+        { titulo: 'Evaluación sectorial', url: '/registrada' },
+        { titulo: 'Fichas productivas', url: '/productiva' }
       ]
     }
      ,{
