@@ -58,43 +58,43 @@
         <div class="row">
             <ng-container *ngIf="have('PTRASNPORTE')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Transporte" sector="PTRASNPORTE" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Transporte" sector="PTRASNPORTE" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PAGUA_SANEA')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Agua y Saneamiento Urbano" sector="PAGUA_SANEA" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Agua y Saneamiento Urbano" sector="PAGUA_SANEA" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PENERGIA')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Energía" sector="PENERGIA" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Energía" sector="PENERGIA" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PTELECOMUNIC')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Telecomunicaciones" sector="PTELECOMUNIC" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Telecomunicaciones" sector="PTELECOMUNIC" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PRIEGO')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Riego" sector="PRIEGO" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Riego" sector="PRIEGO" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PSALUD')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Salud" sector="PSALUD" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Salud" sector="PSALUD" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PEDUCACION')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Educación" sector="PEDUCACION" (pyRegOut)="incrementaPyRegistrados($event)" (pyEvOut)="incrementaPyEvaluados($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Educación" sector="PEDUCACION" (sumary)="summary($event)"></app-detalle-py>
                 </div>
             </ng-container>
 

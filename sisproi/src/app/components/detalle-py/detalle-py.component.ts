@@ -11,8 +11,7 @@ export class DetallePyComponent implements OnInit {
 
   @Input() titulo: string;
   @Input() sector: string;
-  @Output() pyRegOut = new EventEmitter();
-  @Output() pyEvOut = new EventEmitter();
+  @Output() sumary = new EventEmitter();
 
   proyectos = 0;
   recibidos = 0;
@@ -38,8 +37,7 @@ export class DetallePyComponent implements OnInit {
 
       this.proyectos = xhr.data.Registro + xhr.data.RegistroFin;
 
-      this.pyRegOut.emit( this.registrados + '' );
-      this.pyEvOut.emit( this.evaluados + '' );
+      this.sumary.emit( { registrados: this.registrados, evaluados: this.evaluados, total: this.proyectos } );
 
       if (Number(this.proyectos) !== 0) {
         this.recibidosPrc =  (this.recibidos / this.proyectos * 100).toFixed() + '%' ;
