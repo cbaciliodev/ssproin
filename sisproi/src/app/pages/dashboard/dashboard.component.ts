@@ -13,6 +13,13 @@ export class DashboardComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor( public _usuario: UsuarioService ) { }
 
+  pyRegistrados = 0;
+  pyRegistradosP = '';
+  pyEvaluados = 0;
+  pyEvaluadosP = '';
+
+  pyTotal = 0;
+
   ngOnInit() {
     init_plugins();
   }
@@ -29,6 +36,20 @@ export class DashboardComponent implements OnInit {
     }
 
     return false;
+  }
+
+  incrementaPyRegistrados( emmit ) {
+    this.pyRegistrados = this.pyRegistrados + Number(emmit);
+    this.pyTotal = this.pyTotal + this.pyRegistrados;
+
+    this.pyRegistradosP =  (this.pyRegistrados / this.pyTotal * 100).toFixed() + '%' ;
+  }
+
+  incrementaPyEvaluados( emmit ) {
+    this.pyEvaluados = this.pyEvaluados + Number(emmit);
+    this.pyTotal = this.pyTotal + this.pyEvaluados;
+
+    this.pyEvaluadosP =  (this.pyEvaluados / this.pyTotal * 100).toFixed() + '%' ;
   }
 
 }
