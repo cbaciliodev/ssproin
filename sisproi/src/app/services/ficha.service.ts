@@ -11,7 +11,7 @@ export class FichaService {
   constructor(private http: HttpClient) { }
 
   list(filtro) {
-    let URL = env.URI_API.concat('ficha/');
+    const URL = env.URI_API.concat('ficha/');
     return this.http.post<any>(URL, filtro).pipe(
       map(res => {
         let estado_0 = res.data.find(f => f.estado === 0);
@@ -24,17 +24,31 @@ export class FichaService {
   }
 
   get(id) {
-    let URL = env.URI_API.concat('ficha/select/', id);
+    const URL = env.URI_API.concat('ficha/select/', id);
     return this.http.get<any>(URL);
   }
 
   save(data) {
-    let URL = env.URI_API.concat('ficha/', data._id ? 'update' : 'insert');
+    const URL = env.URI_API.concat('ficha/', data._id ? 'update' : 'insert');
     return this.http.post<any>(URL, data);
   }
 
   report(id) {
-    let URL = env.URI_API.concat('ficha/report/', id);
+    const URL = env.URI_API.concat('ficha/report/', id);
+    return this.http.get<any>(URL);
+  }
+
+  csv() {
+    let URL = env.URI_API.concat('ficha/reportCSV');
+    return this.http.get<any>(URL).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+
+  summary( sector: string ) {
+    const URL = env.URI_API.concat( 'ficha/estado/', sector );
     return this.http.get<any>(URL);
   }
 
