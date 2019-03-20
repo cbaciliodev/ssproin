@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-detalle-py',
@@ -10,6 +11,8 @@ export class DetallePyComponent implements OnInit {
 
   @Input() titulo: string;
   @Input() sector: string;
+  @Output() pyRegOut = new EventEmitter();
+  @Output() pyEvOut = new EventEmitter();
 
   proyectos = 0;
   recibidos = 0;
@@ -34,6 +37,9 @@ export class DetallePyComponent implements OnInit {
       this.evaluados = xhr.data.Evaluados;
 
       this.proyectos = xhr.data.Registro + xhr.data.RegistroFin;
+
+      this.pyRegOut.emit( this.registrados + '' );
+      this.pyEvOut.emit( this.evaluados + '' );
 
       if (Number(this.proyectos) !== 0) {
         this.recibidosPrc =  (this.recibidos / this.proyectos * 100).toFixed() + '%' ;
