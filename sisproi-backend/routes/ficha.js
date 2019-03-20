@@ -39,6 +39,13 @@ app.get('/report/:id', (req, res) => {
     );
 });
 
+app.get('/reportCSV', (req, res) => {
+    _ficha.reportCVS().then(
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+});
+
 app.get('/estado/:sector', (req, res) => {
     _ficha.estadoFicha(req.params.sector).then(
         data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),

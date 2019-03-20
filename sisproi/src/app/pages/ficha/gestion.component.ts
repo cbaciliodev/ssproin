@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { AccionService } from 'src/app/services/accion.service';
 import { ReporteService } from 'src/app/services/reporte.service';
 import { environment as env } from 'src/environments/environment';
+import { fichaHeader } from 'src/app/commons/constant';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Parametro } from 'src/app/models/parametro.model';
 import { saveAs } from 'file-saver';
@@ -21,11 +22,17 @@ export class GestionFComponent implements OnInit {
   public currentPage = 1;
 
   public loading = false;
+  public generating = false;
   public fichas_registro: Array<any> = [];
   public fichas_registradas: Array<any> = [];
 
   public filtroForm: FormGroup;
   public sector_1: Array<Parametro> = [];
+
+  public dataCSV: any[] = [];
+  public headerCSV = fichaHeader;
+  public filenameCSV: string = '';
+  @ViewChild('fichaCSV') fichaCSV: ElementRef;
 
   constructor(private builder: FormBuilder,
     private _ficha: FichaService,
@@ -71,6 +78,21 @@ export class GestionFComponent implements OnInit {
         }, err => console.log('Error', err),
         () => console.log('Complete')
       )
+  }
+
+  public reporteCSV() {
+    this.generating = true;
+    this._ficha.csv()
+      .subscribe(
+        res => {
+          this.dataCSV = res.data;
+          this.filenameCSV = `ficha_${Date.now()}.csv`;
+          setTimeout(_ => {
+            this.fichaCSV.nativeElement.click();
+          }, 200);
+        }, err => console.log('Error', err),
+        () => this.generating = false
+      );
   }
 
   get filtro() {

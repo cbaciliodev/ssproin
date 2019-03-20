@@ -38,6 +38,15 @@ export class FichaService {
     return this.http.get<any>(URL);
   }
 
+  csv() {
+    let URL = env.URI_API.concat('ficha/reportCSV');
+    return this.http.get<any>(URL).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+
   summary( sector: string ) {
     const URL = env.URI_API.concat( 'ficha/estado/', sector );
     return this.http.get<any>(URL);
