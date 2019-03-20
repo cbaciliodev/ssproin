@@ -7,9 +7,7 @@ module.exports = {
     insert: insert,
     update: update,
     report: report,
-    listRegistro:listRegistro,
-    listEvaluacion:listEvaluacion,
-
+    estadoFicha:estadoFicha,
 }
 
 function list(filtro) {
@@ -17,9 +15,9 @@ function list(filtro) {
         Ficha.aggregate()
             .match({
                 estado: { $ne: ESTADO_ELIMINADO },
-                sector_nivel_1: { $regex: `.*${filtro.sector_nivel_1}.*` },
-                nombre_programa: { $regex: `.*${filtro.nombre_programa}.*`, $options: 'i' },
-                nombre_proyecto: { $regex: `.*${filtro.nombre_proyecto}.*`, $options: 'i' }
+                sector_nivel_1: { $regex: `.${filtro.sector_nivel_1}.` },
+                nombre_programa: { $regex: `.${filtro.nombre_programa}.`, $options: 'i' },
+                nombre_proyecto: { $regex: `.${filtro.nombre_proyecto}.`, $options: 'i' }
             })
             .lookup({
                 from: 'parametro',
@@ -60,43 +58,19 @@ function list(filtro) {
     });
 }
 
-
-function listRegistro() {
- 
-        var array = [];
-        var sector = ['PTRANSPORTE','PAGUA_SANEA','PENERGIA','PTELECOMUNIC','PRIEGO','PSALUD','PEDUCACION'];
-    
-        return new Promise((resolve, rejec) => {
-            function rep(i){
-                Ficha.find({ sector_nivel_1: sector[i],estado_registro : 1}).exec((err, reg) => {
-                    Ficha.find({ sector_nivel_1: sector[i],estado_registro : 2}).exec((err, data) => {
-                        Ficha.find({ sector_nivel_1: sector[i],estado_evaluacion : 1}).exec((err, e1) => {
-                            Ficha.find({ sector_nivel_1: sector[i],estado_evaluacion : 2}).exec((err, e2) => {
-
-                        if (err) rejec(err);
-                        array.push({sector:sector[i],Registro:reg.length,RegistroFin:data.length,Evaluacion:e1.length,Evaluados:e2.length});
-                        if(i==6){
-                            resolve(array);
-                        }else{
-                            rep(i+1);
-                        }
-                            });
-                         });
-                    });
+function estadoFicha(sector) {
+    return new Promise((resolve, rejec) => {     
+        Ficha.find({ sector_nivel_1: sector,estado_registro : 1}).exec((err, r1) => {
+            Ficha.find({ sector_nivel_1:sector,estado_registro : 2}).exec((err, r2) => {
+                Ficha.find({ sector_nivel_1: sector,estado_evaluacion : 1}).exec((err, e1) => {
+                    Ficha.find({ sector_nivel_1: sector,estado_evaluacion : 2}).exec((err, e2) => {
+                        if (err) rejec(err); 
+                        resolve({sector:sector,Registro:r1.length,RegistroFin:r2.length,Evaluacion:e1.length,Evaluados:e2.length});
+                    });   
                 });
-            }
-         rep(0);
-        });              
-}
-
-
-function listEvaluacion() {
-    return new Promise((resolve, rejec) => {
-        Ficha.find().exec((err, data) => {
-            if (err) rejec(err);
-            resolve(data);
+            });
         });
-    });
+    }); 
 }
 
 
