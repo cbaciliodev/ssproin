@@ -20,8 +20,8 @@ export class ParamService {
     return this.alias(this.nivel_1.find(_p => _p.nombre == nombre));
   }
 
-  prioridad(nombre: string) {
-    if (!nombre) return 'No registrada';
+  prioridad(nombre: string, csv?) {
+    if (!nombre) return csv ? '' : 'No registrada';;
     return this.alias(this.prioridad_sector.find(_p => _p.nombre == nombre));
   }
 
@@ -45,8 +45,8 @@ export class ParamService {
     return this.alias(this.prioridad_riesgo.find(_p => _p.nombre == nombre));
   }
 
-  politica(nombre: string) {
-    if (!nombre) return 'No registrada';
+  politica(nombre: string, csv?) {
+    if (!nombre) return csv ? '' : 'No registrada';
     let alias: string = this.alias(this.prioridad_politica.find(_p => _p.nombre == nombre))
     return alias.toUpperCase();
   }
