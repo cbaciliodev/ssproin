@@ -12,7 +12,7 @@ app.post('/', (req, res) => {
 
     var body = req.body;
 
-    Usuario.findOne({ correo: body.correo }, (err, usuarioDB) => {
+    Usuario.findOne({ correo: {$regex: body.correo, $options:"i"}  }, (err, usuarioDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -41,8 +41,6 @@ app.post('/', (req, res) => {
          }
 
         // Crear un token!!!
-        usuarioDB.password = ':)';
-
         var token = jwt.sign({ usuario: usuarioDB }, SEED, { expiresIn: 14400 }); // 4 horas
 
         res.status(200).json({

@@ -7,9 +7,9 @@ var usuarioSchema = new Schema({
     nombre: { type: String, required: [true, 'Nombre es requerido'] },
     correo: { type: String, required: [true, 'Email es requerido'], unique: true },
     password: { type: String, required: [true, 'Contraseña es requerida'] },
-    avatar: { type: String },
     sector: [{ type: String }],
-    accion: [{ type: String }]
+    accion: [{ type: String }],
+    avatar: { type: String }
 }, { collection: 'usuario' });
 
 // Se utiliza {PATH} para leer la propiedad del campo

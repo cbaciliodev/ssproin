@@ -5,7 +5,7 @@
 </div>
 
 <button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-6" (click)="procesar()"
-  [disabled]="processing" *ngIf="valor('estado_registro') == 1 && _accion.validate('AEVALUAR')">
+  [disabled]="processing" *ngIf="valor('estado_registro') == 1 && _accion.validate('AEDITAR')">
   <i class="fa no-animation" [ngClass]="{'fa-check': !processing, 'fa-spinner fa-pulse': processing}"></i>
 </button>
 

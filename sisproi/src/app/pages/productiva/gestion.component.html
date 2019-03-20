@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-body">
+
+        <form [formGroup]="filtroForm" (ngSubmit)="getProductivas()" class="pt-2 pb-4">
+            <div class="row">
+                <div class="form-group col-md-3 col-12">
+                    <label>Proyecto</label>
+                    <input formControlName="nombre_proyecto" type="text" class="form-control"
+                        placeholder="Nombre del proyecto">
+                </div>
+                <div class="form-group col-md-3 col-12">
+                    <label>Operador</label>
+                    <input formControlName="operador" type="text" class="form-control"
+                        placeholder="Operador del proyecto">
+                </div>
+                <div class="col-md-2 col-12 p-0">
+                    <div class="form-group">
+                        <label>&nbsp;</label><br>
+                        <button type="submit" class="btn btn-info">
+                            <i class="fa fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Proyecto</th>
+                        <th>Operador</th>
+                        <th>Inversión global</th>
+                        <th>Inversión ejecutada</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fp of fichas_productivas">
+                        <td>{{fp.nombre_proyecto}}</td>
+                        <td>{{fp.operador}}</td>
+                        <td>{{fp.inversion_global | currency:'$ '}}</td>
+                        <td>{{fp.inversion_ejecutada | currency:'$ '}}</td>
+                        <td>
+                            <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro"
+                                [queryParams]="{id: fp._id}" *ngIf="_accion.validate('AEDITAR')">
+                                <i class="fa fa-eye"></i> Editar
+                            </button>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(fp._id)"
+                                *ngIf="_accion.validate('AEDITAR')">
+                                <i class="fa fa-trash"></i> Elimnar
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="loading">
+                        <td class="text-center" colspan="5">
+                            <i class="fa fa-spinner fa-pulse fa-2x"></i>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="fichas_productivas.length <= 0 && !loading">
+                        <td colspan="5">
+                            No se encontraron fichas productivas
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>Mostrando {{fichas_productivas.length}} fichas productivas</div>
+
+        </div>
+    </div>
+</div>
+
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm"
+    *ngIf="_accion.validate('AEDITAR')" routerLink="registro">
+    <i class="fa fa-plus no-animation"></i>
+</button>

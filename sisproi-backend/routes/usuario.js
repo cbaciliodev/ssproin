@@ -61,12 +61,14 @@ app.put('/:id',  (req, res) => {
 app.post('/',(req, res) => {
 
     var body = req.body;
+    console.log(body)
     var usuario = new Usuario({
         nombre: body.nombre,
         correo: body.correo,
         password: bcrypt.hashSync(body.password),
-        avatar: body.avatar,
-        perfil: body.perfil
+        sector: body.sector,
+        accion: body.accion,
+        avatar: body.avatar 
     });
 
     _usuario.crear(usuario).

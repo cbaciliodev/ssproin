@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { AccionService } from 'src/app/services/accion.service';
+import { ReporteService } from 'src/app/services/reporte.service';
 import { environment as env } from 'src/environments/environment';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Parametro } from 'src/app/models/parametro.model';
-import { pdfData } from 'src/app/commons/constant';
 import { saveAs } from 'file-saver';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -28,8 +28,9 @@ export class GestionFComponent implements OnInit {
   public sector_1: Array<Parametro> = [];
 
   constructor(private builder: FormBuilder,
-    private _fichas: FichaService,
-    public _accion: AccionService) { }
+    private _ficha: FichaService,
+    public _accion: AccionService,
+    private _reporte: ReporteService) { }
 
   ngOnInit() {
     this.configParametros();
@@ -42,7 +43,7 @@ export class GestionFComponent implements OnInit {
     this.fichas_registro = [];
     this.fichas_registradas = [];
 
-    this._fichas.list(this.filtro)
+    this._ficha.list(this.filtro)
       .subscribe(
         res => {
           if (res.estado_1) this.fichas_registro = res.estado_1.lista_fichas;
@@ -58,17 +59,24 @@ export class GestionFComponent implements OnInit {
     console.log(skip);
   }
 
-  public download() {
-    let pdfGenerator = pdfMake.createPdf(pdfData);
-    pdfGenerator.getBlob((blob) => {
-      saveAs(blob, `${new Date().getTime()}.pdf`);
-    });
+  public download(row) {
+    this._ficha.report(row)
+      .subscribe(
+        res => {
+          let ficha = this._reporte.pdfFicha(res.data);
+          let pdfGenerator = pdfMake.createPdf(ficha);
+          pdfGenerator.getBlob((blob) => {
+            saveAs(blob, `${new Date().getTime()}.pdf`);
+          });
+        }, err => console.log('Error', err),
+        () => console.log('Complete')
+      )
   }
 
   get filtro() {
     return this.filtroForm.value;
   }
-  
+
   private configFiltro() {
     this.filtroForm = this.builder.group({
       tipo: ['estado_registro'],

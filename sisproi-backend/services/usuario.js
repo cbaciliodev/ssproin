@@ -1,5 +1,5 @@
 var Usuario = require('../models/usuario');
-
+var bcrypt = require('bcryptjs');
 
 module.exports = {
     list: list,
@@ -32,7 +32,7 @@ function list() {
 //lista todos los usuarios execepto el que esta en uso
 function listUsuarios(id) {
     return new Promise((resolve, rejec) => {
-        Usuario.find({ _id: { $nin: [id] } }).exec((err, data) => {
+         Usuario.find({ _id: { $nin: [id] } }).exec((err, data) => {
             if (err) rejec(err);
             resolve(data);
         });
@@ -41,7 +41,8 @@ function listUsuarios(id) {
 //BUSCAR CORREO PARA COMPROBAR DUPLICIDAD
 function buscarCorreo(correo) {
     return new Promise((resolve, rejec) => {
-        Usuario.find({ correo: { $eq: [correo] } }).exec((err, data) => {
+        
+        Usuario.find({ correo: {$regex: correo, $options:"i"} }).exec((err, data) => {
             if (err) rejec(err);
             resolve(data);
         });
@@ -54,7 +55,9 @@ function actualizar(id,usuario) {
             if (err) reject(err);
         
         data.nombre = usuario.nombre;
-        data.perfil = usuario.perfil;
+        data.password=bcrypt.hashSync(usuario.password);
+        data.accion=usuario.accion;
+        data.sector=usuario.sector;
 
         data.save((err, data) => {
             if (err) reject(err);

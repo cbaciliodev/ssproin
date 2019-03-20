@@ -22,6 +22,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { MapaUpload2Component } from '../components/mapa-upload.2/mapa-upload-2.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { SignupComponent } from './usuario/signup.component';
+import { ProductivaComponent } from './productiva/productiva.component';
+import { GestionPComponent } from './productiva/gestion.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { SignupComponent } from './usuario/signup.component';
         RegistradaComponent,
         GestionRComponent,
         UsuarioComponent,
-        SignupComponent
+        SignupComponent,
+        ProductivaComponent,
+        GestionPComponent
     ],
     exports: [
         DashboardComponent,

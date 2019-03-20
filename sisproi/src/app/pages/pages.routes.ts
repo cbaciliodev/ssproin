@@ -10,6 +10,9 @@ import { FichaResolver } from '../services/resolvers/ficha.resolver';
 import { RegistradaComponent } from './registrada/registrada.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { SignupComponent } from './usuario/signup.component';
+import { GestionPComponent } from './productiva/gestion.component';
+import { ProductivaComponent } from './productiva/productiva.component';
+import { ProductivaResolver } from '../services/resolvers/productiva.resolver';
 
 const pagesRoutes: Routes = [
     {
@@ -41,6 +44,16 @@ const pagesRoutes: Routes = [
             {
                 path: 'registrada/evaluacion', component: RegistradaComponent, resolve: { ficha: FichaResolver }, data: {
                     title: 'Ficha registrada', routes: [{ title: 'Gestión', link: '/registrada' }, { title: 'Ficha registrada' }]
+                }
+            },
+            {
+                path: 'productiva', component: GestionPComponent, data: {
+                    title: 'Fichas productivas', routes: [{ title: 'Fichas productivas' }]
+                }
+            },
+            {
+                path: 'productiva/registro', component: ProductivaComponent, resolve: { productiva: ProductivaResolver }, data: {
+                    title: 'Ficha productiva', routes: [{ title: 'Gestión', link: '/productiva' }, { title: 'Registro de productiva' }]
                 }
             },
             {

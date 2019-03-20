@@ -42,48 +42,106 @@
                   </div>
                 </div>
 
-                  <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Perfil </label>
 
-                    <div class="col-sm-10 col-form-label">
-                       <div class="form-group row ">
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Accion(es) </label>
+
+                    <div class="custom-control custom-checkbox">
+                        <input formControlName="Editar" name="Editar" type="checkbox" class="custom-control-input" id="CheckEditar" (focus)="invalido = false">
+                        <label class="custom-control-label" for="CheckEditar">Editar</label>
+                      </div>
+
+                      <div class="custom-control custom-checkbox">
+                        <input formControlName="Evaluar" name="Evaluar" type="checkbox" class="custom-control-input" id="CheckEvaluar" (focus)="invalido = false">
+                        <label class="custom-control-label" for="CheckEvaluar">Evaluar</label>
+                      </div>
+
+                      <div class="custom-control custom-checkbox">
+                        <input  formControlName="Ver" name="Ver" type="checkbox" class="custom-control-input" id="CheckVer" (focus)="invalido = false">
+                        <label class="custom-control-label" for="CheckVer">Ver</label>
+                      </div>
+
+                </div>
+
+
+                <div class="form-group row">
+                        <label class="col-sm-2">Sector(es)</label>
+                        <div class="col-sm-4">
+                            <select #depart class="form-control"
+                                (change)="changeSector(depart.value)" (focus)="invalido = false">
+                                <option value="">-- seleccione --</option>
+                                <option *ngFor="let dep of sector; let i=index" [value]="i" >{{dep.alias}}</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="form-group row" *ngIf="sectores.length > 0">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <ng-container *ngFor="let dep of sectores; let i=index">
+                                <span class="label label-info label-rounded mr-1">
+                                    {{dep.alias}} <i class="fa fa-times" (click)="removeSector(i)"></i>
+                                </span>
+                        </ng-container>
+                    </div>
+                </div> 
+
+
+
+                <div *ngIf="actualizar " >
+                    <div class="form-group row ">
+                      <label class="col-sm-2 col-form-label">Contraseña Actual</label>
+                      <div class="col-sm-10">
+                          <input formControlName="passwordAct" type="password" class="form-control" placeholder="Contraseña Actual" (focus)="passworInvalid = false" (focus)="invalido = false">
+                          
+                            <p class="text-danger " *ngIf="passworInvalid">
+                                Contraseña actual <strong>invalida.</strong></p>
+                           
                       
-                            <div class="col-sm-12 col-form-label ">
-                    <div class="form-check">
-                        <input formControlName="perfil" class="form-check-input" type="radio" name="perfil" id="exampleRadios1" value="Administrador" (focus)="invalido = false" >
-                        <label class="form-check-label" for="exampleRadios1">
-                            Administrador
-                        </label>
-                    </div>
-                    </div>
-                    <div class="col-sm-12 col-form-label ">
-                      <div class="form-check mb-0">
-                        <input formControlName="perfil" class="form-check-input" type="radio" name="perfil" id="exampleRadios2" value="Usuario" (focus)="invalido = false">
-                        <label class="form-check-label" for="exampleRadios2">
-                            Usuario
-                        </label>
+                          <button class="btn btn-outline-secondary btn-sm" (click)="passwordEdit()">
+                            <i class="fa fa-edit"></i> Cambiar
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" (click)="passwordEditCancel()" (focus)="invalido = false">
+                            <i class="fa fa-ban"></i> Cancelar
+                        </button>
+                          <div class="pt-1 text-danger" *ngIf="invalid('passwordAct')">
+                              <span class="form-control-feedback">
+                                  <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+                              </span>
+                          </div>
                       </div>
                     </div>
-                  </div>
-
-                </div>
-                </div>
-
-                  <div *ngIf="!actualizar " >
+                  </div> 
+ 
+                
+                  <div *ngIf="!actualizar || passwordedit" >
                   <div class="form-group row ">
                     <label class="col-sm-2 col-form-label">Contraseña</label>
                     <div class="col-sm-10">
-                        <input formControlName="password" type="password" class="form-control" placeholder="Contraseña" (focus)="invalido = false">
+                        <input formControlName="password" type="password" class="form-control" placeholder="Contraseña" (focus)="invalido = false" (focus)="passworInsegura = false">
                         <div class="pt-1 text-danger" *ngIf="invalid('password')">
                             <span class="form-control-feedback">
                                 <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
                             </span>
                         </div>
+
+
+                        <p class="text-danger" *ngIf="passworInsegura">
+                         <small><i class="fa fa-exclamation-circle"></i> Contraseña insegura</small>
+                        </p> 
+
+                        <p class="text-info" *ngIf="!passworValid && !passworInsegura">
+                                <small>  Utiliza ocho caracteres como mínimo con una combinación de letras, números y símbolos(!,@,#,$,%,&,*)</small>
+                        </p>   
+                           
+                        <p class="text-success " *ngIf="passworValid">
+                                <small><i class="fa fa-check-square-o"></i> Contraseña segura.</small>
+                                 
                     </div>
                   </div>
                 </div>
-
-                <div *ngIf="!actualizar" >
+               
+                <div *ngIf="!actualizar || passwordedit" >
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Validar Contraseña</label>
                     <div class="col-sm-10">
@@ -100,10 +158,10 @@
                     </div>
                   </div>
                 </div>
-
+             
                   <div class="form-group">
                         <p class="text-danger text-right" *ngIf="invalido">
-                            !Ingresar campos <strong>requeridos.</strong></p>
+                                <i class="fa fa-exclamation-circle"></i> Ingresar campos <strong>requeridos.</strong></p>
                     </div>
                   
                   </div>

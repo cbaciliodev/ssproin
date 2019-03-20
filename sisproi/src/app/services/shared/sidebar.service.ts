@@ -12,17 +12,18 @@ export class SidebarService {
       icono: 'mdi mdi-gauge',
       submenu: [
         { titulo: 'Registros sectoriales', url: '/ficha' },
-        { titulo: 'Evaluación sectorial', url: '/registrada' }
+        { titulo: 'Evaluación sectorial', url: '/registrada' },
+        { titulo: 'Fichas productivas', url: '/productiva' }
       ]
     }
-    // ,{
-    //   titulo: 'Administración',
-    //   icono: 'mdi mdi-account-circle',
-    //   submenu: [
-    //     { titulo: 'Usuarios', url: '/usuario' },
-    //     { titulo: 'Registrar', url: '/signup' }
-    //   ]
-    // }
+     ,{
+          titulo: 'Administración',
+          icono: 'mdi mdi-account-circle',
+          submenu: [
+         { titulo: 'Usuarios', url: '/usuario' },
+         { titulo: 'Registrar', url: '/signup' }
+       ]
+     }
   ];
 
   constructor() { }
