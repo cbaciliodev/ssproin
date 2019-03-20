@@ -33,7 +33,7 @@ export class DetallePyComponent implements OnInit {
       this.enEvaluacion = xhr.data.Evaluacion;
       this.evaluados = xhr.data.Evaluados;
 
-      this.proyectos = xhr.data.Registro + xhr.data.RegistroFin + xhr.data.Evaluacion + xhr.data.Evaluados;
+      this.proyectos = xhr.data.Registro + xhr.data.RegistroFin;
 
       if (Number(this.proyectos) !== 0) {
         this.recibidosPrc =  (this.recibidos / this.proyectos * 100).toFixed() + '%' ;
