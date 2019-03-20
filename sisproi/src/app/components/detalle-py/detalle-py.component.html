@@ -6,25 +6,29 @@
     <div class="card-body p-0">
         <div class="row m-0">
             <div class="col-md-12 col-12 mt-4 mb-3 b-b pb-4">
-                <span><small>{{ recibidos }} en proceso de registro <span class="pull-right">{{ recibidosPrc }}</span></small></span>
+                <span><small>{{ recibidos }} en proceso de registro <span class="pull-right">{{ recibidosPrc }}</span></small>
+                </span>
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': recibidosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
                 <div class="mt-2"></div>
-                <span><small>{{ evaluados }} registrados <span class="pull-right">{{ evaluadosPrc }}</span></small></span>
+                <span><small>{{ registrados }} registrados <span class="pull-right">{{ registradosPrc }}</span></small>
+                </span>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': evaluadosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': registradosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
                 <div class="mt-2"></div>
-                <span><small>{{ evaluados }} en evaluación <span class="pull-right">{{ evaluadosPrc }}</span></small></span>
+                <span><small>{{ enEvaluacion }} en evaluación <span class="pull-right">{{ enEvaluacionPrc }}</span></small>
+                </span>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': evaluadosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': enEvaluacionPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
                 <div class="mt-2"></div>
-                <span><small>{{ evaluados }} evaluados <span class="pull-right">{{ evaluadosPrc }}</span></small></span>
+                <span><small>{{ evaluados }} evaluados <span class="pull-right">{{ evaluadosPrc }}</span></small>
+                </span>
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': evaluadosPrc, 'height': '6px'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
