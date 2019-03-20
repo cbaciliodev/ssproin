@@ -22,32 +22,34 @@ export class FichaService {
         let estado_1 = res.data.find(f => f.estado === 1);
         let estado_2 = res.data.find(f => f.estado === 2);
 
-        if (estado_0) {
-          for (let i = 0; i < estado_0.lista_fichas.length; i++) {
-            let ficha = estado_0.lista_fichas[i];
-            if (this.sectores.indexOf(ficha.sector_nivel_1) == -1) {
-              estado_0.lista_fichas.splice(i, 1);
-              i--;
+        if(this.sectores.indexOf('PTODO') == -1) {
+          if (estado_0) {
+            for (let i = 0; i < estado_0.lista_fichas.length; i++) {
+              let ficha = estado_0.lista_fichas[i];
+              if (this.sectores.indexOf(ficha.sector_nivel_1) == -1) {
+                estado_0.lista_fichas.splice(i, 1);
+                i--;
+              }
             }
           }
-        }
-
-        if (estado_1) {
-          for (let i = 0; i < estado_1.lista_fichas.length; i++) {
-            let ficha = estado_1.lista_fichas[i];
-            if (this.sectores.indexOf(ficha.sector_nivel_1) == -1) {
-              estado_1.lista_fichas.splice(i, 1);
-              i--;
+  
+          if (estado_1) {
+            for (let i = 0; i < estado_1.lista_fichas.length; i++) {
+              let ficha = estado_1.lista_fichas[i];
+              if (this.sectores.indexOf(ficha.sector_nivel_1) == -1) {
+                estado_1.lista_fichas.splice(i, 1);
+                i--;
+              }
             }
           }
-        }
-
-        if (estado_2) {
-          for (let i = 0; i < estado_2.lista_fichas.length; i++) {
-            let ficha = estado_2.lista_fichas[i];
-            if (this.sectores.indexOf(ficha.sector_nivel_1) == -1) {
-              estado_2.lista_fichas.splice(i, 1);
-              i--;
+  
+          if (estado_2) {
+            for (let i = 0; i < estado_2.lista_fichas.length; i++) {
+              let ficha = estado_2.lista_fichas[i];
+              if (this.sectores.indexOf(ficha.sector_nivel_1) == -1) {
+                estado_2.lista_fichas.splice(i, 1);
+                i--;
+              }
             }
           }
         }
@@ -81,11 +83,11 @@ export class FichaService {
             let e = res.data[i];
             e.prio_politica_sect = this._param.prioridad(e.prio_politica_sect, true);
             e.riesgo_dis_tec = this._param.politica(e.riesgo_dis_tec, true);
-            e.riesgo_dis_tec = this._param.politica(e.riesgo_dis_tec, true);
-            e.riesgo_dis_tec = this._param.politica(e.riesgo_dis_tec, true);
-            e.riesgo_dis_tec = this._param.politica(e.riesgo_dis_tec, true);
-            e.riesgo_dis_tec = this._param.politica(e.riesgo_dis_tec, true);
-            e.riesgo_dis_tec = this._param.politica(e.riesgo_dis_tec, true);
+            e.riesgo_dis_deman = this._param.politica(e.riesgo_dis_deman, true);
+            e.riesgo_socioamb = this._param.politica(e.riesgo_socioamb, true);
+            e.riesgo_politico = this._param.politica(e.riesgo_politico, true);
+            e.riesgo_institucional = this._param.politica(e.riesgo_institucional, true);
+            e.riesgo_otros = this._param.politica(e.riesgo_otros, true);
           }
 
         return res;
