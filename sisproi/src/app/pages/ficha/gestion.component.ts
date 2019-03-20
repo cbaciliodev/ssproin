@@ -82,11 +82,11 @@ export class GestionFComponent implements OnInit {
 
   public reporteCSV() {
     this.generating = true;
-    this._ficha.csv()
+    this._ficha.csv(false)
       .subscribe(
         res => {
           this.dataCSV = res.data;
-          this.filenameCSV = `ficha_${Date.now()}.csv`;
+          this.filenameCSV = `Ficha_${Date.now()}.csv`;
           setTimeout(_ => {
             this.fichaCSV.nativeElement.click();
           }, 200);

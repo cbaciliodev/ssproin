@@ -178,14 +178,27 @@ function reportCVS() {
                         }
                     }
                 },
-                prio_politica: {
-                    $switch: {
-                        branches: [
-                            { case: { $eq: ['$prio_politica_sect', 'PRIORIDAD_SI'] }, then: 'SI' },
-                            { case: { $eq: ['$prio_politica_sect', 'PRIORIDAD_NO'] }, then: 'NO' }
-                        ], default: ''
-                    }
-                }
+                prio_politica_sect: 1, prio_politica_sect_comentario: 1,
+                
+                riesgo_dis_tec: 1, riesgo_dis_tec_comentario: 1,
+                riesgo_dis_deman: 1, riesgo_dis_deman_comentario: 1,
+                riesgo_socioamb: 1, riesgo_socioamb_comentario: 1,
+                riesgo_politico: 1, riesgo_politico_comentario: 1,
+                riesgo_institucional: 1, riesgo_institucional_comentario: 1,
+                riesgo_otros: 1, riesgo_otros_comentario: 1,
+
+                productiva_mineria: 1, productiva_mineria_comentario: 1,
+                productiva_agri: 1, productiva_agri_comentario: 1,
+                productiva_pesca: 1, productiva_pesca_comentario: 1,
+                productiva_indus: 1, productiva_indus_comentario: 1,
+                productiva_otros: 1, productiva_otros_comentario: 1,
+                social_trans: 1, social_trans_comentario: 1,
+                social_telco: 1, social_telco_comentario: 1,
+                social_agua: 1, social_agua_comentario: 1,
+                social_riego: 1, social_riego_comentario: 1,
+                social_educa: 1, social_educa_comentario: 1,
+                social_salud: 1, social_salud_comentario: 1,
+                sintesis_evaluacion: 1
             })
             .exec((err, data) => {
                 if (err) reject(err);
