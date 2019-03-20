@@ -16,7 +16,7 @@ function list(filtro) {
             .match({
                 estado: { $ne: ESTADO_ELIMINADO },
                 sector_nivel_1: { $regex: `.${filtro.sector_nivel_1}.` },
-                nombre_programa: { $regex: `.${filtro.nombre_programa}.`, $options: 'i' },
+                /* nombre_programa: { $exists: true, $regex: `.${filtro.nombre_programa}.`, $options: 'i' }, */
                 nombre_proyecto: { $regex: `.${filtro.nombre_proyecto}.`, $options: 'i' }
             })
             .lookup({
