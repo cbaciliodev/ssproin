@@ -24,7 +24,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { SignupComponent } from './usuario/signup.component';
 import { ProductivaComponent } from './productiva/productiva.component';
 import { GestionPComponent } from './productiva/gestion.component';
-
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
     declarations: [
@@ -61,6 +61,7 @@ import { GestionPComponent } from './productiva/gestion.component';
         FormsModule,
         ReactiveFormsModule,
         FileUploadModule,
+        CsvModule,
         PAGES_ROUTE
     ]
 })
