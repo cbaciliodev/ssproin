@@ -27,6 +27,7 @@ export class GestionRComponent implements OnInit {
 
   public filtroForm: FormGroup;
   public sector_1: Array<Parametro> = [];
+  private sectores: Array<string> = [];
 
   public dataCSV: any[] = [];
   public headerCSV = evalHeader;
@@ -77,7 +78,7 @@ export class GestionRComponent implements OnInit {
 
   public reporteCSV() {
     this.generating = true;
-    this._ficha.csv(true)
+    this._ficha.csv(this.filtro)
       .subscribe(
         res => {
           this.dataCSV = res.data;
@@ -91,7 +92,12 @@ export class GestionRComponent implements OnInit {
   }
 
   get filtro() {
-    return this.filtroForm.value;
+    let filtro = this.filtroForm.value;
+    if (!filtro.sector_nivel_1)
+      filtro.sector_nivel_1 = this.sectores;
+    else filtro.sector_nivel_1 = [filtro.sector_nivel_1];
+
+    return filtro;
   }
 
   private configFiltro() {
@@ -99,12 +105,15 @@ export class GestionRComponent implements OnInit {
       tipo: ['estado_evaluacion'],
       sector_nivel_1: [''],
       nombre_programa: [''],
-      nombre_proyecto: ['']
+      nombre_proyecto: [''],
+      evaluacion: [true],
+      estado: [[null, 0]]
     });
   }
 
   private configParametros() {
     this.sector_1 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_1));
+    this.sectores = JSON.parse(localStorage.getItem('usuario')).sector;
   }
 
 }

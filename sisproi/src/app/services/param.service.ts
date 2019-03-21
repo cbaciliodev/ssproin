@@ -20,8 +20,13 @@ export class ParamService {
     return this.alias(this.nivel_1.find(_p => _p.nombre == nombre));
   }
 
-  prioridad(nombre: string, csv?) {
-    if (!nombre) return csv ? '' : 'No registrada';;
+  aliasSubSector(subSector: string, i) {
+    let sb = this.getLocalItem(subSector);
+    return this.alias(sb[i], true);
+  }
+
+  prioridad(nombre: string) {
+    if (!nombre) return 'No registrada';
     return this.alias(this.prioridad_sector.find(_p => _p.nombre == nombre));
   }
 
@@ -40,19 +45,29 @@ export class ParamService {
     return depas.map(_d => _d.alias).join(', ');
   }
 
-  riesgo(nombre: string) {
-    if (!nombre) return 'No registrada';
-    return this.alias(this.prioridad_riesgo.find(_p => _p.nombre == nombre));
+  riesgo(nombre: string, csv?: boolean) {
+    if (!nombre) return csv ? '' : 'No registrada';
+    return this.alias(this.prioridad_riesgo.find(_p => _p.nombre == nombre), csv);
   }
 
-  politica(nombre: string, csv?) {
+  politica(nombre: string, csv?: boolean) {
     if (!nombre) return csv ? '' : 'No registrada';
     let alias: string = this.alias(this.prioridad_politica.find(_p => _p.nombre == nombre))
     return alias.toUpperCase();
   }
 
-  alias(parametro: any) {
-    if (!parametro) return 'No registrada';
+  subSector(sector: string) {
+    if (sector == 'PTRANSPORTE') return env.PARAMETRO.NIVEL_TRANS_2;
+    else if (sector == 'PAGUA_SANEA') return env.PARAMETRO.NIVEL_AGUA_2;
+    else if (sector == 'PENERGIA') return env.PARAMETRO.NIVEL_ENERGIA_2;
+    else if (sector == 'PTELECOMUNIC') return env.PARAMETRO.NIVEL_TELECOM_2;
+    else if (sector == 'PRIEGO') return env.PARAMETRO.NIVEL_RIEGO_2;
+    else if (sector == 'PSALUD') return env.PARAMETRO.NIVEL_SALUD_2;
+    else if (sector == 'PEDUCACION') return env.PARAMETRO.NIVEL_EDUCACION_2;
+  }
+
+  alias(parametro: any, csv?: boolean) {
+    if (!parametro) return csv ? '' : 'No registrada';
     return parametro.alias;
   }
 
