@@ -14,9 +14,9 @@ export class DashboardComponent implements OnInit {
   constructor( public _usuario: UsuarioService ) { }
 
   pyRegistrados = 0;
-  pyRegistradosP = '';
+  pyRegistradosP = '0%';
   pyEvaluados = 0;
-  pyEvaluadosP = '';
+  pyEvaluadosP = '0%';
 
   pyTotal = 0;
 
@@ -28,8 +28,6 @@ export class DashboardComponent implements OnInit {
 
     for ( const st of this._usuario.userLogin().sector ) {
 
-      console.log( st.concat(', ', sector) );
-
       if ( st == sector || st == 'PTODO' ) {
         return true;
       }
@@ -38,18 +36,20 @@ export class DashboardComponent implements OnInit {
     return false;
   }
 
-  incrementaPyRegistrados( emmit ) {
-    this.pyRegistrados = this.pyRegistrados + Number(emmit);
-    this.pyTotal = this.pyTotal + this.pyRegistrados;
+  summary( emmit ) {
+    console.log(emmit);
+    this.pyRegistrados = this.pyRegistrados + emmit.registrados;
+    this.pyEvaluados = this.pyEvaluados + emmit.evaluados;
+    this.pyTotal = this.pyTotal + emmit.total;
 
-    this.pyRegistradosP =  (this.pyRegistrados / this.pyTotal * 100).toFixed() + '%' ;
+    this.calcularPorcentajes();
   }
 
-  incrementaPyEvaluados( emmit ) {
-    this.pyEvaluados = this.pyEvaluados + Number(emmit);
-    this.pyTotal = this.pyTotal + this.pyEvaluados;
-
-    this.pyEvaluadosP =  (this.pyEvaluados / this.pyTotal * 100).toFixed() + '%' ;
+  calcularPorcentajes() {
+    if ( this.pyTotal != 0 ) {
+      this.pyEvaluadosP =  (this.pyEvaluados / this.pyTotal * 100).toFixed() + '%' ;
+      this.pyRegistradosP =  (this.pyRegistrados / this.pyTotal * 100).toFixed() + '%' ;
+    }
   }
 
 }
