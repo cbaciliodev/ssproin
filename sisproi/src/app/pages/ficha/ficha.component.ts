@@ -61,7 +61,6 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.createDepartamentos(ficha.departamento); this.createSectores();
     this.fichaForm.patchValue(ficha);
 
-    if (this.route.snapshot.queryParamMap.get('ver')) this.fichaForm.disable();
     if (ficha.estado_registro == 2) this.fichaForm.disable();
   }
 

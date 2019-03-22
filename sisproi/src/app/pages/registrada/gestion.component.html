@@ -188,7 +188,7 @@
                                 </td>
                                 <td>{{fe.nombre_programa}}</td>
                                 <td>
-                                    <a href="javascript:void(0)" routerLink="evaluacion" [queryParams]="{id: fe._id, ver: true}" *ngIf="_accion.validate('AVER')"> <i class="fa fa-search"></i> {{fe.nombre_proyecto}}</a>
+                                    <a href="javascript:void(0)" routerLink="evaluacion" [queryParams]="{id: fe._id}" *ngIf="_accion.validate('AVER')"> <i class="fa fa-search"></i> {{fe.nombre_proyecto}}</a>
                                 </td>
                                 <td class="text-right">{{ fe.monto_estimado | currency }}</td>
                                 <td>

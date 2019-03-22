@@ -58,17 +58,21 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     this.createDepartamentos(ficha.departamento); this.createSectores();
     this.fichaForm.patchValue(ficha);
     this.registradaForm.patchValue(ficha);
-    this.fichaForm.disable();
 
-    if (this.route.snapshot.queryParamMap.get('ver')) this.registradaForm.disable();
-    if (ficha.estado_evaluacion == 2) this.registradaForm.disable();
+    if (ficha.estado_evaluacion == 2) {
+      this.fichaForm.disable();
+      this.registradaForm.disable();
+    }
   }
 
   public guardar() {
-    if (this.registradaForm.invalid) return;
+    if (this.fichaForm.invalid || this.registradaForm.invalid) return;
+
+    let ficha = this.fichaForm.value;
+    Object.assign(ficha, this.registradaForm.value);
 
     this.beforeSave();
-    this._ficha.save(this.registradaForm.value)
+    this._ficha.save(ficha)
       .subscribe(
         _ => swal('Atención', env.MSG.SUCCESS_UPDATE, 'success'),
         _ => swal('Atención', env.MSG.ERROR_INSERT, 'error'),
@@ -113,6 +117,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
 
   private afterProcess() {
     swal('Atención', env.MSG.SUCCESS_PROCESS, 'success');
+    this.fichaForm.disable();
     this.registradaForm.disable();
   }
 
