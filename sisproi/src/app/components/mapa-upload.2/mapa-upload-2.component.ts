@@ -9,7 +9,7 @@ import { Util } from 'src/app/commons/util.model';
 const URL = env.URI_API.concat('files/');
 
 declare function initMap2( );
-declare function loadMap2ByURL2( url: string );
+declare function loadMapByURL2( url: string );
 declare function loadMap2( kml: string );
 declare function jsonMap2( );
 declare function setFormType2( tipoFormulario: number );
@@ -48,7 +48,7 @@ export class MapaUpload2Component implements OnInit {
       const resp = JSON.parse(response);
       this.fileName = resp.data.filename;
       this.tipoMapa.tipo = env.TIPO_FORMULARIO.ARCHIVO;
-      loadMap2ByURL2( URL.concat(this.fileName) );
+      loadMapByURL2( URL.concat(this.fileName) );
      };
   }
 
