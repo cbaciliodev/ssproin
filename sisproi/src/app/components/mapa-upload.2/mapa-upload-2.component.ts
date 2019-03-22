@@ -28,7 +28,7 @@ export class MapaUpload2Component implements OnInit {
   tipoMapa: TipoMapa = new TipoMapa();
   fileName = '';
 
-  public uploader: FileUploader = new FileUploader({ url: URL.concat('/upload'), itemAlias: 'file' });
+  public uploader: FileUploader = new FileUploader({ url: URL.concat('upload'), itemAlias: 'file' });
 
   constructor() { }
 
@@ -39,6 +39,7 @@ export class MapaUpload2Component implements OnInit {
 
     if ( !Util.isEmpty( this.data ) ) {
       const dataJson = Util.toJson( this.data );
+      console.log(this.data);
       this.tipoMapa.tipo = dataJson.tipo;
       loadMap2( this.data );
     }

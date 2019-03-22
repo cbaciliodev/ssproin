@@ -138,9 +138,9 @@ function generatePolilinea2() {
 
 
 function loadMapByURL2(url) {
-    cleanMap2a();
+    cleanMapa2();
     georssLayer2 = new google.maps.KmlLayer({ url: url });
-    georssLayer2.setMap2(map2);
+    georssLayer2.setMap(map2);
 }
 
 function loadMap2(data) {
@@ -165,7 +165,7 @@ function loadMapaByData2(data) {
         if (data.tipoForma == 0) {
             objectMarker2 = data.objectData;
             marker2 = new google.maps.Marker(objectMarker2);
-            marker2.setMap2(map2);
+            marker2.setMap(map2);
             $("#radio_a1").attr("checked", true);
         }
 
@@ -174,7 +174,7 @@ function loadMapaByData2(data) {
             generatePolygon2();
             objectPolygon2 = data.objectData;
             polygon2.setPath(objectPolygon2);
-            polygon2.setMap2(map2);
+            polygon2.setMap(map2);
             $("#radio_a2").attr("checked", true);
         }
 

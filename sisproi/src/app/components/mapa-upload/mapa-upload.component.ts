@@ -28,7 +28,7 @@ export class MapaUploadComponent implements OnInit {
   tipoMapa: TipoMapa = new TipoMapa();
   fileName = '';
 
-  public uploader: FileUploader = new FileUploader({ url: URL.concat('/upload'), itemAlias: 'file' });
+  public uploader: FileUploader = new FileUploader({ url: URL.concat('upload'), itemAlias: 'file' });
 
   constructor() { }
 
