@@ -6,7 +6,7 @@ import { environment as env } from 'src/environments/environment';
 import { TipoMapa } from 'src/app/models/tipoMapa.model';
 import { Util } from 'src/app/commons/util.model';
 
-const URL = env.URI_API.concat('files/');
+const URL = env.URI_API.concat('files');
 
 declare function initMap2( );
 declare function loadMapByURL2( url: string );
@@ -39,6 +39,7 @@ export class MapaUpload2Component implements OnInit {
 
     if ( !Util.isEmpty( this.data ) ) {
       const dataJson = Util.toJson( this.data );
+      console.log(this.data);
       this.tipoMapa.tipo = dataJson.tipo;
       loadMap2( this.data );
     }
