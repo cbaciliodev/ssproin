@@ -1,5 +1,6 @@
 export const fichaHeader = [
     { label: 'Sector', key: 'sector' },
+    { label: 'Sub sector', key: 'sector_nivel_2' },
     { label: 'Jurisdicción', key: 'jurisdiccion' },
     { label: 'Nombre del programa', key: 'nombre_programa' },
     { label: 'Descripción de programa', key: 'descripcion_programa' },

@@ -16,7 +16,7 @@ function list(filtro) {
         Ficha.aggregate()
             .match({
                 estado: { $ne: ESTADO_ELIMINADO },
-                sector_nivel_1: { $regex: `.*${filtro.sector_nivel_1}.*` },
+                sector_nivel_1: { $in: filtro.sector_nivel_1 },
                 nombre_programa: { $regex: `.*${filtro.nombre_programa}.*`, $options: 'i' },
                 nombre_proyecto: { $regex: `.*${filtro.nombre_proyecto}.*`, $options: 'i' }
             })
@@ -115,10 +115,14 @@ function report(id) {
     });
 }
 
-function reportCVS() {
+function reportCVS(filtro) {
     return new Promise((resolve, reject) => {
         Ficha.aggregate()
-            .match({ estado: { $ne: ESTADO_ELIMINADO } })
+            .match({
+                estado: { $ne: ESTADO_ELIMINADO },
+                sector_nivel_1: { $in: filtro.sector_nivel_1 },
+                estado_evaluacion: { $nin: filtro.estado }
+            })
             .lookup({
                 from: 'parametro',
                 let: { sector: '$sector_nivel_1' },
@@ -157,6 +161,7 @@ function reportCVS() {
             .project({
                 _id: 0,
                 sector: { $ifNull: ['$sector.alias', ''] },
+                sector_nivel_1: 1, sector_nivel_2: 1,
                 jurisdiccion: { $ifNull: ['$jurisdiccion.alias', ''] },
                 nombre_programa: 1, descripcion_programa: 1,
                 nombre_proyecto: 1, descripcion_proyecto: 1, monto_estimado: 1,
@@ -178,8 +183,9 @@ function reportCVS() {
                         }
                     }
                 },
+                estado_evaluacion: 1,
                 prio_politica_sect: 1, prio_politica_sect_comentario: 1,
-                
+
                 riesgo_dis_tec: 1, riesgo_dis_tec_comentario: 1,
                 riesgo_dis_deman: 1, riesgo_dis_deman_comentario: 1,
                 riesgo_socioamb: 1, riesgo_socioamb_comentario: 1,

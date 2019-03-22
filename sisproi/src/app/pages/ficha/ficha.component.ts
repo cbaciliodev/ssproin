@@ -71,6 +71,7 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.beforeSave();
     const ficha = this.fichaForm.value;
     ficha.localizacion_latitud = this.informacionComponent.getDataMapUpload();
+    ficha.area_influencia = this.informacionComponent.getAreaInfluencia();
 
     this._ficha.save(ficha)
       .subscribe(

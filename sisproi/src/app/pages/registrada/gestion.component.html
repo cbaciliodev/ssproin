@@ -79,8 +79,7 @@
                                 </td>
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
-                                    <button class="btn btn-outline-secondary btn-sm" routerLink="evaluacion" [queryParams]="{id: fr._id}"
-                                        *ngIf="_accion.validate('AEVALUAR')">
+                                    <button class="btn btn-outline-secondary btn-sm" routerLink="evaluacion" [queryParams]="{id: fr._id}" *ngIf="_accion.validate('AEVALUAR')">
                                         <i class="fa fa-edit"></i> Evaluar
                                     </button>
                                 </td>
@@ -141,8 +140,7 @@
                                 </td>
                                 <td>{{fe.anio_inicio_posible}}</td>
                                 <td>
-                                    <button class="btn btn-outline-secondary btn-sm" routerLink="evaluacion" [queryParams]="{id: fe._id}"
-                                        *ngIf="_accion.validate('AEVALUAR')">
+                                    <button class="btn btn-outline-secondary btn-sm" routerLink="evaluacion" [queryParams]="{id: fe._id}" *ngIf="_accion.validate('AEVALUAR')">
                                         <i class="fa fa-edit"></i> Editar
                                     </button>
                                 </td>
@@ -189,7 +187,9 @@
                                     </ng-container>
                                 </td>
                                 <td>{{fe.nombre_programa}}</td>
-                                <td>{{fe.nombre_proyecto}}</td>
+                                <td>
+                                    <a href="javascript:void(0)" routerLink="evaluacion" [queryParams]="{id: fe._id, ver: true}" *ngIf="_accion.validate('AVER')"> <i class="fa fa-search"></i> {{fe.nombre_proyecto}}</a>
+                                </td>
                                 <td class="text-right">{{ fe.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fe.prioridad">
@@ -203,10 +203,6 @@
                                 </td>
                                 <td>{{fe.anio_inicio_posible}}</td>
                                 <td>
-                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="evaluacion" [queryParams]="{id: fe._id, ver: true}"
-                                        *ngIf="_accion.validate('AVER')">
-                                        <i class="fa fa-eye"></i> Ver
-                                    </button>
                                     <button class="btn btn-outline-danger btn-sm mr-1" (click)="download(fe._id)">
                                         <i class="fa fa-file-pdf-o"></i> PDF
                                     </button>
@@ -235,9 +231,8 @@
     </div>
 </div>
 
-<!-- <a csvLink #evalCSV [data]="dataCSV" [headers]="headerCSV" [filename]="filenameCSV"></a>
+<a csvLink #evalCSV [data]="dataCSV" [headers]="headerCSV" [filename]="filenameCSV"></a>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm" (click)="reporteCSV()"
-    [disabled]="generating" *ngIf="_accion.validate('AEDITAR')">
+<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm" (click)="reporteCSV()" [disabled]="generating" *ngIf="_accion.validate('AEDITAR')">
     <i class="fa no-animation" [ngClass]="{'fa-file-excel-o': !generating, 'fa-spinner fa-pulse': generating}"></i>
-</button> -->
+</button>

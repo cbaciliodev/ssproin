@@ -77,8 +77,7 @@
                                 </td>
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
-                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id}"
-                                        *ngIf="_accion.validate('AEDITAR')">
+                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id}" *ngIf="_accion.validate('AEDITAR')">
                                         <i class="fa fa-edit"></i> Editar
                                     </button>
                                     <!-- <button class="btn btn-outline-success btn-sm">
@@ -119,7 +118,6 @@
                                 <th>Prioridad</th>
                                 <th>Modalidad</th>
                                 <th>Año de inicio</th>
-                                <th>Estado</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -129,9 +127,19 @@
                                     <ng-container *ngIf="fr.sector">
                                         {{fr.sector.alias}}
                                     </ng-container>
+                                    <div>
+                                        <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion != 2">
+                                            En evaluación
+                                        </span>
+                                        <span class="label label-success label-rounded" *ngIf="fr.estado_evaluacion == 2">
+                                            Evaluado
+                                        </span>
+                                    </div>
                                 </td>
                                 <td>{{fr.nombre_programa}}</td>
-                                <td>{{fr.nombre_proyecto}}</td>
+                                <td>
+                                    <a href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fr._id, ver: true}" *ngIf="_accion.validate('AVER')"> <i class="fa fa-search"></i> {{ fr.nombre_proyecto }} </a>
+                                </td>
                                 <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
@@ -145,18 +153,6 @@
                                 </td>
                                 <td>{{fr.anio_inicio_posible}}</td>
                                 <td>
-                                    <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion != 2">
-                                        En evaluación
-                                    </span>
-                                    <span class="label label-success label-rounded" *ngIf="fr.estado_evaluacion == 2">
-                                        Evaluado
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro" [queryParams]="{id: fr._id, ver: true}"
-                                        *ngIf="_accion.validate('AVER')">
-                                        <i class="fa fa-eye"></i> Ver
-                                    </button>
                                     <button class="btn btn-outline-danger btn-sm mr-1" (click)="download(fr._id)">
                                         <i class="fa fa-file-pdf-o"></i> PDF
                                     </button>
@@ -185,14 +181,12 @@
     </div>
 </div>
 
-<!-- <a csvLink #fichaCSV [data]="dataCSV" [headers]="headerCSV" [filename]="filenameCSV"></a>
+<a csvLink #fichaCSV [data]="dataCSV" [headers]="headerCSV" [filename]="filenameCSV"></a>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-6" (click)="reporteCSV()"
-    [disabled]="generating" *ngIf="_accion.validate('AEDITAR')">
+<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-6" (click)="reporteCSV()" [disabled]="generating" *ngIf="_accion.validate('AEDITAR')">
     <i class="fa no-animation" [ngClass]="{'fa-file-excel-o': !generating, 'fa-spinner fa-pulse': generating}"></i>
-</button> -->
+</button>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm"
-    *ngIf="_accion.validate('AEDITAR')" routerLink="registro">
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" *ngIf="_accion.validate('AEDITAR')" routerLink="registro">
     <i class="fa fa-plus no-animation"></i>
 </button>
