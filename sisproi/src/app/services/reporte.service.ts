@@ -101,19 +101,31 @@ export class ReporteService {
         columns: [
           [
             { text: 'Diseño Tecnico', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Demanda considerada', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Socioambientales', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Políticos', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Institucionales', margin: [30, 2], bold: true },
-            { text: 'Otros', margin: [30, 2], bold: true }
+            { text: ' ', margin: [30, 2, 0, 10] },
+            { text: 'Otros', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] }
           ],
           [
             { text: [': ', { text: this._param.riesgo(ficha.riesgo_dis_tec), color: ficha.riesgo_dis_tec ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.riesgo_dis_tec_comentario), color: ficha.riesgo_dis_tec_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.riesgo(ficha.riesgo_dis_deman), color: ficha.riesgo_dis_deman ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.riesgo_dis_deman_comentario), color: ficha.riesgo_dis_deman_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.riesgo(ficha.riesgo_socioamb), color: ficha.riesgo_socioamb ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.riesgo_socioamb_comentario), color: ficha.riesgo_socioamb_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.riesgo(ficha.riesgo_politico), color: ficha.riesgo_politico ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.riesgo_politico_comentario), color: ficha.riesgo_politico_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.riesgo(ficha.riesgo_institucional), color: ficha.riesgo_institucional ? 'black' : 'gainsboro' }] },
-            { text: [': ', { text: this._param.riesgo(ficha.riesgo_otros), color: ficha.riesgo_otros ? 'black' : 'gainsboro' }] }
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.riesgo_institucional_comentario), color: ficha.riesgo_institucional_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
+            { text: [': ', { text: this._param.riesgo(ficha.riesgo_otros), color: ficha.riesgo_otros ? 'black' : 'gainsboro' }] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.riesgo_otros_comentario), color: ficha.riesgo_otros_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] }
           ]
         ], fontSize: 10
       },
@@ -123,17 +135,27 @@ export class ReporteService {
         columns: [
           [
             { text: 'Minería', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Agricultura', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Pesca', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Industria', margin: [30, 2], bold: true },
-            { text: 'Otros', margin: [30, 2], bold: true }
+            { text: ' ', margin: [30, 2, 0, 10] },
+            { text: 'Otros', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] }
           ],
           [
             { text: [': ', { text: this._param.politica(ficha.productiva_mineria), color: ficha.productiva_mineria ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.productiva_mineria_comentario), color: ficha.productiva_mineria_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.productiva_agri), color: ficha.productiva_agri ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.productiva_agri_comentario), color: ficha.productiva_agri_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.productiva_pesca), color: ficha.productiva_pesca ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.productiva_pesca_comentario), color: ficha.productiva_pesca_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.productiva_indus), color: ficha.productiva_indus ? 'black' : 'gainsboro' }], margin: [0, 2] },
-            { text: [': ', { text: this._param.politica(ficha.productiva_otros), color: ficha.productiva_otros ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.productiva_indus_comentario), color: ficha.productiva_indus_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
+            { text: [': ', { text: this._param.politica(ficha.productiva_otros), color: ficha.productiva_otros ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.productiva_otros_comentario), color: ficha.productiva_otros_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] }
           ]
         ], fontSize: 10
       },
@@ -143,19 +165,31 @@ export class ReporteService {
         columns: [
           [
             { text: 'Transporte', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Telecomunicación', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Agua y Saneamiento', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Riego', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
             { text: 'Educación', margin: [30, 2], bold: true },
-            { text: 'Salud', margin: [30, 2], bold: true }
+            { text: ' ', margin: [30, 2, 0, 10] },
+            { text: 'Salud', margin: [30, 2], bold: true },
+            { text: ' ', margin: [30, 2, 0, 10] },
           ],
           [
             { text: [': ', { text: this._param.politica(ficha.social_trans), color: ficha.social_trans ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.social_trans_comentario), color: ficha.social_trans_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.social_telco), color: ficha.social_telco ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.social_telco_comentario), color: ficha.social_telco_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.social_agua), color: ficha.social_agua ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.social_agua_comentario), color: ficha.social_agua_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.social_riego), color: ficha.social_riego ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.social_riego_comentario), color: ficha.social_riego_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
             { text: [': ', { text: this._param.politica(ficha.social_educa), color: ficha.social_educa ? 'black' : 'gainsboro' }], margin: [0, 2] },
-            { text: [': ', { text: this._param.politica(ficha.social_salud), color: ficha.social_salud ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.social_educa_comentario), color: ficha.social_educa_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] },
+            { text: [': ', { text: this._param.politica(ficha.social_salud), color: ficha.social_salud ? 'black' : 'gainsboro' }], margin: [0, 2] },
+            { text: [{ text: ': ', color: 'white' }, { text: this._param.empty(ficha.social_salud_comentario), color: ficha.social_salud_comentario ? 'black' : 'gainsboro' }], margin: [0, 2, 0, 10] }
           ]
         ], fontSize: 10
       }
