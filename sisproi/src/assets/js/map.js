@@ -39,29 +39,33 @@ function addLatLng(event) {
         objectMarker = { position: event.latLng };
         marker = new google.maps.Marker(objectMarker);
         marker.setMap(map);
-
         return;
     }
 
     if (tipoForma == 1) {
         polygon.setMap(map);
         var path = polygon.getPath();
-        if (typeof path == 'undefined') {
+        if ((typeof path == 'undefined') || (path.length == 0)) {
             path = [];
+            objectPolygon = [];
             path.push(event.latLng);
             polygon.setPath(path);
         }
         path.push(event.latLng);
+        objectPolygon.push(event.latLng);
+        return;
     }
 
     polilinea.setMap(map);
     var path = polilinea.getPath();
-    if (typeof path == 'undefined') {
+    if ((typeof path == 'undefined') || (path.length == 0)) {
         path = [];
+        objectPoliline = [];
         path.push(event.latLng);
-        polygon.setPath(path);
+        polilinea.setPath(path);
     }
     path.push(event.latLng);
+    objectPoliline.push(event.latLng);
 
 }
 
@@ -101,7 +105,7 @@ function cleanMapa() {
 function generatePolygon() {
     var triangleCoords = [];
 
-    objectPolygon = {
+    objectPg = {
         paths: triangleCoords,
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
@@ -111,13 +115,13 @@ function generatePolygon() {
         fillOpacity: 0.35
     };
 
-    polygon = new google.maps.Polygon(objectPolygon);
+    polygon = new google.maps.Polygon(objectPg);
 }
 
 function generatePolilinea() {
     var triangleCoords = [];
 
-    objectPoliline = {
+    objectPl = {
         paths: triangleCoords,
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
@@ -127,7 +131,7 @@ function generatePolilinea() {
         fillOpacity: 0.35
     };
 
-    polilinea = new google.maps.Polyline(objectPoliline);
+    polilinea = new google.maps.Polyline(objectPl);
 }
 
 
@@ -152,26 +156,37 @@ function loadMap(data) {
 
 function loadMapaByData(data) {
 
-    // Marker
-    if (data.tipoForma == 0) {
-        objectMarker = data.objectData;
-        marker = new google.maps.Marker(objectMarker);
-        marker.setMap(map);
+    try {
+        tipoForma = data.tipoForma;
+        // Marker
+        if (data.tipoForma == 0) {
+            objectMarker = data.objectData;
+            marker = new google.maps.Marker(objectMarker);
+            marker.setMap(map);
+            $("#radio_1").attr("checked", true);
+        }
+
+        // Poligono
+        if (data.tipoForma == 1) {
+            generatePolygon();
+            objectPolygon = data.objectData;
+            polygon.setPath(objectPolygon);
+            polygon.setMap(map);
+            $("#radio_2").attr("checked", true);
+        }
+
+        // Polilinea
+        if (data.tipoForma == 2) {
+            generatePolilinea();
+            objectPoliline = data.objectData;
+            polilinea.setPath(objectPoliline);
+            polilinea.setMap(map);
+            $("#radio_3").attr("checked", true);
+        }
+    } catch (e) {
+        console.error('No se carga mapa: ' + e.message);
     }
 
-    // Poligono
-    if (data.tipoForma == 1) {
-        objectPolygon = data.objectData;
-        polygon = new google.maps.Polygon(objectPolygon);
-        polygon.setMap(map);
-    }
-
-    // Polilinea
-    if (data.tipoForma == 2) {
-        objectPoliline = data.objectData;
-        polilinea = new google.maps.Polyline(objectPoliline);
-        polilinea.setMap(map);
-    }
 
 
 }

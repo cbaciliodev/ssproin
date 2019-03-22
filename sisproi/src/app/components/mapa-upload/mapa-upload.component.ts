@@ -34,12 +34,17 @@ export class MapaUploadComponent implements OnInit {
 
   ngOnInit() {
     initMap( );
+    console.log( this.data );
 
     this.tipoMapa.tipo = env.TIPO_FORMULARIO.MAPA;
 
     if ( !Util.isEmpty( this.data ) ) {
       const dataJson = Util.toJson( this.data );
       this.tipoMapa.tipo = dataJson.tipo;
+
+      console.log( 'Cargando Mapa' );
+      console.log( this.data );
+
       loadMap( this.data );
     }
 
@@ -57,7 +62,7 @@ export class MapaUploadComponent implements OnInit {
     this.tipoMapa.tipo = env.TIPO_FORMULARIO.MAPA;
   }
 
-  /* Invocar este método para poder obtener el mañpa generado */
+  /* Invocar este método para poder obtener el mapa generado */
   mapGenerated() {
 
     if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO ) ) {

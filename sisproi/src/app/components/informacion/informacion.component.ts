@@ -20,6 +20,7 @@ export class InformacionComponent implements OnInit {
 
   @Input() public fichaForm: FormGroup;
   @Input() public dataMapa = '';
+  @Input() public dataInfluencia = '';
   @ViewChild('gmap') gmapElement: ElementRef;
 
   @ViewChild('mapaUpload') mapaUpload: MapaUploadComponent;
@@ -51,6 +52,15 @@ export class InformacionComponent implements OnInit {
     this.configParametros();
     this.configUploadFile();
     this.validateAvance();
+
+    if ( typeof this.fichaForm.value.localizacion_latitud != 'undefined' ) {
+      this.dataMapa = this.fichaForm.value.localizacion_latitud;
+    }
+
+    if ( typeof this.fichaForm.value.area_influencia != 'undefined' ) {
+      this.dataInfluencia = this.fichaForm.value.area_influencia;
+    }
+
   }
 
   private validateAvance() {
@@ -144,5 +154,10 @@ export class InformacionComponent implements OnInit {
 
   getDataMapUpload() {
     return this.mapaUpload.mapGenerated();
+    // area_influencia
+  }
+
+  getAreaInfluencia() {
+    return this.mapaInfluencia.mapGenerated();
   }
 }

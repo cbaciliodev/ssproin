@@ -116,6 +116,13 @@ export class GestionFComponent implements OnInit {
   }
 
   private configParametros() {
+
+    console.log('Sector 1');
+    console.log(localStorage.getItem(env.PARAMETRO.NIVEL_1));
+
+    console.log('Usuario');
+    console.log(localStorage.getItem(env.PARAMETRO.NIVEL_1));
+
     this.sector_1 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_1));
     this.sectores = JSON.parse(localStorage.getItem('usuario')).sector;
   }
