@@ -6,7 +6,7 @@ import { environment as env } from 'src/environments/environment';
 import { TipoMapa } from 'src/app/models/tipoMapa.model';
 import { Util } from 'src/app/commons/util.model';
 
-const URL = env.URI_API.concat('files/');
+const URL = env.URI_API.concat('files');
 
 declare function initMap( );
 declare function loadMapByURL( url: string );
