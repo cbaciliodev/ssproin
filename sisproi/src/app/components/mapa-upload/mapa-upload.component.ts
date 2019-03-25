@@ -40,15 +40,20 @@ export class MapaUploadComponent implements OnInit {
     if ( !Util.isEmpty( this.data ) ) {
       const dataJson = Util.toJson( this.data );
       this.tipoMapa.tipo = dataJson.tipo;
+
+      if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO)  ) {
+        this.fileName = dataJson.valor;
+      }
+
       loadMap( this.data );
     }
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = ( item: any, response: any, status: any, headers: any ) => {
       const resp = JSON.parse(response);
-      this.fileName = resp.data.filename;
+      this.fileName = URL.concat(resp.data.filename);
       this.tipoMapa.tipo = env.TIPO_FORMULARIO.ARCHIVO;
-      loadMapByURL( URL.concat(this.fileName) );
+      loadMapByURL( this.fileName );
      };
   }
 
@@ -61,7 +66,7 @@ export class MapaUploadComponent implements OnInit {
   mapGenerated() {
 
     if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO ) ) {
-      this.tipoMapa.valor = URL.concat(this.fileName);
+      this.tipoMapa.valor = this.fileName;
     } else {
       this.tipoMapa.valor = jsonMap();
     }
