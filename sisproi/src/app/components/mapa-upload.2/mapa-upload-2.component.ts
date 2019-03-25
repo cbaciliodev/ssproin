@@ -28,7 +28,7 @@ export class MapaUpload2Component implements OnInit {
   tipoMapa: TipoMapa = new TipoMapa();
   fileName = '';
 
-  public uploader: FileUploader = new FileUploader({ url: URL.concat('upload'), itemAlias: 'file' });
+  public uploader2: FileUploader = new FileUploader({ url: URL.concat('upload'), itemAlias: 'file' });
 
   constructor() { }
 
@@ -49,8 +49,8 @@ export class MapaUpload2Component implements OnInit {
       loadMap2( this.data );
     }
 
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = ( item: any, response: any, status: any, headers: any ) => {
+    this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader2.onCompleteItem = ( item: any, response: any, status: any, headers: any ) => {
       const resp = JSON.parse(response);
       this.fileName = URL.concat(resp.data.filename);
       this.tipoMapa.tipo = env.TIPO_FORMULARIO.ARCHIVO;
