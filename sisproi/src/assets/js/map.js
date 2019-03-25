@@ -108,6 +108,7 @@ function cleanOptions() {
     $('#radio_1').attr('checked', false);
     $('#radio_2').attr('checked', false);
     $('#radio_3').attr('checked', false);
+    tipoForma2 = null;
 }
 
 function generatePolygon() {
@@ -146,6 +147,9 @@ function generatePolilinea() {
 
 function loadMapByURL(url) {
     cleanMapa();
+
+    console.log('URL: ' + url);
+
     georssLayer = new google.maps.KmlLayer({ url: url });
     georssLayer.setMap(map);
 }
