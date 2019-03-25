@@ -73,8 +73,8 @@ function addLatLng2(event) {
 function setFormType2(forma) {
 
     if (tipoForma2 !== forma) {
-        tipoForma2 = forma;
         cleanMapa2();
+        tipoForma2 = forma;
     }
 
 }
@@ -212,7 +212,7 @@ function jsonMap2() {
         }
     }
 
-    if (tipoForma == 2) {
+    if (tipoForma2 == 2) {
         return {
             tipoForma: tipoForma2,
             objectData: objectPoliline2
