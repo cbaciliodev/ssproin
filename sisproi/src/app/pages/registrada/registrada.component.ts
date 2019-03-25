@@ -68,10 +68,10 @@ export class RegistradaComponent implements OnInit, OnDestroy {
   public guardar() {
     if (this.fichaForm.invalid || this.registradaForm.invalid) return;
 
+    this.beforeSave();
     let ficha = this.fichaForm.value;
     Object.assign(ficha, this.registradaForm.value);
 
-    this.beforeSave();
     this._ficha.save(ficha)
       .subscribe(
         _ => swal('Atención', env.MSG.SUCCESS_UPDATE, 'success'),
@@ -182,8 +182,11 @@ export class RegistradaComponent implements OnInit, OnDestroy {
       localizacion_latitud: [''],
       localizacion_longitud: [''],
       area_influencia: [''],
+      archivo_adicional: [''],
+      filename_adicional: [''],
       comentarios: [''],
-      estado_registro: [0]
+      estado_registro: [0],
+      estado_evaluacion: [],
     });
 
     this.registradaForm = this.builder.group({
