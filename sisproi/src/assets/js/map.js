@@ -100,6 +100,14 @@ function cleanMapa() {
     }
     generatePolygon();
     generatePolilinea();
+
+    cleanOptions();
+}
+
+function cleanOptions() {
+    $('#radio_1').attr('checked', false);
+    $('#radio_2').attr('checked', false);
+    $('#radio_3').attr('checked', false);
 }
 
 function generatePolygon() {
@@ -206,8 +214,12 @@ function jsonMap() {
         }
     }
 
-    return {
-        tipoForma: tipoForma,
-        objectData: objectPoliline
-    };
+    if (tipoForma == 2) {
+        return {
+            tipoForma: tipoForma,
+            objectData: objectPoliline
+        }
+    }
+
+    return null;
 }
