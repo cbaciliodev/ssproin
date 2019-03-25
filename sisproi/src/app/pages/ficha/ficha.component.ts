@@ -48,6 +48,9 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.route.data.pipe(
       takeUntil(this.unsubscribe)
     ).subscribe(res => {
+
+      console.log(res.ficha.data);
+
       if (res.ficha) {
         if (res.ficha.data)
           this.configFicha(res.ficha.data);
@@ -186,6 +189,8 @@ export class FichaComponent implements OnInit, OnDestroy {
       localizacion_latitud: [''],
       localizacion_longitud: [''],
       area_influencia: [''],
+      archivo_adicional: [''],
+      filename_adicional: [''],
       comentarios: [''],
       estado_registro: [0],
       estado_evaluacion: [],

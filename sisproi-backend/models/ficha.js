@@ -32,6 +32,8 @@ var FichaSchema = new Schema({
     localizacion_latitud: { type: String },
     localizacion_longitud: { type: String },
     area_influencia: { type: String },
+    archivo_adicional: { type: String },
+    filename_adicional: { type: String },
     comentarios: { type: String },
 
     estado_registro: { type: Number, required: true, default: ESTADO_ACTIVO },

@@ -45,6 +45,7 @@ export class InformacionComponent implements OnInit {
   public departamento: Array<Parametro> = [];
 
   public uploader: FileUploader = new FileUploader({ url: URL.concat('/upload'), itemAlias: 'file' });
+  public downloader: string = URL;
 
   constructor(private builder: FormBuilder) { }
 
@@ -113,7 +114,7 @@ export class InformacionComponent implements OnInit {
   }
 
   public removeDepart(i) {
-    if (this.valor('estado_registro') == 2) return;
+    if (this.valor('estado_evaluacion') == 2) return;
     this.departamentos.removeAt(i);
   }
 
@@ -126,11 +127,13 @@ export class InformacionComponent implements OnInit {
 
   private configUploadFile() {
     this.uploader.onAfterAddingFile = (f) => {
-      this.fichaForm.get('area_influencia').setValue(f.file.name);
+      this.control('archivo_adicional').setValue(f.file.name);
       f.withCredentials = false;
     };
 
-    this.uploader.onCompleteItem = () => {
+    this.uploader.onCompleteItem = (item, res: any) => {
+      let _d = JSON.parse(res);
+      this.control('filename_adicional').setValue(_d.data.filename);
       swal('Atención', env.MSG.SUCCESS_FILE, 'success');
       this.fileUploaded = true;
     };
@@ -154,7 +157,6 @@ export class InformacionComponent implements OnInit {
 
   getDataMapUpload() {
     return this.mapaUpload.mapGenerated();
-    // area_influencia
   }
 
   getAreaInfluencia() {
