@@ -73,8 +73,8 @@ function addLatLng2(event) {
 function setFormType2(forma) {
 
     if (tipoForma2 !== forma) {
-        tipoForma2 = forma;
         cleanMapa2();
+        tipoForma2 = forma;
     }
 
 }
@@ -101,6 +101,8 @@ function cleanMapa2() {
     }
     generatePolygon2();
     generatePolilinea2();
+
+    cleanOptions2();
 }
 
 function generatePolygon2() {
@@ -135,7 +137,12 @@ function generatePolilinea2() {
     polilinea2 = new google.maps.Polyline(objectPol2);
 }
 
-
+function cleanOptions2() {
+    $('#radio_a1').attr('checked', false);
+    $('#radio_a2').attr('checked', false);
+    $('#radio_a3').attr('checked', false);
+    tipoForma2 = null;
+}
 
 function loadMapByURL2(url) {
     cleanMapa2();
@@ -156,9 +163,6 @@ function loadMap2(data) {
 }
 
 function loadMapaByData2(data) {
-
-    console.log("Data 2");
-    console.log(data);
     try {
         tipoForma2 = data.tipoForma;
         // Marker2
@@ -208,8 +212,12 @@ function jsonMap2() {
         }
     }
 
-    return {
-        tipoForma: tipoForma2,
-        objectData: objectPoliline2
-    };
+    if (tipoForma2 == 2) {
+        return {
+            tipoForma: tipoForma2,
+            objectData: objectPoliline2
+        }
+    }
+
+    return null;
 }

@@ -34,7 +34,6 @@ export class MapaUploadComponent implements OnInit {
 
   ngOnInit() {
     initMap( );
-    console.log( this.data );
 
     this.tipoMapa.tipo = env.TIPO_FORMULARIO.MAPA;
 
@@ -42,8 +41,9 @@ export class MapaUploadComponent implements OnInit {
       const dataJson = Util.toJson( this.data );
       this.tipoMapa.tipo = dataJson.tipo;
 
-      console.log( 'Cargando Mapa' );
-      console.log( this.data );
+      if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO)  ) {
+        this.fileName = dataJson.valor;
+      }
 
       loadMap( this.data );
     }
@@ -51,9 +51,9 @@ export class MapaUploadComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = ( item: any, response: any, status: any, headers: any ) => {
       const resp = JSON.parse(response);
-      this.fileName = resp.data.filename;
+      this.fileName = URL.concat(resp.data.filename);
       this.tipoMapa.tipo = env.TIPO_FORMULARIO.ARCHIVO;
-      loadMapByURL( URL.concat(this.fileName) );
+      loadMapByURL( this.fileName );
      };
   }
 
@@ -66,7 +66,7 @@ export class MapaUploadComponent implements OnInit {
   mapGenerated() {
 
     if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO ) ) {
-      this.tipoMapa.valor = URL.concat(this.fileName);
+      this.tipoMapa.valor = this.fileName;
     } else {
       this.tipoMapa.valor = jsonMap();
     }

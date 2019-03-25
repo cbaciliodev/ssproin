@@ -72,8 +72,8 @@ function addLatLng(event) {
 function setFormType(forma) {
 
     if (tipoForma !== forma) {
-        tipoForma = forma;
         cleanMapa();
+        tipoForma = forma;
     }
 
 }
@@ -100,6 +100,15 @@ function cleanMapa() {
     }
     generatePolygon();
     generatePolilinea();
+
+    cleanOptions();
+}
+
+function cleanOptions() {
+    $('#radio_1').attr('checked', false);
+    $('#radio_2').attr('checked', false);
+    $('#radio_3').attr('checked', false);
+    tipoForma2 = null;
 }
 
 function generatePolygon() {
@@ -138,6 +147,9 @@ function generatePolilinea() {
 
 function loadMapByURL(url) {
     cleanMapa();
+
+    console.log('URL: ' + url);
+
     georssLayer = new google.maps.KmlLayer({ url: url });
     georssLayer.setMap(map);
 }
@@ -206,8 +218,12 @@ function jsonMap() {
         }
     }
 
-    return {
-        tipoForma: tipoForma,
-        objectData: objectPoliline
-    };
+    if (tipoForma == 2) {
+        return {
+            tipoForma: tipoForma,
+            objectData: objectPoliline
+        }
+    }
+
+    return null;
 }
