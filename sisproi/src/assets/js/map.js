@@ -72,8 +72,8 @@ function addLatLng(event) {
 function setFormType(forma) {
 
     if (tipoForma !== forma) {
-        tipoForma = forma;
         cleanMapa();
+        tipoForma = forma;
     }
 
 }
