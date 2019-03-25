@@ -5,13 +5,11 @@
             <div class="row">
                 <div class="form-group col-md-3 col-12">
                     <label>Proyecto</label>
-                    <input formControlName="nombre_proyecto" type="text" class="form-control"
-                        placeholder="Nombre del proyecto">
+                    <input formControlName="nombre_proyecto" type="text" class="form-control" placeholder="Nombre del proyecto">
                 </div>
                 <div class="form-group col-md-3 col-12">
                     <label>Operador</label>
-                    <input formControlName="operador" type="text" class="form-control"
-                        placeholder="Operador del proyecto">
+                    <input formControlName="operador" type="text" class="form-control" placeholder="Operador del proyecto">
                 </div>
                 <div class="col-md-2 col-12 p-0">
                     <div class="form-group">
@@ -37,18 +35,20 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let fp of fichas_productivas">
-                        <td>{{fp.nombre_proyecto}}</td>
+                        <td>
+                            <ng-container *ngIf="_accion.validate('AEDITAR')">
+                                <a href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fp._id}"> <i class="fa fa-pencil"></i> {{fp.nombre_proyecto}}</a>
+                            </ng-container>
+                            <ng-container *ngIf="!_accion.validate('AEDITAR')">
+                                {{fp.nombre_proyecto}}
+                            </ng-container>
+                        </td>
                         <td>{{fp.operador}}</td>
                         <td>{{fp.inversion_global | currency:'$ '}}</td>
                         <td>{{fp.inversion_ejecutada | currency:'$ '}}</td>
                         <td>
-                            <button class="btn btn-outline-secondary btn-sm mr-1" routerLink="registro"
-                                [queryParams]="{id: fp._id}" *ngIf="_accion.validate('AEDITAR')">
-                                <i class="fa fa-eye"></i> Editar
-                            </button>
-                            <button class="btn btn-danger btn-sm" (click)="eliminar(fp._id)"
-                                *ngIf="_accion.validate('AEDITAR')">
-                                <i class="fa fa-trash"></i> Elimnar
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(fp._id)" *ngIf="_accion.validate('AEDITAR')">
+                                <i class="fa fa-trash"></i> Eliminar
                             </button>
                         </td>
                     </tr>
@@ -73,7 +73,6 @@
     </div>
 </div>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm"
-    *ngIf="_accion.validate('AEDITAR')" routerLink="registro">
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" *ngIf="_accion.validate('AEDITAR')" routerLink="registro">
     <i class="fa fa-plus no-animation"></i>
 </button>
