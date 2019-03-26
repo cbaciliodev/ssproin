@@ -81,7 +81,7 @@ export class FichaComponent implements OnInit, OnDestroy {
         () => this.saving = false);
   }
 
-  getMapaData() {
+  public getMapaData() {
     return {
       ubicacion: this.informacionComponent.getDataMapUpload(),
       area_influencia: this.informacionComponent.getAreaInfluencia()
