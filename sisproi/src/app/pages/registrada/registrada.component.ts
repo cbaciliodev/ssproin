@@ -74,8 +74,7 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     this.beforeSave();
     let ficha = this.fichaForm.value;
 
-    ficha.localizacion_latitud = this.fichaInformacion.getMapaData().ubicacion;
-    ficha.area_influencia = this.fichaInformacion.getMapaData().area_influencia;
+    console.log( this.fichaInformacion );
 
     Object.assign(ficha, this.registradaForm.value);
 
