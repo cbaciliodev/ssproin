@@ -9,6 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
 import { FichaComponent } from '../ficha/ficha.component';
+import { InformacionComponent } from 'src/app/components/informacion/informacion.component';
 
 @Component({
   selector: 'ficha-registrada',
@@ -17,7 +18,7 @@ import { FichaComponent } from '../ficha/ficha.component';
 })
 export class RegistradaComponent implements OnInit, OnDestroy {
 
-  @ViewChild('fichaInformacion') fichaInformacion: FichaComponent;
+  @ViewChild('fichaInformacion') fichaInformacion: InformacionComponent;
 
   public saving = false;
   public processing = false;
@@ -74,7 +75,8 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     this.beforeSave();
     let ficha = this.fichaForm.value;
 
-    console.log( this.fichaInformacion );
+    ficha.localizacion_latitud = this.fichaInformacion.getDataMapUpload();
+    ficha.area_influencia = this.fichaInformacion.getAreaInfluencia();
 
     Object.assign(ficha, this.registradaForm.value);
 
