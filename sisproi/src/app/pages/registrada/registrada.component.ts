@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
 import { FichaService } from 'src/app/services/ficha.service';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
+import { FichaComponent } from '../ficha/ficha.component';
 
 @Component({
   selector: 'ficha-registrada',
@@ -15,6 +16,8 @@ import swal from 'sweetalert';
   styleUrls: ['./registrada.component.css']
 })
 export class RegistradaComponent implements OnInit, OnDestroy {
+
+  @ViewChild('fichaInformacion') fichaInformacion: FichaComponent;
 
   public saving = false;
   public processing = false;
@@ -70,6 +73,10 @@ export class RegistradaComponent implements OnInit, OnDestroy {
 
     this.beforeSave();
     let ficha = this.fichaForm.value;
+
+    ficha.localizacion_latitud = this.fichaInformacion.getMapaData().ubicacion;
+    ficha.area_influencia = this.fichaInformacion.getMapaData().area_influencia;
+
     Object.assign(ficha, this.registradaForm.value);
 
     this._ficha.save(ficha)

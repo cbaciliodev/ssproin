@@ -1,6 +1,6 @@
 <div class="card b-all">
     <div class="card-body collapse show">
-        <ficha-informacion [fichaForm]="fichaForm"></ficha-informacion>
+        <ficha-informacion #fichaInformacion [fichaForm]="fichaForm"></ficha-informacion>
     </div>
 </div>
 
@@ -14,12 +14,10 @@
     </div>
 </div>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-6" (click)="procesar()"
-    [disabled]="processing" *ngIf="registada('estado_evaluacion') == 1 && _accion.validate('AEVALUAR')">
+<button class="right-side-toggle waves-effect waves-light btn btn-success btn-circle btn-sm mr-6" (click)="procesar()" [disabled]="processing" *ngIf="registada('estado_evaluacion') == 1 && _accion.validate('AEVALUAR')">
     <i class="fa no-animation" [ngClass]="{'fa-check': !processing, 'fa-spinner fa-pulse': processing}"></i>
 </button>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()"
-    [disabled]="saving" *ngIf="registada('estado_evaluacion') != 2 && _accion.validate('AEVALUAR')">
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()" [disabled]="saving" *ngIf="registada('estado_evaluacion') != 2 && _accion.validate('AEVALUAR')">
     <i class="fa no-animation" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i>
 </button>
