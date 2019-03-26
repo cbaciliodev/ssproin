@@ -39,7 +39,6 @@ export class MapaUpload2Component implements OnInit {
 
     if ( !Util.isEmpty( this.data ) ) {
       const dataJson = Util.toJson( this.data );
-      console.log(this.data);
       this.tipoMapa.tipo = dataJson.tipo;
 
       if ( Util.equiv( this.tipoMapa.tipo, env.TIPO_FORMULARIO.ARCHIVO)  ) {
