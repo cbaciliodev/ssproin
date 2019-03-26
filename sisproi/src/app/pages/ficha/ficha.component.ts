@@ -81,13 +81,6 @@ export class FichaComponent implements OnInit, OnDestroy {
         () => this.saving = false);
   }
 
-  public getMapaData() {
-    return {
-      ubicacion: this.informacionComponent.getDataMapUpload(),
-      area_influencia: this.informacionComponent.getAreaInfluencia()
-    };
-  }
-
   public procesar() {
     swal({
       title: 'Estas seguro?',
