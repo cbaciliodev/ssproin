@@ -48,9 +48,6 @@ export class FichaComponent implements OnInit, OnDestroy {
     this.route.data.pipe(
       takeUntil(this.unsubscribe)
     ).subscribe(res => {
-
-      console.log(res.ficha.data);
-
       if (res.ficha) {
         if (res.ficha.data)
           this.configFicha(res.ficha.data);
@@ -82,6 +79,13 @@ export class FichaComponent implements OnInit, OnDestroy {
           else swal('Atención', env.MSG.SUCCESS_UPDATE, 'success');
         }, _ => swal('Atención', env.MSG.ERROR_INSERT, 'error'),
         () => this.saving = false);
+  }
+
+  getMapaData() {
+    return {
+      ubicacion: this.informacionComponent.getDataMapUpload(),
+      area_influencia: this.informacionComponent.getAreaInfluencia()
+    };
   }
 
   public procesar() {
