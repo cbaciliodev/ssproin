@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ParametroService } from '../services/shared/parametro.service';
 
+declare function init_plugins();
+
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -12,6 +14,7 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     this.getParametros();
+    init_plugins();
   }
 
   private getParametros() {
