@@ -59,28 +59,66 @@ export class ReporteService {
     return {
       columns: [
         [
-          { text: 'Sector', margin: [20, 2], bold: true },
-          { text: 'Programa', margin: [20, 2], bold: true },
-          { text: 'Proyecto', margin: [20, 2], bold: true },
-          { text: 'Monto estimado', margin: [20, 2], bold: true },
-          { text: 'Prioridad del sector', margin: [20, 2], bold: true },
-          { text: 'Modalidad contractual', margin: [20, 2], bold: true },
-          { text: 'Nivel de avance', margin: [20, 2], bold: true },
-          { text: 'Año de inicio de obras', margin: [20, 2], bold: true },
-          { text: 'Año de puesta en operación', margin: [20, 2], bold: true },
-          { text: 'Departamento(s)', margin: [20, 2], bold: true },
-        ],
-        [
-          { text: [': ', { text: this._param.sector(ficha.sector_nivel_1), color: ficha.sector_nivel_1 ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.empty(ficha.nombre_programa), color: ficha.nombre_programa ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.empty(ficha.nombre_proyecto), color: ficha.nombre_proyecto ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this.currencyPipe.transform(ficha.monto_estimado) }], margin: [0, 2] },
-          { text: [': ', { text: this._param.prioridad(ficha.prioridad_sector), color: ficha.prioridad_sector ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.ejecutiva(ficha.modalidad_ejecutiva), color: ficha.modalidad_ejecutiva ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.avance(ficha.nivel_avance), color: ficha.nivel_avance ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.empty(ficha.anio_inicio_posible), color: ficha.anio_inicio_posible ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.empty(ficha.anio_puesta_operacion), color: ficha.anio_puesta_operacion ? 'black' : 'gainsboro' }], margin: [0, 2] },
-          { text: [': ', { text: this._param.departamentos(ficha.departamento), color: ficha.departamento.length > 0 ? 'black' : 'gainsboro' }], margin: [0, 2] }
+          {
+            columns: [
+              { text: 'Sector', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.sector(ficha.sector_nivel_1), color: ficha.sector_nivel_1 ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Programa', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.empty(ficha.nombre_programa), color: ficha.nombre_programa ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Proyecto', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.empty(ficha.nombre_proyecto), color: ficha.nombre_proyecto ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Monto estimado', margin: [20, 2], bold: true },
+              { text: [': ', { text: this.currencyPipe.transform(ficha.monto_estimado), color: ficha.monto_estimado ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Prioridad del sector', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.prioridad(ficha.prioridad_sector), color: ficha.prioridad_sector ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Modalidad contractual', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.ejecutiva(ficha.modalidad_ejecutiva), color: ficha.modalidad_ejecutiva ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Nivel de avance', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.avance(ficha.nivel_avance), color: ficha.nivel_avance ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Año de inicio de obras', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.empty(ficha.anio_inicio_posible), color: ficha.anio_inicio_posible ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Año de puesta en operación', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.empty(ficha.anio_puesta_operacion), color: ficha.anio_puesta_operacion ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Departamento(s)', margin: [20, 2], bold: true },
+              { text: [': ', { text: this._param.departamentos(ficha.departamento), color: ficha.departamento ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          }
         ]
       ], fontSize: 10
     };
