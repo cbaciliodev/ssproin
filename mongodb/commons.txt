@@ -1,0 +1,1 @@
+mongo "mongodb+srv://bid-uyh7h.azure.mongodb.net/test" --username ssproin --password uSXxAzjZexT71z7j
