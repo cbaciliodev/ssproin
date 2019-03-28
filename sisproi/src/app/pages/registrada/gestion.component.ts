@@ -95,7 +95,6 @@ export class GestionRComponent implements OnInit {
     let filtro = this.filtroForm.value;
     if (!filtro.sector_nivel_1)
       filtro.sector_nivel_1 = this.sectores;
-    else filtro.sector_nivel_1 = [filtro.sector_nivel_1];
 
     return filtro;
   }

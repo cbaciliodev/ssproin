@@ -37,6 +37,11 @@ const pagesRoutes: Routes = [
                 }
             },
             {
+                path: 'registrada/ver', component: FichaComponent, resolve: { ficha: FichaResolver }, data: {
+                    title: 'Evaluación sectorial', routes: [{ title: 'Evaluación', link: '/registrada' }, { title: 'Evaluación sectorial' }]
+                }
+            },
+            {
                 path: 'registrada', component: GestionRComponent, data: {
                     title: 'Evaluación sectorial', routes: [{ title: 'Evaluación sectorial' }]
                 }

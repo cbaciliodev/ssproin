@@ -65,7 +65,9 @@
                                     </ng-container>
                                 </td>
                                 <td>{{fr.nombre_programa}}</td>
-                                <td>{{fr.nombre_proyecto}}</td>
+                                <td>
+                                    <a href="javascript:void(0)" routerLink="ver" [queryParams]="{id: fr._id}" *ngIf="_accion.validate('AVER')"> <i class="fa fa-search"></i> {{ fr.nombre_proyecto }} </a>
+                                </td>
                                 <td class="text-right">{{ fr.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fr.prioridad">
@@ -126,7 +128,9 @@
                                     </ng-container>
                                 </td>
                                 <td>{{fe.nombre_programa}}</td>
-                                <td>{{fe.nombre_proyecto}}</td>
+                                <td>
+                                    <a href="javascript:void(0)" routerLink="ver" [queryParams]="{id: fe._id}" *ngIf="_accion.validate('AVER')"> <i class="fa fa-search"></i> {{ fe.nombre_proyecto }} </a>
+                                </td>
                                 <td class="text-right">{{ fe.monto_estimado | currency }}</td>
                                 <td>
                                     <ng-container *ngIf="fe.prioridad">
