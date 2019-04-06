@@ -5,6 +5,8 @@ import { environment as env } from 'src/environments/environment';
 import { AccionService } from 'src/app/services/accion.service';
 import swal from 'sweetalert';
 
+declare function init_plugins();
+
 @Component({
   selector: 'gestion-productiva',
   templateUrl: './gestion.component.html'
@@ -21,6 +23,8 @@ export class GestionPComponent implements OnInit {
     public _accion: AccionService) { }
 
   ngOnInit() {
+    init_plugins();
+
     this.configFiltro();
     this.getProductivas();
   }

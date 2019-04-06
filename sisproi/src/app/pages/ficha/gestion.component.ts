@@ -12,6 +12,8 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import swal from 'sweetalert';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
+declare function init_plugins();
+
 @Component({
   selector: 'gestion-ficha',
   templateUrl: './gestion.component.html'
@@ -41,6 +43,8 @@ export class GestionFComponent implements OnInit {
     private _reporte: ReporteService) { }
 
   ngOnInit() {
+    init_plugins();
+
     this.configParametros();
     this.configFiltro();
     this.getFichas();

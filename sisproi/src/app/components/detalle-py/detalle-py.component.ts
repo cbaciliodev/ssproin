@@ -11,6 +11,7 @@ export class DetallePyComponent implements OnInit {
 
   @Input() titulo: string;
   @Input() sector: string;
+  @Input() estados: Array<string> = ['text-danger', 'text-danger', 'text-danger'];
   @Output() sumary = new EventEmitter();
 
   proyectos = 0;
