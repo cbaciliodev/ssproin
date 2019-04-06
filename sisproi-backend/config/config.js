@@ -18,7 +18,7 @@ module.exports.MONGODB = {
     MONGOOSE_OPTS: {
         user: 'ssproin',
         pass: 'uSXxAzjZexT71z7j',
-        dbName: 'ssproin-db-dev',
+        dbName: 'ssproin-db',
         useCreateIndex: true,
         useNewUrlParser: true,
         useFindAndModify: false
