@@ -13,6 +13,8 @@ import { SignupComponent } from './usuario/signup.component';
 import { GestionPComponent } from './productiva/gestion.component';
 import { ProductivaComponent } from './productiva/productiva.component';
 import { ProductivaResolver } from '../services/resolvers/productiva.resolver';
+import { NopagefoundComponent } from '../components/shared/nopagefound/nopagefound.component';
+import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
 
 const pagesRoutes: Routes = [
     {
@@ -53,12 +55,12 @@ const pagesRoutes: Routes = [
             },
             {
                 path: 'productiva', component: GestionPComponent, data: {
-                    title: 'Fichas productivas', routes: [{ title: 'Fichas productivas' }]
+                    title: 'Minería', routes: [{ title: 'Minería' }]
                 }
             },
             {
                 path: 'productiva/registro', component: ProductivaComponent, resolve: { productiva: ProductivaResolver }, data: {
-                    title: 'Ficha productiva', routes: [{ title: 'Gestión', link: '/productiva' }, { title: 'Registro de productiva' }]
+                    title: 'Minería', routes: [{ title: 'proyectos productivos', link: '/productiva' }, { title: 'Registro de productiva' }]
                 }
             },
             {
@@ -69,6 +71,17 @@ const pagesRoutes: Routes = [
             {
                 path: 'signup', component: SignupComponent, data: {
                     title: 'Signup', routes: [{ title: 'Signup' }, { title: 'Signup' }]
+                }
+            },
+            {
+                path: 'psectorial', component: DocPolSectComponent, data: {
+                    title: 'Documento de Política Sectorial', routes: [{ title: 'política sectorial' }]
+                }
+            },
+            // Páginas por desarrollar
+            {
+                path: 'mapas', component: NopagefoundComponent, data: {
+                    title: 'Mapas', routes: [{ title: 'mapas' }]
                 }
             }
         ]

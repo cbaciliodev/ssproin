@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { CardProyectoComponent } from './card-proyecto/card-proyecto.component';
 
 
 @NgModule({
@@ -17,12 +18,14 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
         BreadcrumbsComponent,
         HeaderComponent,
         NopagefoundComponent,
+        CardProyectoComponent,
     ],
     exports: [
         SidebarComponent,
         BreadcrumbsComponent,
         HeaderComponent,
-        NopagefoundComponent
+        NopagefoundComponent,
+        CardProyectoComponent
     ]
 })
 export class SharedModule { }

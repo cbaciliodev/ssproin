@@ -11,11 +11,13 @@ export class SidebarService {
       titulo: 'Proyectos',
       icono: 'mdi mdi-gauge',
       submenu: [
-        { titulo: 'Registros sectoriales', url: '/ficha' },
-        { titulo: 'Evaluación sectorial', url: '/registrada' },
-        { titulo: 'Fichas productivas', url: '/productiva' }
+        { titulo: 'Registros', url: '/ficha' },
+        { titulo: 'Evaluación', url: '/registrada' },
       ]
-    }
+    },
+    { titulo: 'Proyectos productivos', icono: 'mdi mdi-ferry', submenu: [ { titulo: 'Minería', url: '/productiva' } ]},
+    { titulo: 'Política sectorial', icono: 'mdi mdi-highway', url: '/psectorial' },
+    { titulo: 'Mapas', icono: 'mdi mdi-map-marker-radius', url: '/mapas' }
     //  ,{
     //       titulo: 'Administración',
     //       icono: 'mdi mdi-account-circle',

@@ -13,6 +13,8 @@ import swal from 'sweetalert';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
+declare function init_plugins();
+
 @Component({
   selector: 'gestion-registradas',
   templateUrl: './gestion.component.html'
@@ -40,6 +42,8 @@ export class GestionRComponent implements OnInit {
     private _reporte: ReporteService) { }
 
   ngOnInit() {
+    init_plugins();
+    
     this.configParametros();
     this.configFiltro();
     this.getFichas();
