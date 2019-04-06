@@ -45,8 +45,6 @@ app.get('/:filename', function(req, res) {
     var filePath = path.join(DIR, filename);
     var stat = fs.statSync(filePath);
 
-    console.log(mime.lookup(filename));
-
     res.writeHead(200, {
         'Content-Type': mime.lookup(filename),
         'Content-Length': stat.size
