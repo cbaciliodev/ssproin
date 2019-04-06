@@ -1,10 +1,12 @@
 <div class="card m-0 b-all">
   <div class="card-body p-2">
     <div class="row">
-      <div class="col-8 v-middle">
-        <strong>{{ titulo }}</strong>
+      <div class="col-12 col-md-8 v-middle">
+        <strong>{{ titulo }}</strong><br>
+
+        <a [class]="'btn waves-effect waves-light btn-xs btn-info text-white ' + disabled" [attr.href]="href" target="_blank">Descargar archivo</a>
       </div>
-      <div class="col-4 text-right">
+      <div class="col-12 col-md-4 text-md-right text-center">
         <i [class]="'mdi ' + icon + ' ' + css " style="font-size: 1.2em"></i>
       </div>
     </div>

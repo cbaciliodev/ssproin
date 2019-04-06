@@ -36,20 +36,15 @@
                 <tbody>
                     <tr *ngFor="let fp of fichas_productivas">
                         <td>
-                            <ng-container *ngIf="_accion.validate('AEDITAR')">
-                                <a href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fp._id}"> <i class="fa fa-pencil"></i> {{fp.nombre_proyecto}}</a>
-                            </ng-container>
-                            <ng-container *ngIf="!_accion.validate('AEDITAR')">
-                                {{fp.nombre_proyecto}}
-                            </ng-container>
+                            <a href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fp._id}"> <i class="fa fa-search"></i> {{fp.nombre_proyecto}}</a>
                         </td>
                         <td>{{fp.operador}}</td>
                         <td>{{fp.inversion_global | currency:'$ '}}</td>
                         <td>{{fp.inversion_ejecutada | currency:'$ '}}</td>
                         <td>
-                            <button class="btn btn-outline-secondary btn-sm" (click)="eliminar(fp._id)" *ngIf="_accion.validate('AEDITAR')">
-                                <i class="fa fa-trash"></i> Eliminar
-                            </button>
+                            <a class="btn btn-outline-secondary btn-sm" href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fp._id}" *ngIf="_accion.validate('AEDITAR')">
+                                <i class="fa fa-pencil"></i> Editar
+                            </a>
                         </td>
                     </tr>
 

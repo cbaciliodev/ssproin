@@ -64,13 +64,13 @@
 
             <ng-container *ngIf="have('PAGUA_SANEA')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Agua y Saneamiento Urbano" sector="PAGUA_SANEA" (sumary)="summary($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Agua y Saneamiento Urbano" sector="PAGUA_SANEA" (sumary)="summary($event)" [estados]="['text-warning', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PENERGIA')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Energía" sector="PENERGIA" (sumary)="summary($event)" [estados]="['text-success', 'text-danger', 'text-danger']"></app-detalle-py>
+                    <app-detalle-py titulo="Energía" sector="PENERGIA" (sumary)="summary($event)" [estados]="['text-warning', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 
