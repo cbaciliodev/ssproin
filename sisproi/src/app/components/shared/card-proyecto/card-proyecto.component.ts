@@ -7,8 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardProyectoComponent implements OnInit {
 
-  @Input() titulo = '14 Jun';
-  @Input() subtitulo = 'Pendiente';
+  @Input() titulo = '-';
   @Input() css = 'text-danger';
   @Input() icon = 'mdi-alert-circle';
 
