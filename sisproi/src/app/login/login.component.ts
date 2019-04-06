@@ -4,6 +4,7 @@ import { UsuarioService } from '../services/usuario/usuario.service';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
 
+declare function init_plugins();
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, public _usuario: UsuarioService) { }
 
   ngOnInit() {
+    init_plugins();
+
     this.forma = new FormGroup({
       correo: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required),
