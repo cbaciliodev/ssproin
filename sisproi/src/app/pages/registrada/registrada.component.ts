@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { FichaComponent } from '../ficha/ficha.component';
 import { InformacionComponent } from 'src/app/components/informacion/informacion.component';
 
-declare function init_plugins();
+// declare function init_plugins();
 
 @Component({
   selector: 'ficha-registrada',
@@ -43,8 +43,6 @@ export class RegistradaComponent implements OnInit, OnDestroy {
     public _accion: AccionService) { }
 
   ngOnInit() {
-    init_plugins();
-
     this.configParametros();
     this.configFormulario();
     this.getFicha();

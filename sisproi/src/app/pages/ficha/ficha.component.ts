@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
 
-declare function init_plugins();
+// declare function init_plugins();
 
 @Component({
   selector: 'ficha-proyecto',
@@ -41,8 +41,6 @@ export class FichaComponent implements OnInit, OnDestroy {
     public _accion: AccionService) { }
 
   ngOnInit() {
-
-    init_plugins();
 
     this.configParametros();
     this.configFormulario();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
-declare function init_plugins();
+// declare function init_plugins();
 
 @Component({
   selector: 'app-dashboard',
@@ -20,9 +20,7 @@ export class DashboardComponent implements OnInit {
 
   pyTotal = 0;
 
-  ngOnInit() {
-    init_plugins();
-  }
+  ngOnInit() {}
 
   have( sector: string ) {
 

@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 import swal from 'sweetalert';
 import { MapaUploadComponent } from 'src/app/components/mapa-upload/mapa-upload.component';
 
-declare function init_plugins();
+// declare function init_plugins();
 
 @Component({
   selector: 'app-productiva',
@@ -38,8 +38,6 @@ export class ProductivaComponent implements OnInit {
     public _accion: AccionService) { }
 
   ngOnInit() {
-    init_plugins();
-    
     this.configParametros();
     this.configFormulario();
     this.getProductiva();
