@@ -13,8 +13,8 @@ export class PagesComponent implements OnInit {
   constructor(private _parametro: ParametroService) { }
 
   ngOnInit() {
-    this.getParametros();
     init_plugins();
+    this.getParametros();
   }
 
   private getParametros() {
