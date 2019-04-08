@@ -128,7 +128,10 @@
                                         {{fr.sector.alias}}
                                     </ng-container>
                                     <div>
-                                        <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion != 2">
+                                        <span class="label label-default label-rounded" *ngIf="fr.estado_evaluacion == 0">
+                                            Para evaluación
+                                        </span>
+                                        <span class="label label-warning label-rounded" *ngIf="fr.estado_evaluacion == 1">
                                             En evaluación
                                         </span>
                                         <span class="label label-success label-rounded" *ngIf="fr.estado_evaluacion == 2">
