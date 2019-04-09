@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MapaUploadComponent } from 'src/app/components/mapa-upload/mapa-upload.component';
 import { ProductivaService } from 'src/app/services/productiva.service';
 import { environment as env } from 'src/environments/environment';
 import { AccionService } from 'src/app/services/accion.service';
@@ -8,9 +9,6 @@ import { Parametro } from 'src/app/models/parametro.model';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert';
-import { MapaUploadComponent } from 'src/app/components/mapa-upload/mapa-upload.component';
-
-// declare function init_plugins();
 
 @Component({
   selector: 'app-productiva',
@@ -20,6 +18,7 @@ import { MapaUploadComponent } from 'src/app/components/mapa-upload/mapa-upload.
 export class ProductivaComponent implements OnInit {
 
   public saving = false;
+  public viewMode = false;
   public productivaForm: FormGroup;
 
   private departamentos: Array<Parametro> = [];
@@ -65,6 +64,8 @@ export class ProductivaComponent implements OnInit {
       }));
 
     this.productivaForm.patchValue(data);
+    let ver = this.route.snapshot.queryParamMap.get('ver');
+    if (ver) { this.productivaForm.disable(); this.viewMode = true; }
   }
 
   public guardar() {

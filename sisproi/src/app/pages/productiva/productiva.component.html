@@ -34,7 +34,7 @@
         <div class="col-sm-10">
           <ul>
             <li *ngFor="let inv of inversionistas.value; let i=index">
-              <button class="btn btn-danger btn-sm" (click)="inversionistas.removeAt(i)">
+              <button class="btn btn-danger btn-sm" (click)="inversionistas.removeAt(i)" *ngIf="!viewMode">
                 <i class="fa fa-trash"></i>
               </button>
               {{inv}}
@@ -56,7 +56,7 @@
         <div class="col-sm-10">
           <ul>
             <li *ngFor="let rg of regiones.value; let i=index">
-              <button class="btn btn-danger btn-sm" (click)="regiones.removeAt(i)">
+              <button class="btn btn-danger btn-sm" (click)="regiones.removeAt(i)" *ngIf="!viewMode">
                 <i class="fa fa-trash"></i>
               </button>
               {{rg.alias}}
@@ -223,6 +223,6 @@
 </div>
 
 <button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" (click)="guardar()"
-  [disabled]="saving" *ngIf="_accion.validate('AEDITAR')">
+  [disabled]="saving" *ngIf="_accion.validate('AEDITAR') && !viewMode">
   <i class="fa no-animation" [ngClass]="{'fa-save': !saving, 'fa-spinner fa-pulse': saving}"></i>
 </button>

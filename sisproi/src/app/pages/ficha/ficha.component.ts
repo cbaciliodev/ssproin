@@ -41,7 +41,6 @@ export class FichaComponent implements OnInit, OnDestroy {
     public _accion: AccionService) { }
 
   ngOnInit() {
-
     this.configParametros();
     this.configFormulario();
     this.getFicha();

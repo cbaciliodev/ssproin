@@ -7,6 +7,7 @@ import { environment as env } from 'src/environments/environment';
 export class ParamService {
 
   private nivel_1 = this.getLocalItem(env.PARAMETRO.NIVEL_1);
+  private jurisdiccion_list = this.getLocalItem(env.PARAMETRO.JURISDICCION);
   private prioridad_sector = this.getLocalItem(env.PARAMETRO.PRIORIDAD_SECTOR);
   private modalidad_ejecutiva = this.getLocalItem(env.PARAMETRO.MODALIDAD_EJECU);
   private nivel_avance = this.getLocalItem(env.PARAMETRO.NIVEL_AVANCE);
@@ -18,6 +19,11 @@ export class ParamService {
   sector(nombre: string) {
     if (!nombre) return 'No registrada';
     return this.alias(this.nivel_1.find(_p => _p.nombre == nombre));
+  }
+
+  jurisdiccion(nombre: string) {
+    if (!nombre) return 'No registrada';
+    return this.alias(this.jurisdiccion_list.find(_p => _p.nombre == nombre));
   }
 
   aliasSubSector(subSector: string, i) {

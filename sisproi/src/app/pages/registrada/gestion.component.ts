@@ -2,16 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { AccionService } from 'src/app/services/accion.service';
 import { ReporteService } from 'src/app/services/reporte.service';
+import { PdfService } from 'src/app/services/pdf.service';
 import { environment as env } from 'src/environments/environment';
 import { evalHeader } from 'src/app/commons/constant';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Parametro } from 'src/app/models/parametro.model';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import pdfMake from 'pdfmake/build/pdfmake';
-import { saveAs } from 'file-saver';
 import swal from 'sweetalert';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 // declare function init_plugins();
 
@@ -39,7 +35,8 @@ export class GestionRComponent implements OnInit {
   constructor(private builder: FormBuilder,
     private _ficha: FichaService,
     public _accion: AccionService,
-    private _reporte: ReporteService) { }
+    private _reporte: ReporteService,
+    private _pdf: PdfService) { }
 
   ngOnInit() {
     this.configParametros();
@@ -69,10 +66,7 @@ export class GestionRComponent implements OnInit {
       .subscribe(
         res => {
           let ficha = this._reporte.pdfEvaluaion(res.data);
-          let pdfGenerator = pdfMake.createPdf(ficha);
-          pdfGenerator.getBlob((blob) => {
-            saveAs(blob, `${new Date().getTime()}.pdf`);
-          });
+          this._pdf.pdfViewer(ficha);
         }, err => console.log('Error', err),
         () => console.log('Complete')
       )
@@ -97,6 +91,9 @@ export class GestionRComponent implements OnInit {
     let filtro = this.filtroForm.value;
     if (!filtro.sector_nivel_1)
       filtro.sector_nivel_1 = this.sectores;
+    else if (!Array.isArray(filtro.sector_nivel_1)) {
+      filtro.sector_nivel_1 = [filtro.sector_nivel_1];
+    }
 
     return filtro;
   }
