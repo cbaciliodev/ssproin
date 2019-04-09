@@ -21,14 +21,27 @@ export class ParamService {
     return this.alias(this.nivel_1.find(_p => _p.nombre == nombre));
   }
 
+  subsector(sector_nivel_1, sector_nivel_2, ) {
+    let retorno = [];
+
+    for (let i = 0; i < sector_nivel_2.length; i++) {
+      if (sector_nivel_2[i]) {
+        let sb = this.subSector(sector_nivel_1);
+        retorno.push(this.aliasSubSector(sb, i));
+      }
+    }
+
+    return retorno.join(', ');
+  }
+
   jurisdiccion(nombre: string) {
     if (!nombre) return 'No registrada';
     return this.alias(this.jurisdiccion_list.find(_p => _p.nombre == nombre));
   }
 
-  aliasSubSector(subSector: string, i) {
+  aliasSubSector(subSector: string, i: number) {
     let sb = this.getLocalItem(subSector);
-    return this.alias(sb[i], true);
+    return sb[i].alias;
   }
 
   prioridad(nombre: string) {
