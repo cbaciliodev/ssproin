@@ -36,7 +36,7 @@
                 <tbody>
                     <tr *ngFor="let fp of fichas_productivas">
                         <td>
-                            <a href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fp._id}"> <i class="fa fa-search"></i> {{fp.nombre_proyecto}}</a>
+                            <a href="javascript:void(0)" routerLink="registro" [queryParams]="{id: fp._id, ver: true}"> <i class="fa fa-search"></i> {{fp.nombre_proyecto}}</a>
                         </td>
                         <td>{{fp.operador}}</td>
                         <td>{{fp.inversion_global | currency:'$ '}}</td>

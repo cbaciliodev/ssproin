@@ -2,17 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { AccionService } from 'src/app/services/accion.service';
 import { ReporteService } from 'src/app/services/reporte.service';
+import { PdfService } from 'src/app/services/pdf.service';
 import { environment as env } from 'src/environments/environment';
 import { fichaHeader } from 'src/app/commons/constant';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Parametro } from 'src/app/models/parametro.model';
-import { saveAs } from 'file-saver';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import pdfMake from 'pdfmake/build/pdfmake';
 import swal from 'sweetalert';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-// declare function init_plugins();
 
 @Component({
   selector: 'gestion-ficha',
@@ -40,7 +35,8 @@ export class GestionFComponent implements OnInit {
   constructor(private builder: FormBuilder,
     private _ficha: FichaService,
     public _accion: AccionService,
-    private _reporte: ReporteService) { }
+    private _reporte: ReporteService,
+    private _pdf: PdfService) { }
 
   ngOnInit() {
     this.configParametros();
@@ -74,13 +70,10 @@ export class GestionFComponent implements OnInit {
       .subscribe(
         res => {
           let ficha = this._reporte.pdfFicha(res.data);
-          let pdfGenerator = pdfMake.createPdf(ficha);
-          pdfGenerator.getBlob((blob) => {
-            saveAs(blob, `${new Date().getTime()}.pdf`);
-          });
+          this._pdf.pdfViewer(ficha);
         }, err => console.log('Error', err),
         () => console.log('Complete')
-      )
+      );
   }
 
   public reporteCSV() {
@@ -102,7 +95,9 @@ export class GestionFComponent implements OnInit {
     let filtro = this.filtroForm.value;
     if (!filtro.sector_nivel_1)
       filtro.sector_nivel_1 = this.sectores;
-    else filtro.sector_nivel_1 = [filtro.sector_nivel_1];
+    else if (!Array.isArray(filtro.sector_nivel_1)) {
+      filtro.sector_nivel_1 = [filtro.sector_nivel_1];
+    }
 
     return filtro;
   }
@@ -118,13 +113,6 @@ export class GestionFComponent implements OnInit {
   }
 
   private configParametros() {
-
-    console.log('Sector 1');
-    console.log(localStorage.getItem(env.PARAMETRO.NIVEL_1));
-
-    console.log('Usuario');
-    console.log(localStorage.getItem(env.PARAMETRO.NIVEL_1));
-
     this.sector_1 = JSON.parse(localStorage.getItem(env.PARAMETRO.NIVEL_1));
     this.sectores = JSON.parse(localStorage.getItem('usuario')).sector;
   }

@@ -57,66 +57,109 @@ export class ReporteService {
 
   private infoFicha(ficha) {
     return {
+      alignment: 'justify',
       columns: [
         [
           {
             columns: [
-              { text: 'Sector', margin: [20, 2], bold: true },
+              { text: 'Sector', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.sector(ficha.sector_nivel_1), color: ficha.sector_nivel_1 ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Programa', margin: [20, 2], bold: true },
+              { text: 'Sub-sector', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.subsector(ficha.sector_nivel_1, ficha.sector_nivel_2), color: ficha.sector_nivel_2 ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Jurisdicción', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.jurisdiccion(ficha.jurisdiccion), color: ficha.jurisdiccion ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Programa', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.empty(ficha.nombre_programa), color: ficha.nombre_programa ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Proyecto', margin: [20, 2], bold: true },
+              { text: 'Descripción del programa', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.empty(ficha.descripcion_programa), color: ficha.descripcion_programa ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Proyecto', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.empty(ficha.nombre_proyecto), color: ficha.nombre_proyecto ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Monto estimado', margin: [20, 2], bold: true },
+              { text: 'Descripción del proyecto', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.empty(ficha.descripcion_proyecto), color: ficha.descripcion_proyecto ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Monto estimado', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this.currencyPipe.transform(ficha.monto_estimado), color: ficha.monto_estimado ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Prioridad del sector', margin: [20, 2], bold: true },
+              { text: 'Prioridad del sector', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.prioridad(ficha.prioridad_sector), color: ficha.prioridad_sector ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Modalidad contractual', margin: [20, 2], bold: true },
+              { text: 'Comentarios de la prioridad', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.empty(ficha.comentarios_prioridad_sector), color: ficha.comentarios_prioridad_sector ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Modalidad contractual', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.ejecutiva(ficha.modalidad_ejecutiva), color: ficha.modalidad_ejecutiva ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Nivel de avance', margin: [20, 2], bold: true },
+              { text: 'Nivel de avance', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.avance(ficha.nivel_avance), color: ficha.nivel_avance ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Año de inicio de obras', margin: [20, 2], bold: true },
+              { text: 'Observaciones del avance', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.empty(ficha.nivel_avance_observacion), color: ficha.nivel_avance_observacion ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Año de inicio de obras', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.empty(ficha.anio_inicio_posible), color: ficha.anio_inicio_posible ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Año de puesta en operación', margin: [20, 2], bold: true },
+              { text: 'Año de puesta en operación', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.empty(ficha.anio_puesta_operacion), color: ficha.anio_puesta_operacion ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           },
           {
             columns: [
-              { text: 'Departamento(s)', margin: [20, 2], bold: true },
+              { text: 'Departamento(s)', margin: [20, 2], bold: true, width: 170 },
               { text: [': ', { text: this._param.departamentos(ficha.departamento), color: ficha.departamento ? 'black' : 'gainsboro' }], margin: [0, 2] }
+            ]
+          },
+          {
+            columns: [
+              { text: 'Comentarios(s)', margin: [20, 2], bold: true, width: 170 },
+              { text: [': ', { text: this._param.empty(ficha.comentarios), color: ficha.comentarios ? 'black' : 'gainsboro' }], margin: [0, 2] }
             ]
           }
         ]
@@ -128,9 +171,20 @@ export class ReporteService {
     return [
       {
         columns: [
-          [{ text: 'Prioridad coincide con politica del sector', margin: [20, 0], bold: true }],
-          [{ text: [': ', { text: this._param.politica(ficha.prio_politica_sect), color: ficha.prio_politica_sect ? 'black' : 'gainsboro' }], margin: [0, 2] },]
-
+          [
+            {
+              columns: [
+                { text: 'Prioridad coincide con politica del sector', margin: [20, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.prio_politica_sect), color: ficha.prio_politica_sect ? 'black' : 'gainsboro' }], margin: [0, 2] }
+              ]
+            },
+            {
+              columns: [
+                { text: '', margin: [20, 2], width: 170 },
+                { text: this._param.empty(ficha.prio_politica_sect_comentario), color: ficha.prio_politica_sect_comentario ? 'black' : 'gainsboro', margin: [5, 2] }
+              ]
+            }
+          ]
         ], fontSize: 10
       },
       { text: 'RIESGO', style: 'subtitle', margin: [20, 10, 0, 0] },
@@ -140,73 +194,73 @@ export class ReporteService {
           [
             {
               columns: [
-                { text: 'Diseño Tecnico', margin: [30, 2], bold: true },
+                { text: 'Diseño Tecnico', margin: [30, 2], bold: true, width: 170 },
                 { text: [': ', { text: this._param.riesgo(ficha.riesgo_dis_tec), color: ficha.riesgo_dis_tec ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.riesgo_dis_tec_comentario), color: ficha.riesgo_dis_tec_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Demanda considerada', margin: [30, 2], bold: true },
+                { text: 'Demanda considerada', margin: [30, 2], bold: true, width: 170 },
                 { text: [': ', { text: this._param.riesgo(ficha.riesgo_dis_deman), color: ficha.riesgo_dis_deman ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.riesgo_dis_deman_comentario), color: ficha.riesgo_dis_deman_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Socioambientales', margin: [30, 2], bold: true },
+                { text: 'Socioambientales', margin: [30, 2], bold: true, width: 170 },
                 { text: [': ', { text: this._param.riesgo(ficha.riesgo_socioamb), color: ficha.riesgo_socioamb ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.riesgo_socioamb_comentario), color: ficha.riesgo_socioamb_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Políticos', margin: [30, 2], bold: true },
+                { text: 'Políticos', margin: [30, 2], bold: true, width: 170 },
                 { text: [': ', { text: this._param.riesgo(ficha.riesgo_politico), color: ficha.riesgo_politico ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.riesgo_politico_comentario), color: ficha.riesgo_politico_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Institucionales', margin: [30, 2], bold: true },
+                { text: 'Institucionales', margin: [30, 2], bold: true, width: 170 },
                 { text: [': ', { text: this._param.riesgo(ficha.riesgo_institucional), color: ficha.riesgo_institucional ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.riesgo_institucional_comentario), color: ficha.riesgo_institucional_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Otros', margin: [30, 2], bold: true },
+                { text: 'Otros', margin: [30, 2], bold: true, width: 170 },
                 { text: [': ', { text: this._param.riesgo(ficha.riesgo_otros), color: ficha.riesgo_otros ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.riesgo_otros_comentario), color: ficha.riesgo_otros_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             }
@@ -220,61 +274,61 @@ export class ReporteService {
           [
             {
               columns: [
-                { text: 'Minería', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.productiva_mineria), color: ficha.productiva_mineria ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Minería', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.productiva_mineria), color: ficha.productiva_mineria ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.productiva_mineria_comentario), color: ficha.productiva_mineria_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Agricultura', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.productiva_agri), color: ficha.productiva_agri ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Agricultura', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.productiva_agri), color: ficha.productiva_agri ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.productiva_agri_comentario), color: ficha.productiva_agri_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Pesca', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.productiva_pesca), color: ficha.productiva_pesca ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Pesca', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.productiva_pesca), color: ficha.productiva_pesca ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.productiva_pesca_comentario), color: ficha.productiva_pesca_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Industria', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.productiva_indus), color: ficha.productiva_indus ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Industria', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.productiva_indus), color: ficha.productiva_indus ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.productiva_indus_comentario), color: ficha.productiva_indus_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Otros', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.productiva_otros), color: ficha.productiva_otros ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Otros', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.productiva_otros), color: ficha.productiva_otros ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.productiva_otros_comentario), color: ficha.productiva_otros_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             }
@@ -288,74 +342,80 @@ export class ReporteService {
           [
             {
               columns: [
-                { text: 'Transporte', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.social_trans), color: ficha.social_trans ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Transporte', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.social_trans), color: ficha.social_trans ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.social_trans_comentario), color: ficha.social_trans_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Telecomunicación', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.social_telco), color: ficha.social_telco ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Telecomunicación', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.social_telco), color: ficha.social_telco ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.social_telco_comentario), color: ficha.social_telco_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Agua y Saneamiento', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.social_agua), color: ficha.social_agua ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Agua y Saneamiento', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.social_agua), color: ficha.social_agua ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.social_agua_comentario), color: ficha.social_agua_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Riego', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.social_riego), color: ficha.social_riego ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Riego', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.social_riego), color: ficha.social_riego ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.social_riego_comentario), color: ficha.social_riego_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Educación', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.social_educa), color: ficha.social_educa ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Educación', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.social_educa), color: ficha.social_educa ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.social_educa_comentario), color: ficha.social_educa_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
               ]
             },
             {
               columns: [
-                { text: 'Salud', margin: [30, 2], bold: true },
-                { text: [': ', { text: this._param.riesgo(ficha.social_salud), color: ficha.social_salud ? 'black' : 'gainsboro' }], margin: [0, 2] }
+                { text: 'Salud', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.politica(ficha.social_salud), color: ficha.social_salud ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             },
             {
               columns: [
-                { text: ' ', margin: [30, 2, 0, 10] },
+                { text: '', margin: [30, 2, 0, 10], width: 170 },
                 { text: this._param.empty(ficha.social_salud_comentario), color: ficha.social_salud_comentario ? 'black' : 'gainsboro', margin: [5, 2, 0, 10] }
+              ]
+            },
+            {
+              columns: [
+                { text: 'Síntesis de la evaluación', margin: [30, 2], bold: true, width: 170 },
+                { text: [': ', { text: this._param.empty(ficha.sintesis_evaluacion), color: ficha.sintesis_evaluacion ? 'black' : 'gainsboro' }], margin: [0, 2] }
               ]
             }
           ]
