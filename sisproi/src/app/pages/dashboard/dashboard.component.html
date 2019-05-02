@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-2 col-3 p-0 text-center">
                         <span class="mr-2"> 15 Abr</span>
-                        <i class="mdi mdi-brightness-1 text-danger"></i> <br>
+                        <i class="mdi mdi-brightness-1 text-warning"></i> <br>
                         <small><strong> Preliminar</strong></small>
                     </div> 
                     <div class="col-2 col-md-3 p-0">
@@ -58,19 +58,19 @@
         <div class="row">
             <ng-container *ngIf="have('PTRANSPORTE')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Transporte" sector="PTRANSPORTE" (sumary)="summary($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Transporte" sector="PTRANSPORTE" (sumary)="summary($event)" [estados]="['text-success', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PAGUA_SANEA')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Agua y Saneamiento Urbano" sector="PAGUA_SANEA" (sumary)="summary($event)" [estados]="['text-warning', 'text-danger', 'text-danger']"></app-detalle-py>
+                    <app-detalle-py titulo="Agua y Saneamiento Urbano" sector="PAGUA_SANEA" (sumary)="summary($event)" [estados]="['text-success', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PENERGIA')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Energía" sector="PENERGIA" (sumary)="summary($event)" [estados]="['text-warning', 'text-danger', 'text-danger']"></app-detalle-py>
+                    <app-detalle-py titulo="Energía" sector="PENERGIA" (sumary)="summary($event)" [estados]="['text-success', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 
@@ -82,7 +82,7 @@
 
             <ng-container *ngIf="have('PRIEGO')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Riego" sector="PRIEGO" (sumary)="summary($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Riego" sector="PRIEGO" (sumary)="summary($event)" [estados]="['text-success', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 
