@@ -5,6 +5,7 @@ import { FichaComponent } from './ficha/ficha.component';
 import { GestionFComponent } from './ficha/gestion.component';
 import { GestionRComponent } from './registrada/gestion.component';
 import { LoginGuardGuard } from '../services/service.index';
+import { AdminGuard } from '../services/service.index';
 
 import { FichaResolver } from '../services/resolvers/ficha.resolver';
 import { RegistradaComponent } from './registrada/registrada.component';
@@ -15,6 +16,8 @@ import { ProductivaComponent } from './productiva/productiva.component';
 import { ProductivaResolver } from '../services/resolvers/productiva.resolver';
 import { NopagefoundComponent } from '../components/shared/nopagefound/nopagefound.component';
 import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 const pagesRoutes: Routes = [
     {
@@ -64,13 +67,18 @@ const pagesRoutes: Routes = [
                 }
             },
             {
-                path: 'usuario', component: UsuarioComponent, data: {
-                    title: 'Usuarios', routes: [{ title: 'Usuarios' }, { title: 'Usuarios' }]
+                path: 'usuario',canActivate: [AdminGuard], component: UsuarioComponent, data: {
+                    title: 'Usuarios'
                 }
             },
             {
                 path: 'signup', component: SignupComponent, data: {
-                    title: 'Signup', routes: [{ title: 'Signup' }, { title: 'Signup' }]
+                    title: 'Registro'
+                }
+            },
+            {
+                path: 'profile', component: ProfileComponent, data: {
+                    title: 'Profile', routes: [{ title: 'Perfil de usuario'  }]
                 }
             },
             {
