@@ -5,7 +5,7 @@ var app = express();
 
 // Rutas
 app.get('/', (req, res) => {
-    _f.ok(res, _f.HTTP_RESPONSES.SUCCESS, 'Petición enviada OK');
+    _f.ok(res, _f.HTTP_RESPONSES.SUCCESSFULL, 'Petición enviada OK');
 });
 
 module.exports = app;

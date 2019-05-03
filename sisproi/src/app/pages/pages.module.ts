@@ -28,6 +28,7 @@ import { CsvModule } from '@ctrl/ngx-csv';
 import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
 import { ProfileComponent } from './profile/profile.component';
 import { Profile01Component } from './profile/profile01.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { Profile01Component } from './profile/profile01.component';
         GestionPComponent,
         DocPolSectComponent,
         ProfileComponent,
-        Profile01Component
+        Profile01Component,
+        PerfilComponent
     ],
     exports: [
         DashboardComponent,

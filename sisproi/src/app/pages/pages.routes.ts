@@ -17,6 +17,7 @@ import { ProductivaResolver } from '../services/resolvers/productiva.resolver';
 import { NopagefoundComponent } from '../components/shared/nopagefound/nopagefound.component';
 import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 const pagesRoutes: Routes = [
@@ -90,6 +91,11 @@ const pagesRoutes: Routes = [
             {
                 path: 'mapas', component: NopagefoundComponent, data: {
                     title: 'Mapas', routes: [{ title: 'mapas' }]
+                }
+            },
+            {
+                path: 'perfil', component: PerfilComponent, data: {
+                    title: 'Perfiles', routes: [{ title: 'perfiles' }]
                 }
             }
         ]

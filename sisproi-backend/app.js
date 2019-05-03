@@ -27,15 +27,18 @@ var fichaRoutes = require('./routes/ficha');
 var serveIndex = require('serve-index');
 var usuarioRoutes = require('./routes/usuario');
 var filesRoutes = require('./routes/fileUpload');
+var perfilRoutes = require('./routes/perfil'); 
 
 // Route
+
 app.use('/productiva', productivaRoutes);
 app.use('/parametro', parametroRoutes);
 app.use('/usuario', usuarioRoutes);
+app.use('/perfil', perfilRoutes);
 app.use('/login', loginRoutes);
 app.use('/ficha', fichaRoutes);
 app.use('/files', filesRoutes);
-app.use('/', appRoutes);
+app.use('/', appRoutes); 
 
 // MongoDB Access
 var db = require('./config/config').MONGODB;
