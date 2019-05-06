@@ -18,6 +18,7 @@ import { NopagefoundComponent } from '../components/shared/nopagefound/nopagefou
 import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
 
 
 const pagesRoutes: Routes = [
@@ -96,6 +97,11 @@ const pagesRoutes: Routes = [
             {
                 path: 'perfil', component: PerfilComponent, data: {
                     title: 'Perfiles', routes: [{ title: 'perfiles' }]
+                }
+            },
+            {
+                path: 'addperfil', component: AppPerfilComponent, data: {
+                    title: 'Perfil', routes: [{ title: 'perfil' }]
                 }
             }
         ]

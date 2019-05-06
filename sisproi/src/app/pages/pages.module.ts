@@ -29,6 +29,7 @@ import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
 import { ProfileComponent } from './profile/profile.component';
 import { Profile01Component } from './profile/profile01.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import { PerfilComponent } from './perfil/perfil.component';
         DocPolSectComponent,
         ProfileComponent,
         Profile01Component,
-        PerfilComponent
+        PerfilComponent,
+        AppPerfilComponent
     ],
     exports: [
         DashboardComponent,

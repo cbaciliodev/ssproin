@@ -76,7 +76,7 @@
                                     <button class="btn btn-secondary btn-rounded btn-sm">
                                         <i class="fa fa-edit"></i> Editar
                                     </button>&nbsp;
-                                    <button class="btn btn-rounded btn-danger btn-sm">
+                                    <button class="btn btn-rounded btn-danger btn-sm" (click)="eliminarPerfil(lp._id)">
                                         <i class="fa fa-trash"></i> Borrar
                                     </button>
                                 </td>
@@ -88,6 +88,6 @@
     </div>
 </div>
 
-<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm"  type="submit">
+<button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm" routerLink="/addperfil" type="submit">
     <i class="fa fa-plus no-animation"></i>
   </button>
