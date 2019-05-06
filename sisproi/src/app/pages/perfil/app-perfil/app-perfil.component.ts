@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Perfil } from 'src/app/models/perfil.model';
 import { PerfilService } from 'src/app/services/perfil.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-app-perfil',
@@ -13,6 +14,8 @@ import swal from 'sweetalert';
 export class AppPerfilComponent implements OnInit {
 
   formPerfil: FormGroup;
+
+  actualizar = false;
   private accion1: Array<string> = [];
   private accion2: Array<string> = [];
   private accion3: Array<string> = [];
@@ -20,7 +23,7 @@ export class AppPerfilComponent implements OnInit {
   private accion5: Array<string> = [];
   private accion6: Array<string> = [];
   
-  constructor(public _perfil:PerfilService,private router :Router) { }
+  constructor(public _perfil:PerfilService,private router :Router, private activeroute :ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -51,6 +54,11 @@ export class AppPerfilComponent implements OnInit {
       Evaluar6: new FormControl(false),
       Ver6: new FormControl(false)
     });
+
+    if(this.activeroute.snapshot.queryParamMap.get('id')){
+      this.actualizarPerfil(this.activeroute.snapshot.queryParamMap.get('id'));
+      this.actualizar=true;
+    }
 
   }
 
@@ -91,6 +99,10 @@ export class AppPerfilComponent implements OnInit {
   };
 
   public registrarPerfil(){
+    this.tiggerFields();
+    if(this.formPerfil.invalid) return;
+
+
     this.acciones();  
     let perfil =  new Perfil(
       this.formPerfil.value.nombre,
@@ -102,10 +114,65 @@ export class AppPerfilComponent implements OnInit {
       this.accion6
     );
 
+    if(this.actualizar){
+
+      console.log(perfil);
+              this._perfil.updatePerfil( this.activeroute.snapshot.queryParamMap.get('id'), perfil)
+              .subscribe(res =>{
+                console.log(res);
+              swal('Good job!', 'Usuario Actualizado', 'success');
+          })
+            return
+      }
     this._perfil.crearPerfil(perfil).subscribe(res =>{
       swal('Bien!', 'Perfil Registrado', 'success');
       this.router.navigate( ['/perfil'] );
       })
   }
+
+  private tiggerFields() {
+    Object.keys(this.formPerfil.controls).forEach(field => {
+      let _control = this.control(field);
+      if (_control instanceof FormControl)
+        _control.markAsTouched({ onlySelf: true });
+    });
+  }
+
+  public actualizarPerfil(id){
+    this._perfil.selectOne(id).subscribe(res =>{
+      console.log('este es el perfil',res.data);
+      
+      this.formPerfil= new FormGroup({
+        nombre: new FormControl(res.data.nombre,Validators.required),
+        Editar1 : new FormControl((res.data.pagina1.find(d => d === "Editar")? true :false)),
+        Evaluar1: new FormControl((res.data.pagina1.find(d => d === "Evaluar")? true :false)),
+        Ver1: new FormControl((res.data.pagina1.find(d => d === "Ver")? true :false)),
+
+        Editar2 : new FormControl((res.data.pagina2.find(d => d === "Editar")? true :false)),
+        Evaluar2: new FormControl((res.data.pagina2.find(d => d === "Evaluar")? true :false)),
+        Ver2: new FormControl((res.data.pagina2.find(d => d === "Ver")? true :false)),
+
+        Editar3 : new FormControl((res.data.pagina3.find(d => d === "Editar")? true :false)),
+        Evaluar3: new FormControl((res.data.pagina3.find(d => d === "Evaluar")? true :false)),
+        Ver3: new FormControl((res.data.pagina3.find(d => d === "Ver")? true :false)),
+
+        Editar4 : new FormControl((res.data.pagina4.find(d => d === "Editar")? true :false)),
+        Evaluar4: new FormControl((res.data.pagina4.find(d => d === "Evaluar")? true :false)),
+        Ver4: new FormControl((res.data.pagina4.find(d => d === "Ver")? true :false)),
+
+        Editar5 : new FormControl((res.data.pagina5.find(d => d === "Editar")? true :false)),
+        Evaluar5: new FormControl((res.data.pagina5.find(d => d === "Evaluar")? true :false)),
+        Ver5: new FormControl((res.data.pagina5.find(d => d === "Ver")? true :false)),
+
+        Editar6 : new FormControl((res.data.pagina6.find(d => d === "Editar")? true :false)),
+        Evaluar6: new FormControl((res.data.pagina6.find(d => d === "Evaluar")? true :false)),
+        Ver6: new FormControl((res.data.pagina6.find(d => d === "Ver")? true :false))
+      });
+
+  }) 
+  }
+
+  public control(field): AbstractControl { return this.formPerfil.get(field) };
+  public invalid(field) { return this.formPerfil.get(field).invalid && this.formPerfil.get(field).touched; }
 
 }

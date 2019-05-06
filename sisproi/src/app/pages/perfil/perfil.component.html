@@ -73,7 +73,7 @@
                                         class="label label-info label-rounded mr-1">{{lp.pagina6[2]}}</span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-secondary btn-rounded btn-sm">
+                                    <button class="btn btn-secondary btn-rounded btn-sm" routerLink="/addperfil" [queryParams]="{id: lp._id}">
                                         <i class="fa fa-edit"></i> Editar
                                     </button>&nbsp;
                                     <button class="btn btn-rounded btn-danger btn-sm" (click)="eliminarPerfil(lp._id)">
