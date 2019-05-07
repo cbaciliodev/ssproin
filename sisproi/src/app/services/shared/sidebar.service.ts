@@ -19,6 +19,7 @@ export class SidebarService {
     { titulo: 'Política sectorial', icono: 'mdi mdi-highway', url: '/psectorial' },
     { titulo: 'Mapas', icono: 'mdi mdi-map-marker-radius', url: '/mapas' },
     
+    /*
     {
       titulo: 'Administración',
       icono: 'mdi mdi-account-circle',
@@ -26,7 +27,7 @@ export class SidebarService {
         { titulo: 'Usuarios', url: '/usuario' },
         { titulo: 'Registrar', url: '/signup' }
        ]
-  }
+  }*/
     
   ];
 
