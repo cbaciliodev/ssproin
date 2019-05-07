@@ -12,7 +12,7 @@ var _http = require('../commons/http');
 // app.use('/uploads', serveIndex('/data/ssproi/uploads'));
 
 
-const DIR = '/data/ssproin/kml';
+const DIR = '/data/sigap/uploads';
 let filename = '';
 
 // Configurando datastorage
