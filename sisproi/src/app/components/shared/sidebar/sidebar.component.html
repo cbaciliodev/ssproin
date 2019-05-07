@@ -11,14 +11,16 @@
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="../assets/images/users/empty-user.jpg" alt="user" />
                         <span class="hide-menu"> BID </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="javascript:void()">Mi perfil </a></li>
+                        <li><a routerLink="/profile" [queryParams]="{id:_id}" routerLinkActive="active">Mi perfil </a></li>
                         <li><a href="javascript:void()">Mensajes</a></li>
                         <li><a routerLink="/account-settings" routerLinkActive="active">Configuración</a></li>
                         <li><a>Cerrar sesión</a></li>
                     </ul>
                 </li>
                 <li class="nav-devider"></li>
-                <li *ngFor="let m of _sidebar.menu">
+                <li *ngFor="let m of _sidebar.menu" >
+                    <ng-container *ngIf="!(m.titulo=='Administración' && usuario)">
+                    
                     <ng-container *ngIf="m.submenu; else menutpl">
                         <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                             <i [class]="m.icono"></i><span class="hide-menu"> {{ m.titulo }}</span>
@@ -37,6 +39,7 @@
                             </li>
                         </ul>
                     </ng-container>
+                </ng-container>
                 </li>
             </ul>
         </nav>

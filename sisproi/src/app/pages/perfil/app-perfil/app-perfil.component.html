@@ -1,0 +1,221 @@
+<div class="card">
+  <div class="card-body collapse show">
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active">
+        <div [formGroup]="formPerfil">
+          <h2>Datos de Usuario</h2>
+
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nombre </label>
+            <div class="col-sm-10" [class.has-danger]="invalid('nombre')">
+              <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre del perfil">
+              <div class="pt-1" *ngIf="invalid('nombre')">
+                <span class="form-control-feedback">
+                  <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+                </span>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div *ngIf="!pagePerfil"> -->
+
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page1 </label>
+            <div class="col-sm-10">
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Editar1" name="Editar1" type="checkbox" class="custom-control-input"
+                  id="CheckEditar1" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEditar1">Editar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Evaluar1" name="Evaluar1" type="checkbox" class="custom-control-input"
+                  id="CheckEvaluar1" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEvaluar1">Evaluar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Ver1" name="Ver1" type="checkbox" class="custom-control-input" id="CheckVer1"
+                  (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckVer1">Ver</label>
+              </div>
+
+              <!-- <div class="pt-1 text-danger" *ngIf="accionesInv">
+        <span class="form-control-feedback">
+          <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+        </span>
+      </div> -->
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page2 </label>
+            <div class="col-sm-10">
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Editar2" name="Editar2" type="checkbox" class="custom-control-input"
+                  id="CheckEditar2" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEditar2">Editar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Evaluar2" name="Evaluar2" type="checkbox" class="custom-control-input"
+                  id="CheckEvaluar2" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEvaluar2">Evaluar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Ver2" name="Ver2" type="checkbox" class="custom-control-input" id="CheckVer2"
+                  (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckVer2">Ver</label>
+              </div>
+
+              <!-- <div class="pt-1 text-danger" *ngIf="accionesInv">
+          <span class="form-control-feedback">
+            <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+          </span>
+        </div> -->
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page3 </label>
+            <div class="col-sm-10">
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Editar3" name="Editar3" type="checkbox" class="custom-control-input"
+                  id="CheckEditar3" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEditar3">Editar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Evaluar3" name="Evaluar3" type="checkbox" class="custom-control-input"
+                  id="CheckEvaluar3" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEvaluar3">Evaluar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Ver3" name="Ver3" type="checkbox" class="custom-control-input" id="CheckVer3"
+                  (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckVer3">Ver</label>
+              </div>
+
+              <!-- <div class="pt-1 text-danger" *ngIf="accionesInv">
+            <span class="form-control-feedback">
+              <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+            </span>
+          </div> -->
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page4 </label>
+            <div class="col-sm-10">
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Editar4" name="Editar4" type="checkbox" class="custom-control-input"
+                  id="CheckEditar4" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEditar4">Editar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Evaluar4" name="Evaluar4" type="checkbox" class="custom-control-input"
+                  id="CheckEvaluar4" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEvaluar4">Evaluar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Ver4" name="Ver4" type="checkbox" class="custom-control-input" id="CheckVer4"
+                  (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckVer4">Ver</label>
+              </div>
+
+              <!-- <div class="pt-1 text-danger" *ngIf="accionesInv">
+              <span class="form-control-feedback">
+                <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+              </span>
+            </div> -->
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page5 </label>
+            <div class="col-sm-10">
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Editar5" name="Editar5" type="checkbox" class="custom-control-input"
+                  id="CheckEditar5" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEditar5">Editar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Evaluar5" name="Evaluar5" type="checkbox" class="custom-control-input"
+                  id="CheckEvaluar5" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEvaluar5">Evaluar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Ver5" name="Ver5" type="checkbox" class="custom-control-input" id="CheckVer5"
+                  (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckVer5">Ver</label>
+              </div>
+
+              <!-- <div class="pt-1 text-danger" *ngIf="accionesInv">
+                <span class="form-control-feedback">
+                  <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+                </span>
+              </div> -->
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page6 </label>
+            <div class="col-sm-10">
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Editar6" name="Editar6" type="checkbox" class="custom-control-input"
+                  id="CheckEditar6" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEditar6">Editar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Evaluar6" name="Evaluar6" type="checkbox" class="custom-control-input"
+                  id="CheckEvaluar6" (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckEvaluar6">Evaluar</label>
+              </div>
+
+              <div class="custom-control custom-checkbox">
+                <input formControlName="Ver6" name="Ver6" type="checkbox" class="custom-control-input" id="CheckVer6"
+                  (focus)="invalido = false" (focus)="accionesInv = false">
+                <label class="custom-control-label" for="CheckVer6">Ver</label>
+              </div>
+
+              <!-- <div class="pt-1 text-danger" *ngIf="accionesInv">
+                  <span class="form-control-feedback">
+                    <i class="fa fa-times-circle-o"></i> Este campo es <strong>requerido.</strong>
+                  </span>
+                </div> -->
+
+            </div>
+          </div>
+
+
+          <!-- </div> -->
+          <button class="right-side-toggle waves-effect waves-light btn btn-primary btn-circle btn-sm"
+            (click)="registrarPerfil()">
+            <i class="fa fa-save no-animation"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

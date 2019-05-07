@@ -17,16 +17,19 @@ export class SidebarService {
     },
     { titulo: 'Proyectos productivos', icono: 'mdi mdi-ferry', submenu: [ { titulo: 'Minería', url: '/productiva' } ]},
     { titulo: 'Política sectorial', icono: 'mdi mdi-highway', url: '/psectorial' },
-    { titulo: 'Mapas', icono: 'mdi mdi-map-marker-radius', url: '/mapas' }
-    //  ,{
-    //       titulo: 'Administración',
-    //       icono: 'mdi mdi-account-circle',
-    //       submenu: [
-    //      { titulo: 'Usuarios', url: '/usuario' },
-    //      { titulo: 'Registrar', url: '/signup' }
-    //    ]
-    //  }
+    { titulo: 'Mapas', icono: 'mdi mdi-map-marker-radius', url: '/mapas' },
+    
+    {
+      titulo: 'Administración',
+      icono: 'mdi mdi-account-circle',
+      submenu: [
+        { titulo: 'Usuarios', url: '/usuario' },
+        { titulo: 'Registrar', url: '/signup' }
+       ]
+  }
+    
   ];
 
-  constructor() { }
+  constructor() {
+  }
 }

@@ -20,16 +20,20 @@ export class UsuarioComponent implements OnInit {
    this.listUsuarios()
   }
 
-  
   listUsuarios(){
-   this._usuario.ListaUsuarios(localStorage.getItem('id'))
-   .subscribe(res=>{
-     this.listaUsuarios=res.data; 
-   })
+    this._usuario.ListaUsuarios(localStorage.getItem('id'))
+    .subscribe(res=>{
+      this.listaUsuarios=res.data; 
+    })
   }
 
 
   eliminarUsuario(id){  
+    if(id==localStorage.getItem('id')){
+      swal('No se puede borrar usuario','No se puede borrar a si mismo','error');
+    return;
+    }
+
     swal("Una vez eliminado, no podrás recuperar este usuario!", {
       title: 'Estas seguro?',
       icon: 'warning',

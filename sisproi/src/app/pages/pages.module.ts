@@ -26,6 +26,10 @@ import { ProductivaComponent } from './productiva/productiva.component';
 import { GestionPComponent } from './productiva/gestion.component';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
+import { ProfileComponent } from './profile/profile.component';
+import { Profile01Component } from './profile/profile01.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +50,11 @@ import { DocPolSectComponent } from './doc-pol-sect/doc-pol-sect.component';
         SignupComponent,
         ProductivaComponent,
         GestionPComponent,
-        DocPolSectComponent
+        DocPolSectComponent,
+        ProfileComponent,
+        Profile01Component,
+        PerfilComponent,
+        AppPerfilComponent
     ],
     exports: [
         DashboardComponent,

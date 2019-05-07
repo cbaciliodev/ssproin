@@ -1,5 +1,4 @@
 var Usuario = require('../models/usuario');
-var bcrypt = require('bcryptjs');
 
 module.exports = {
     list: list,
@@ -8,7 +7,7 @@ module.exports = {
     actualizar:actualizar,
     listOne:listOne,
     listUsuarios:listUsuarios,
-    buscarCorreo:buscarCorreo
+    buscarCorreo:buscarCorreo,
 }
 
 function listOne(id){
@@ -22,7 +21,7 @@ function listOne(id){
 
 function list() {
     return new Promise((resolve, rejec) => {
-        Usuario.find().exec((err, data) => {
+        Usuario.find({estado:{$ne :3}}).exec((err, data) => {
             if (err) rejec(err);
             resolve(data);
         });
@@ -32,17 +31,18 @@ function list() {
 //lista todos los usuarios execepto el que esta en uso
 function listUsuarios(id) {
     return new Promise((resolve, rejec) => {
-         Usuario.find({ _id: { $nin: [id] } }).exec((err, data) => {
+         Usuario.find({ _id: { $nin: [id] } ,estado:{$ne :3}}).exec((err, data) => {
             if (err) rejec(err);
             resolve(data);
         });
     });
 }
+
 //BUSCAR CORREO PARA COMPROBAR DUPLICIDAD
 function buscarCorreo(correo) {
     return new Promise((resolve, rejec) => {
         
-        Usuario.find({ correo: {$regex: correo, $options:"i"} }).exec((err, data) => {
+        Usuario.find({ correo: {$regex: correo, $options:"i"},estado:{$ne :3}  }).exec((err, data) => {
             if (err) rejec(err);
             resolve(data);
         });
@@ -51,19 +51,10 @@ function buscarCorreo(correo) {
 
 function actualizar(id,usuario) {
     return new Promise((resolve, reject) => {
-        Usuario.findById(id, (err, data) => {
-            if (err) reject(err);
-        
-        data.nombre = usuario.nombre;
-        data.password=bcrypt.hashSync(usuario.password);
-        data.accion=usuario.accion;
-        data.sector=usuario.sector;
-
-        data.save((err, data) => {
+        Usuario.findByIdAndUpdate(id, usuario, (err, data) => {
             if (err) reject(err);
             resolve(data);
-        });    
-    });   
+        });
     });
 }
 
@@ -79,7 +70,7 @@ function crear(usuario) {
 
 function eliminar(id) {
     return new Promise((resolve, reject) => {
-        Usuario.findByIdAndRemove(id, (err, data) => {
+        Usuario.findByIdAndUpdate(id, {estado:3}, (err, data) => {
             if (err) reject(err);
             resolve(data);
         });

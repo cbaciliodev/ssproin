@@ -48,6 +48,10 @@ app.post('/:dato', (req, res) => {
 // ==========================================
 app.put('/:id',  (req, res) => {
 
+    if(req.body.password){
+        req.body.password = bcrypt.hashSync(req.body.password);
+        req.body.estado= 2
+    }
    _usuario.actualizar(req.params.id,req.body).then(
     data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
     erro => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, erro));
@@ -60,17 +64,15 @@ app.put('/:id',  (req, res) => {
 // ==========================================
 app.post('/',(req, res) => {
 
-    var body = req.body;
-    console.log(body)
     var usuario = new Usuario({
-        nombre: body.nombre,
-        correo: body.correo,
-        password: bcrypt.hashSync(body.password),
-        sector: body.sector,
-        accion: body.accion,
-        avatar: body.avatar 
+        nombre: req.body.nombre,
+        correo: req.body.correo,
+        perfil: req.body.perfil,
+        password: bcrypt.hashSync(req.body.password),
+        sector: req.body.sector,
+        accion: req.body.accion,
+        avatar: req.body.avatar 
     });
-
     _usuario.crear(usuario).
     then(
         data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),

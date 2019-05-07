@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,26 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor( public router: Router ) { }
-
+  usuario;
+  _id;
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    this._id =localStorage.getItem('id');
   }
-  cerrarSecion(){
-  
-    localStorage.clear();
-   this.router.navigate( ['/login'] );
-    console.log('LImpio')
-    
 
+  cerrarSecion(){
+    swal("Cerrar sesion de usuario "+this.usuario.nombre, {
+      title: 'Estas seguro?',
+      icon: 'warning',
+      buttons: ['Cancel', 'Ok'],
+      dangerMode: true
+          })
+      .then((salir) => {
+        if (salir) {
+          localStorage.clear();
+          this.router.navigate( ['/login'] );
+        } 
+      }); 
   }
 
 }

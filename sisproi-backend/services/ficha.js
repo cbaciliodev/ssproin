@@ -61,10 +61,10 @@ function list(filtro) {
 
 function estadoFicha(sector) {
     return new Promise((resolve, rejec) => {
-        Ficha.find({ sector_nivel_1: sector, estado_registro: 1 }).exec((err, r1) => {
-            Ficha.find({ sector_nivel_1: sector, estado_registro: 2 }).exec((err, r2) => {
-                Ficha.find({ sector_nivel_1: sector, estado_evaluacion: 1 }).exec((err, e1) => {
-                    Ficha.find({ sector_nivel_1: sector, estado_evaluacion: 2 }).exec((err, e2) => {
+        Ficha.find({ sector_nivel_1: sector, estado_registro: 1,estado:{$ne :3}  }).exec((err, r1) => {
+            Ficha.find({ sector_nivel_1: sector, estado_registro: 2,estado:{$ne :3}  }).exec((err, r2) => {
+                Ficha.find({ sector_nivel_1: sector, estado_evaluacion: 1,estado:{$ne :3}  }).exec((err, e1) => {
+                    Ficha.find({ sector_nivel_1: sector, estado_evaluacion: 2,estado:{$ne :3}  }).exec((err, e2) => {
                         if (err) rejec(err);
                         resolve({ sector: sector, Registro: r1.length, RegistroFin: r2.length, Evaluacion: e1.length, Evaluados: e2.length });
                     });

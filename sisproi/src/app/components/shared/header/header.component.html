@@ -47,11 +47,11 @@
                     <div class="dropdown-menu dropdown-menu-right animated fadeInDown">
                         <ul class="dropdown-user">
                             <li>
-                                <div class="dw-user-box">
+                                <div class="dw-user-box" align="center">
                                     <div class="u-img"><img src="assets/images/users/empty-user.jpg" alt="user"></div>
                                     <div class="u-text">
-                                        <h4>BID</h4>
-                                        <p class="text-muted">iadb@iadb.org</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">Ver perfil</a></div>
+                                        <h4>{{usuario.nombre}}</h4>
+                                        <p class="text-muted">{{usuario.correo}}</p><a routerLink="/profile" [queryParams]="{id:_id}" class="btn btn-rounded btn-danger btn-sm">Ver perfil</a></div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
