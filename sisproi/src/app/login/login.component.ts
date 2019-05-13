@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from '../services/usuario/usuario.service';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
+import { ParamService } from '../services/param.service';
 
 declare function init_plugins();
 
@@ -40,6 +41,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('id', res.id);
         localStorage.setItem('token', res.token);
         localStorage.setItem('usuario', JSON.stringify(res.usuario));
+
+        // Obteniendo datos
+
         this.router.navigate(['/dashboard']);
       }, _ => this.userExiste = false);
   }

@@ -12,6 +12,11 @@ export class FichaService {
   constructor(private http: HttpClient,
     private _param: ParamService) { }
 
+  listarTodo() {
+    const URL = env.URI_API.concat('ficha/');
+    return this.http.get(URL).pipe( map( ( _data: any ) => _data.data[0].lista_fichas ) );
+  }
+
   list(filtro: any) {
     const URL = env.URI_API.concat('ficha/');
     return this.http.post<any>(URL, filtro).pipe(

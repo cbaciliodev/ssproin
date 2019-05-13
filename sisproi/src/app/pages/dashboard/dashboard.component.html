@@ -88,13 +88,13 @@
 
             <ng-container *ngIf="have('PSALUD')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Salud" sector="PSALUD" (sumary)="summary($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Salud" sector="PSALUD" (sumary)="summary($event)" fecha="30 Abr" [estados]="['text-success', 'text-danger', 'text-danger']" ></app-detalle-py>
                 </div>
             </ng-container>
 
             <ng-container *ngIf="have('PEDUCACION')">
                 <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                    <app-detalle-py titulo="Educación" sector="PEDUCACION" (sumary)="summary($event)"></app-detalle-py>
+                    <app-detalle-py titulo="Educación" sector="PEDUCACION" (sumary)="summary($event)" fecha="30 Abr" [estados]="['text-success', 'text-danger', 'text-danger']"></app-detalle-py>
                 </div>
             </ng-container>
 

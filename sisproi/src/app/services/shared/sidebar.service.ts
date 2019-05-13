@@ -11,6 +11,7 @@ export class SidebarService {
       titulo: 'Proyectos',
       icono: 'mdi mdi-gauge',
       submenu: [
+        { titulo: 'Listado general', url: '/list_fichas' },
         { titulo: 'Registros', url: '/ficha' },
         { titulo: 'Evaluación', url: '/registrada' },
       ]

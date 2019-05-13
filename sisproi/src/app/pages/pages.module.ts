@@ -30,6 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { Profile01Component } from './profile/profile01.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
+import { ListProyectosComponent } from './list-proyectos/list-proyectos.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
         ProfileComponent,
         Profile01Component,
         PerfilComponent,
-        AppPerfilComponent
+        AppPerfilComponent,
+        ListProyectosComponent
     ],
     exports: [
         DashboardComponent,
