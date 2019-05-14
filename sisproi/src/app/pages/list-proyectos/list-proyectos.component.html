@@ -12,7 +12,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let it of data">
+              <tr *ngFor="let it of data; let i = index">
                 <td> {{ it.nombre_proyecto }} 
                     <span class="badge badge-primary m-r-5" *ngIf="it.archivo_adicional!=''" >Archivo</span>
                     <span class="badge badge-success m-r-5" *ngIf="isArchivo(it.localizacion_latitud)" >Ubicación</span></td>
@@ -20,9 +20,9 @@
                 <td> {{ it.modalidad != undefined ? it.modalidad.alias : '' }} </td>
                 <td> {{ evaluarAvance(it.nivel_avance) }} </td>
                 <td>
-                  <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-secondary disabled">Pri.</button>
-                    <button type="button" class="btn btn-info">No pri.</button>
+                  <div class="btn-group btn-group-sm mr-2" role="group">
+                    <button type="button" (click)="marcar( i, 1 )" [ngClass]="{'btn-info': (it.is_priorizado==1), 'btn-secondary': (it.is_priorizado==0)}" class="btn">Pri.</button>
+                    <button type="button" (click)="marcar( i, 0 )"  [ngClass]="{'btn-info': (it.is_priorizado==0), 'btn-secondary': (it.is_priorizado==1)}" class="btn">No pri.</button>
                   </div>
                 </td>
               </tr>

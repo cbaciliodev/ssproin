@@ -37,6 +37,7 @@ export class ViewFicha {
         public sector_nivel_number: string,
         public sector_nivel_2: [ boolean ],
         public usuario_reg: string,
-        public _id: string
+        public _id: string,
+        public is_priorizado?: number
     ){ }
 }

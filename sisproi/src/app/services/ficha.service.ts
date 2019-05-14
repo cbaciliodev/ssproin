@@ -11,6 +11,12 @@ export class FichaService {
 
   constructor(private http: HttpClient,
     private _param: ParamService) { }
+  
+  priorizar( _id: string, _prio: number ){
+    const URL = env.URI_API.concat( 'ficha/estado/' + _id + '/'+ _prio );
+    return this.http.get(URL).pipe( map( ( _data: any ) => _data.data ) );
+  }
+
 
   listarTodo() {
     const URL = env.URI_API.concat('ficha/');

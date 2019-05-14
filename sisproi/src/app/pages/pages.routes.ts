@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
 import { ListProyectosComponent } from './list-proyectos/list-proyectos.component';
+import { GisComponent } from './gis/gis.component';
 
 
 const pagesRoutes: Routes = [
@@ -82,8 +83,8 @@ const pagesRoutes: Routes = [
                 }
             },
             // Páginas por desarrollar
-            { path: 'mapas', component: NopagefoundComponent, data: {
-                    title: 'Mapas', routes: [{ title: 'mapas' }]
+            { path: 'mapas', component: GisComponent, data: {
+                    title: '', routes: [{ title: '' }]
                 }
             },
             { path: 'perfil', component: PerfilComponent, data: {

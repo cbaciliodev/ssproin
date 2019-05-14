@@ -65,4 +65,11 @@ export class ListProyectosComponent implements OnInit {
 
   }
 
+  marcar( i: number, value: number) {
+
+    this.data[i].is_priorizado = value;
+    this._fc.priorizar( this.data[ i ]._id, value ).subscribe( _data => console.log( _data ) );
+    
+  }
+
 }

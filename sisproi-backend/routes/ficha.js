@@ -4,6 +4,15 @@ var app = express();
 var _ficha = require('../services/ficha');
 var _http = require('../commons/http');
 
+app.get( '/estado/:id/:estado', (req, res) => {
+    var id = req.params.id;
+    var estado = req.params.estado;
+    _ficha.priorizar( id, estado ).then(
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+});
+
 app.get('/', (req, res) => {
     _ficha.list( { nombre_programa: '', nombre_proyecto: '', sector_nivel_1: [ 'PSALUD', 'PEDUCACION', 'PAGUA_SANEA', 'PENERGIA', 'PTRANSPORTE', 'PRIEGO', 'PTELECOMUNIC' ] } ).then(
         data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),

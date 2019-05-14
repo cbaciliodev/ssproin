@@ -1,6 +1,10 @@
 var Ficha = require('../models/ficha');
 var ESTADO_ELIMINADO = require('../config/config').ESTADO_ELIMINADO;
 
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+
 module.exports = {
     list: list,
     select: select,
@@ -9,6 +13,16 @@ module.exports = {
     report: report,
     reportCVS: reportCVS,
     estadoFicha: estadoFicha,
+    priorizar: priorizar
+}
+
+function priorizar( _id, priorizado ){
+    return new Promise( (resolve, reject) => {
+        Ficha.updateOne( { _id: Schema.Types.ObjectId( _id ) }, { is_priorizado: priorizado }, ( err, data ) => {
+            if( err ) reject( err );
+            resolve( data );
+        });
+    });
 }
 
 function list(filtro) {

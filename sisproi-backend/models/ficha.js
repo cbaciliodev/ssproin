@@ -89,6 +89,7 @@ var FichaSchema = new Schema({
     fecha_final_eval: { type: Date },
 
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS },
+    is_priorizado: { type: Boolean },
 }, { collection: 'ficha' });
 
 module.exports = mongoose.model('Ficha', FichaSchema);
