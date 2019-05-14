@@ -4,7 +4,7 @@ var app = express();
 var _ficha = require('../services/ficha');
 var _http = require('../commons/http');
 
-app.get( '/estado/:id/:estado', (req, res) => {
+app.get( '/priorizado/:id/:estado', (req, res) => {
     var id = req.params.id;
     var estado = req.params.estado;
     _ficha.priorizar( id, estado ).then(
