@@ -32,6 +32,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
 import { ListProyectosComponent } from './list-proyectos/list-proyectos.component';
 import { GisComponent } from './gis/gis.component';
+import { BarcharComponent } from '../components/barchar/barchar.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -58,7 +60,8 @@ import { GisComponent } from './gis/gis.component';
         PerfilComponent,
         AppPerfilComponent,
         ListProyectosComponent,
-        GisComponent
+        GisComponent,
+        BarcharComponent
     ],
     exports: [
         DashboardComponent,
@@ -76,7 +79,8 @@ import { GisComponent } from './gis/gis.component';
         ReactiveFormsModule,
         FileUploadModule,
         CsvModule,
-        PAGES_ROUTE
+        PAGES_ROUTE,
+        ChartsModule
     ]
 })
 export class PagesModule {}

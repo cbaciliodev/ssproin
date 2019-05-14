@@ -54,6 +54,28 @@
 </div>
 
 <div class="card b-all">
+    <div class="card-body bg-white p-0 ml-3 mr-3">
+        <div class="row b-b">
+            <div class="col-md-4 col-lg-4 col-12 p-3 b-r">
+                <h4 class="title"> Nivel de avance </h4>
+                <app-barchar [chartLabels]="[ 'Idea', 'Pre inversión', 'Diseño', 'Ejecución' ]" 
+                            [chartData]="[{ data: [8920.78, 7553,64, 3378.39, 7576.51], label: 'USD Millones' }]" ></app-barchar>
+            </div>
+            <div class="col-md-4 col-lg-4 col-12 p-3 b-r">
+                <h4 class="title"> Sector </h4>
+                <app-barchar [chartLabels]="[ 'Transporte', 'Educación', 'Energía', 'Agua y saneamiento', 'Salud', 'Riego', 'Telecomunicaciones' ]" 
+                            [chartData]="[{ data: [49616.62, 931,44, 2463.20, 2474.33, 2682.98, 2885.50, 1468.18], label: 'USD Millones' }]" ></app-barchar>
+            </div>
+            <div class="col-md-4 col-lg-4 col-12 p-3">
+                    <h4 class="title"> Tipo de contrato</h4>
+                    <app-barchar [chartLabels]="[ 'Ejecución', 'No definida', 'Obra', 'APP', 'Obra X Imp.' ]" 
+                                [chartData]="[{ data: [390.91, 74,80, 21278.42, 38948.76, 75.12, 1754.23], label: 'USD Millones' }]" ></app-barchar>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card b-all">
     <div class="card-body">
         <div class="row">
             <ng-container *ngIf="have('PTRANSPORTE')">
