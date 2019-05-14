@@ -18,8 +18,10 @@ module.exports = {
 
 function priorizar( _id, priorizado ){
     return new Promise( (resolve, reject) => {
-        Ficha.updateOne( { _id: Schema.Types.ObjectId( _id ) }, { is_priorizado: priorizado }, ( err, data ) => {
-            if( err ) reject( err );
+        Ficha.updateOne( { _id: mongoose.Types.ObjectId( _id ) }, { $set: { is_priorizado: priorizado==1 } }, ( err, data ) => {
+            if( err ) {
+                reject( err );
+            }
             resolve( data );
         });
     });
