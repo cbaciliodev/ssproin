@@ -17,6 +17,12 @@ app.get('/select/:id', (req, res) => {
         err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
     );
 });
+app.get('/sector/:sector', (req, res) => {
+    _productiva.listsector(req.params.sector).then(
+        data => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, data),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    );
+});
 
 app.post('/insert', (req, res) => {
     _productiva.insert(req.body).then(
@@ -27,6 +33,13 @@ app.post('/insert', (req, res) => {
 
 app.post('/update', (req, res) => {
     _productiva.update(req.body._id, req.body).then(
+        _ => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, {}),
+        err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
+    )
+});
+
+app.post('/update/:id', (req, res) => {
+    _productiva.update(req.params.id, req.body).then(
         _ => _http.ok(res, _http.HTTP_RESP.SUCCESSFULL, {}),
         err => _http.err(res, _http.HTTP_RESP.SERVER_ERROR, err)
     )

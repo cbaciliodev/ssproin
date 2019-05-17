@@ -34,6 +34,8 @@ import { ListProyectosComponent } from './list-proyectos/list-proyectos.componen
 import { GisComponent } from './gis/gis.component';
 import { BarcharComponent } from '../components/barchar/barchar.component';
 import { ChartsModule } from 'ng2-charts';
+import { ProyectosProductivosComponent } from './productiva/proyectos-productivos/proyectos-productivos.component';
+import { GestorProductivosComponent } from './productiva/proyectos-productivos/gestor-productivos.component';
 
 @NgModule({
     declarations: [
@@ -61,7 +63,9 @@ import { ChartsModule } from 'ng2-charts';
         AppPerfilComponent,
         ListProyectosComponent,
         GisComponent,
-        BarcharComponent
+        BarcharComponent,
+        ProyectosProductivosComponent,
+        GestorProductivosComponent
     ],
     exports: [
         DashboardComponent,

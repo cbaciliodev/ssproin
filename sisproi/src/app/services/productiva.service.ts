@@ -13,7 +13,10 @@ export class ProductivaService {
     let URL = env.URI_API.concat('productiva/');
     return this.http.post<any>(URL, filtro);
   }
-
+  listsector(sector: any) {
+    let URL = env.URI_API.concat('productiva/sector/',sector);
+    return this.http.get<any>(URL);
+  }
   get(id: string) {
     let URL = env.URI_API.concat('productiva/select/', id);
     return this.http.get<any>(URL);
@@ -28,5 +31,8 @@ export class ProductivaService {
     let URL = env.URI_API.concat('productiva/delete/', id);
     return this.http.get<any>(URL);
   }
-
+  update(id,data){
+    let URL = env.URI_API.concat('productiva/update/',id);
+    return this.http.post<any>(URL,data)
+  }
 }

@@ -16,7 +16,12 @@ export class SidebarService {
         { titulo: 'Evaluación', url: '/registrada' },
       ]
     },
-    { titulo: 'Proyectos productivos', icono: 'mdi mdi-ferry', submenu: [ { titulo: 'Minería', url: '/productiva' } ]},
+    { titulo: 'Proyectos productivos', icono: 'mdi mdi-ferry', submenu: [ 
+      {titulo: 'Minería', url: '/productiva'} ,
+      {titulo: 'Turismo', url: '/listproductiva/Turismo'},
+      {titulo: 'Forestal', url: '/listproductiva/Forestal'},
+      {titulo: 'Acuicula', url: '/listproductiva/Acuicula'} 
+    ]},
     { titulo: 'Política sectorial', icono: 'mdi mdi-highway', url: '/psectorial' },
     { titulo: 'Mapas', icono: 'mdi mdi-map-marker-radius', url: '/mapas' },
     

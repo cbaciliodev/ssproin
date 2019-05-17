@@ -5,6 +5,7 @@ var Departamento = require('./departamento');
 var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
 var ProductivaSchema = new Schema({
+    sector_proyecto :{ type: String },
     nombre_proyecto: { type: String },
     operador: { type: String },
     inversionista: [{ type: String }],

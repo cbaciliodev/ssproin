@@ -6,7 +6,8 @@ module.exports = {
     select: select,
     insert: insert,
     update: update,
-    eliminar: eliminar
+    eliminar: eliminar,
+    listsector:listsector,
 }
 
 function list(filtro) {
@@ -21,6 +22,15 @@ function list(filtro) {
                 if (err) reject(err);
                 resolve(data);
             })
+    });
+}
+
+function listsector(sector) {
+    return new Promise((resolve, reject) => {
+        Productiva.find({estado:{$ne :3},sector_proyecto:{$eq :sector}}).exec((err, data) => {
+            if (err) rejec(err);
+            resolve(data);
+        });
     });
 }
 

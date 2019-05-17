@@ -21,6 +21,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AppPerfilComponent } from './perfil/app-perfil/app-perfil.component';
 import { ListProyectosComponent } from './list-proyectos/list-proyectos.component';
 import { GisComponent } from './gis/gis.component';
+import { ProyectosProductivosComponent } from './productiva/proyectos-productivos/proyectos-productivos.component';
+import { GestorProductivosComponent } from './productiva/proyectos-productivos/gestor-productivos.component';
 
 
 const pagesRoutes: Routes = [
@@ -94,7 +96,13 @@ const pagesRoutes: Routes = [
             { path: 'addperfil', component: AppPerfilComponent, data: {
                     title: 'Perfil', routes: [{ title: 'perfil' }]
                 }
+            },
+            { path: 'gestionproductiva/:sector', component: ProyectosProductivosComponent, data: { title: 'Proyecto Productivo', routes: [{ title: 'Proyecto Productivo' }]}},
+            { path: 'gestionproductiva/:sector/:id', component: ProyectosProductivosComponent, data: { title: 'Proyecto Productivo', routes: [{ title: 'Proyecto Productivo' }]}},
+            { path: 'listproductiva/:sector', component: GestorProductivosComponent, data: {
+            title: 'Proyecto Productivo', routes: [{ title: 'Proyecto Productivo' }]}
             }
+
         ]
     }
 ];

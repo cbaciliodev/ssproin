@@ -51,6 +51,7 @@ export class UsuarioComponent implements OnInit {
         } else {
           swal("No se elimino usuario!");
         }
+        
       }); 
   }
   

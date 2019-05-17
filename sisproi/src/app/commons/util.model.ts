@@ -13,6 +13,11 @@ export class Util {
     }
 
     static isEmpty( data: any ) {
+
+        if( typeof data=='undefined' ){
+            return true;
+        }
+
         if ( data.constructor === String ) {
             return (String(data)).length === 0;
         }
